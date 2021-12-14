@@ -1,0 +1,46 @@
+{
+  "name": "adebayosegun.com",
+  "version": "1.0.0",
+  "description": "My portfolio built with Next.js, Contentlayer, Chakra UI and Vercel",
+  "repository": "git@github.com:segunadebayo/adebayosegun.com.git",
+  "author": "Segun Adebayo <joseshegs@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
+    "lint": "next lint",
+    "rss": "esr scripts/generate-rss.ts",
+    "sitemap": "esr scripts/generate-sitemap.ts"
+  },
+  "dependencies": {
+    "contentlayer": "^0.0.33",
+    "next": "^12.0.7",
+    "next-contentlayer": "^0.0.33",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "unsplash-js": "6.3.0",
+    "@chakra-ui/system": "^1.8.2",
+    "@chakra-ui/provider": "^1.7.2",
+    "@emotion/styled": "^11.6.0",
+    "@emotion/react": "^11.7.0",
+    "@chakra-ui/cli": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.37",
+    "@types/github-slugger": "^1.3.0",
+    "eslint": "8.4.0",
+    "eslint-config-next": "^12.0.7",
+    "prettier": "2.5.1",
+    "rehype": "12.0.0",
+    "reading-time": "^1.4.0",
+    "rehype-autolink-headings": "6.1.0",
+    "rehype-code-titles": "1.0.3",
+    "rehype-prism-plus": "^1.1.3",
+    "rehype-slug": "5.0.0",
+    "remark-gfm": "^3.0.1",
+    "github-slugger": "^1.4.0",
+    "typescript": "^4.5.2"
+  }
+}
