@@ -1,6 +1,8 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-export default function ProjectPage() {}
+export default function ProjectPage() {
+  return <div>Project page</div>;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

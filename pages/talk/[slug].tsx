@@ -1,6 +1,8 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-export default function TalkPage() {}
+export default function TalkPage() {
+  return <div>Talk page</div>;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

@@ -1,6 +1,8 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
-export default function BlogPage() {}
+export default function BlogPage() {
+  return <div>Blog page</div>;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
