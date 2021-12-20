@@ -37,7 +37,7 @@ const Blog = defineDocumentType(() => ({
   fields: {
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
-    summary: { type: 'string', required: true },
+    description: { type: 'string', required: true },
     image: { type: 'string', required: true }
   },
   computedFields
@@ -50,7 +50,7 @@ const Talk = defineDocumentType(() => ({
   fields: {
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
-    summary: { type: 'string', required: true },
+    description: { type: 'string', required: true },
     image: { type: 'string', required: true }
   },
   computedFields
@@ -63,7 +63,7 @@ const Newsletter = defineDocumentType(() => ({
   fields: {
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
-    summary: { type: 'string', required: true },
+    description: { type: 'string', required: true },
     image: { type: 'string', required: true }
   },
   computedFields
