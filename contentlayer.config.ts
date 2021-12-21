@@ -22,7 +22,7 @@ const computedFields: ComputedFields = {
   },
   editUrl: {
     type: 'string',
-    resolve: (doc) => `${siteConfig.repo.editUrl}/${doc._id}`
+    resolve: (doc) => `${siteConfig.repo.editUrl}${doc._id}`
   },
   params: {
     type: 'list',

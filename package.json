@@ -11,36 +11,39 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
-    "rss": "esr scripts/generate-rss.ts",
-    "sitemap": "esr scripts/generate-sitemap.ts"
+    "rss": "NODE_OPTIONS='--experimental-json-modules' node scripts/generate-rss.ts",
+    "sitemap": " NODE_OPTIONS='--experimental-json-modules' node scripts/generate-sitemap.ts"
   },
   "dependencies": {
+    "@chakra-ui/cli": "^1.6.0",
+    "@chakra-ui/layout": "^1.6.0",
+    "@chakra-ui/provider": "^1.7.2",
+    "@chakra-ui/system": "^1.8.2",
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
     "contentlayer": "^0.0.33",
     "next": "^12.0.7",
     "next-contentlayer": "^0.0.33",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "unsplash-js": "6.3.0",
-    "@chakra-ui/system": "^1.8.2",
-    "@chakra-ui/provider": "^1.7.2",
-    "@emotion/styled": "^11.6.0",
-    "@emotion/react": "^11.7.0",
-    "@chakra-ui/cli": "^1.6.0"
+    "unsplash-js": "6.3.0"
   },
   "devDependencies": {
-    "@types/react": "^17.0.37",
     "@types/github-slugger": "^1.3.0",
+    "@types/react": "^17.0.37",
     "eslint": "8.4.0",
     "eslint-config-next": "^12.0.7",
+    "github-slugger": "^1.4.0",
+    "globby": "^12.0.2",
     "prettier": "2.5.1",
-    "rehype": "12.0.0",
     "reading-time": "^1.4.0",
+    "rehype": "12.0.0",
     "rehype-autolink-headings": "6.1.0",
     "rehype-code-titles": "1.0.3",
     "rehype-prism-plus": "^1.1.3",
     "rehype-slug": "5.0.0",
     "remark-gfm": "^3.0.1",
-    "github-slugger": "^1.4.0",
+    "rss": "^1.2.2",
     "typescript": "^4.5.2"
   }
 }
