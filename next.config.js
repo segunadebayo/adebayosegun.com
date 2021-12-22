@@ -6,6 +6,12 @@ const { withContentlayer } = require('next-contentlayer');
 module.exports = withContentlayer()({
   swcMinify: true,
   images: {
-    domains: ['pbs.twimg.com', 'vercel.com']
+    domains: [
+      'pbs.twimg.com',
+      'vercel.com',
+      'i.ytimg.com',
+      'images.unsplash.com',
+      'og-image-react-egghead.vercel.app'
+    ]
   }
 });
