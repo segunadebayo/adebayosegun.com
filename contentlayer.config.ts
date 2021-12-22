@@ -48,10 +48,18 @@ const Talk = defineDocumentType(() => ({
   filePathPattern: 'talk/*.mdx',
   bodyType: 'mdx',
   fields: {
+    type: {
+      type: 'enum',
+      required: true,
+      options: ['video', 'workshop', 'podcast', 'conference', 'panel']
+    },
     title: { type: 'string', required: true },
-    publishedAt: { type: 'string', required: true },
     description: { type: 'string', required: true },
-    image: { type: 'string', required: true }
+    publishedAt: { type: 'string', required: true },
+    image: { type: 'string', required: true },
+    url: { type: 'string', required: true },
+    host: { type: 'string', required: true },
+    tags: { type: 'list', required: true, of: { type: 'string' } }
   },
   computedFields
 }));

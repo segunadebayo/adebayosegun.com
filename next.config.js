@@ -11,7 +11,8 @@ module.exports = withContentlayer()({
       'vercel.com',
       'i.ytimg.com',
       'images.unsplash.com',
-      'og-image-react-egghead.vercel.app'
+      'og-image-react-egghead.vercel.app',
+      'images.ctfassets.net'
     ]
   }
 });
