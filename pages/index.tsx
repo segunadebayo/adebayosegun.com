@@ -1,6 +1,7 @@
 import { Box, Flex, Heading, HStack, Text } from '@chakra-ui/react';
 import ChakraLogo from 'components/chakra-logo';
 import GithubStarIcon from 'components/github-star';
+import Navbar from 'components/navbar';
 
 function SoftShadow() {
   return (
@@ -10,6 +11,7 @@ function SoftShadow() {
       position="absolute"
       top="0"
       left="0"
+      pointerEvents="none"
       bgGradient="radial-gradient(53.09% 53.09% at 50% 37.57%, rgba(255, 129, 60, 0.4) 0%, rgba(18, 19, 24, 0) 100%);"
     />
   );
@@ -29,13 +31,15 @@ function AchievementItem({ icon, children }) {
 export default function HomePage() {
   return (
     <Box bg="#000" color="white" minH="100vh">
-      <Box maxW="1280px" mx="auto" pt="80px" px="24px">
+      <Navbar />
+      <Box maxW="1080px" mx="auto" pt="10" px="24px">
         <SoftShadow />
         <Flex direction="column" align="center" position="relative">
           <Heading
             as="h1"
+            width="full"
             fontFamily="heading"
-            fontSize={'max(9vw, 4rem)'}
+            fontSize={'max(8vw, 4rem)'}
             letterSpacing={{ base: '-2px', md: '-4px' }}
             lineHeight="1"
             marginBottom="56px"
@@ -46,7 +50,7 @@ export default function HomePage() {
             <Box as="span" color="#FEB48C" display="block" textAlign="end">
               — ui engineer
             </Box>
-            <Box as="span" color="#FEB48C" display="block" textAlign="end">
+            <Box as="span" color="#FEB48C" display="block">
               & product designer
             </Box>
           </Heading>
