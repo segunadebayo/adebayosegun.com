@@ -14,8 +14,8 @@ const colors = {
 };
 
 const fonts = {
-  heading: 'PolySans',
-  body: 'Inter, system-ui, sans-serif',
+  heading: 'PolySans, -apple-system, system-ui, sans-serif',
+  body: 'Inter, -apple-system, system-ui, sans-serif',
   mono: `SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`
 };
 
