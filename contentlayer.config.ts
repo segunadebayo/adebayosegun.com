@@ -1,7 +1,7 @@
 import {
   ComputedFields,
   defineDocumentType,
-  makeSource
+  makeSource,
 } from 'contentlayer/source-files';
 import readingTime from 'reading-time';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -14,20 +14,20 @@ import siteConfig from './site.config';
 const computedFields: ComputedFields = {
   readingTime: {
     type: 'json',
-    resolve: (doc) => readingTime(doc.body.raw, { wordsPerMinute: 300 })
+    resolve: (doc) => readingTime(doc.body.raw, { wordsPerMinute: 300 }),
   },
   slug: {
     type: 'string',
-    resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, '')
+    resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ''),
   },
   editUrl: {
     type: 'string',
-    resolve: (doc) => `${siteConfig.repo.editUrl}${doc._id}`
+    resolve: (doc) => `${siteConfig.repo.editUrl}${doc._id}`,
   },
   params: {
     type: 'list',
-    resolve: (doc) => doc._raw.flattenedPath.split('/')
-  }
+    resolve: (doc) => doc._raw.flattenedPath.split('/'),
+  },
 };
 
 const Blog = defineDocumentType(() => ({
@@ -38,9 +38,9 @@ const Blog = defineDocumentType(() => ({
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
     description: { type: 'string', required: true },
-    image: { type: 'string', required: true }
+    image: { type: 'string', required: true },
   },
-  computedFields
+  computedFields,
 }));
 
 const Talk = defineDocumentType(() => ({
@@ -51,7 +51,7 @@ const Talk = defineDocumentType(() => ({
     type: {
       type: 'enum',
       required: true,
-      options: ['video', 'workshop', 'podcast', 'conference', 'panel']
+      options: ['video', 'workshop', 'podcast', 'conference', 'panel'],
     },
     title: { type: 'string', required: true },
     description: { type: 'string', required: true },
@@ -59,9 +59,9 @@ const Talk = defineDocumentType(() => ({
     image: { type: 'string', required: true },
     url: { type: 'string', required: true },
     host: { type: 'string', required: true },
-    tags: { type: 'list', required: true, of: { type: 'string' } }
+    tags: { type: 'list', required: true, of: { type: 'string' } },
   },
-  computedFields
+  computedFields,
 }));
 
 const Newsletter = defineDocumentType(() => ({
@@ -72,9 +72,9 @@ const Newsletter = defineDocumentType(() => ({
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
     description: { type: 'string', required: true },
-    image: { type: 'string', required: true }
+    image: { type: 'string', required: true },
   },
-  computedFields
+  computedFields,
 }));
 
 const Snippet = defineDocumentType(() => ({
@@ -84,9 +84,9 @@ const Snippet = defineDocumentType(() => ({
   fields: {
     title: { type: 'string', required: true },
     description: { type: 'string', required: true },
-    logo: { type: 'string', required: true }
+    logo: { type: 'string', required: true },
   },
-  computedFields
+  computedFields,
 }));
 
 const Project = defineDocumentType(() => ({
@@ -96,14 +96,30 @@ const Project = defineDocumentType(() => ({
   fields: {
     title: { type: 'string', required: true },
     description: { type: 'string', required: true },
-    logo: { type: 'string', required: true }
+    logo: { type: 'string', required: true },
   },
-  computedFields
+  computedFields,
+}));
+
+const Testimonial = defineDocumentType(() => ({
+  name: 'Testimonial',
+  filePathPattern: 'testimonial/*.md',
+  bodyType: 'markdown',
+  fields: {
+    image: { type: 'string', required: true },
+    name: { type: 'string', required: true },
+    title: { type: 'string', required: true },
+    source: {
+      type: 'enum',
+      options: ['twitter', 'linkedin'],
+      required: true,
+    },
+  },
 }));
 
 const contentLayerConfig = makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Newsletter, Snippet, Talk, Project],
+  documentTypes: [Blog, Newsletter, Snippet, Talk, Project, Testimonial],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
@@ -114,12 +130,12 @@ const contentLayerConfig = makeSource({
         rehypeAutolinkHeadings,
         {
           properties: {
-            className: ['anchor']
-          }
-        }
-      ]
-    ]
-  }
+            className: ['anchor'],
+          },
+        },
+      ],
+    ],
+  },
 });
 
 export default contentLayerConfig;

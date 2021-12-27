@@ -1,6 +1,6 @@
-export default function ChakraLogo() {
+export default function ChakraLogo(props) {
   return (
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" {...props}>
       <path
         d="M48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24C0 37.2548 10.7452 48 24 48C37.2548 48 48 37.2548 48 24Z"
         fill="url(#paint0_linear_0_25)"

@@ -1,6 +1,6 @@
-export default function GithubStarIcon() {
+export default function GithubStarIcon(props) {
   return (
-    <svg width="48" height="46" viewBox="0 0 48 46" fill="none">
+    <svg width="48" height="46" viewBox="0 0 48 46" fill="none" {...props}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

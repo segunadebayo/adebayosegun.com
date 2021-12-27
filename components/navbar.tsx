@@ -66,13 +66,21 @@ export function NavItemGroup() {
 
 function Headshot() {
   return (
-    <Circle overflow="hidden" outline="2px solid #FEB48C" outlineOffset="4px">
+    <Circle
+      rounded="9999px"
+      overflow="hidden"
+      outline="2px solid #FEB48C"
+      outlineOffset="4px"
+      width="32px"
+      height="32px"
+    >
       <Image
         alt="Segun Adebayo"
         src="/static/images/segun-adebayo-headshot.jpg"
         layout="fixed"
-        width="48"
-        height="48"
+        width="32"
+        height="32"
+        objectFit="cover"
       />
     </Circle>
   );
