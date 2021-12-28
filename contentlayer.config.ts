@@ -1,8 +1,4 @@
-import {
-  ComputedFields,
-  defineDocumentType,
-  makeSource,
-} from 'contentlayer/source-files';
+import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files';
 import readingTime from 'reading-time';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeCodeTitles from 'rehype-code-titles';
@@ -96,6 +92,7 @@ const Project = defineDocumentType(() => ({
     github: { type: 'string' },
     website: { type: 'string' },
     metadata: { type: 'json' },
+    image: { type: 'string' },
   },
   computedFields,
 }));

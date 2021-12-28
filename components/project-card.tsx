@@ -1,6 +1,7 @@
 import { Project } from '.contentlayer/types';
 import { Box, Flex, Heading, HStack, Stack } from '@chakra-ui/react';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import Image from 'next/image';
 import { DescriptionList } from './description-item';
 import LinkItem from './link-item';
 import { GithubIcon, WebsiteIcon } from './social-icons';
@@ -44,12 +45,18 @@ export default function ProjectCard(props: ProjectCardProps) {
         </Box>
       </Box>
 
-      <ProjectImageCard src="/" />
+      <ProjectImageCard src={project.image} alt={project.title} />
     </Flex>
   );
 }
 
-function ProjectImageCard({ src }: { src?: string }) {
+type ProjectImageCardProps = {
+  src?: string;
+  alt: string;
+};
+
+function ProjectImageCard(props: ProjectImageCardProps) {
+  const { src, alt } = props;
   return (
     <Box
       flex={{ md: '1' }}
@@ -70,7 +77,9 @@ function ProjectImageCard({ src }: { src?: string }) {
         rounded="lg"
         overflow="hidden"
         boxShadow="xl"
-      ></Box>
+      >
+        <Image alt={alt} src={src} layout="fill" objectPosition={'-20%'} />
+      </Box>
     </Box>
   );
 }
