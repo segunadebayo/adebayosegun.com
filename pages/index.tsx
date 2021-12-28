@@ -1,6 +1,5 @@
-import { allTestimonials } from '.contentlayer/data';
+import { allProjects, allTalks, allTestimonials } from '.contentlayer/data';
 import {
-  Avatar,
   Box,
   Circle,
   Flex,
@@ -11,15 +10,19 @@ import {
   Stack,
   Text,
   VisuallyHidden,
-  Wrap,
 } from '@chakra-ui/react';
 import ChakraLogo from 'components/chakra-logo';
 import GithubStarIcon from 'components/github-star';
-import { AboveTheFoldGradient, SpanGradient } from 'components/gradients';
+import {
+  AboveTheFoldGradient,
+  SpanGradient,
+  StartSideGradient,
+} from 'components/gradients';
+import LinkItem from 'components/link-item';
+import ProjectCard from 'components/project-card';
 import {
   EmailIcon,
   FileIcon,
-  FullLinkedInLogo,
   LinkedInIcon,
   TwitterIcon,
 } from 'components/social-icons';
@@ -33,22 +36,6 @@ function AchievementItem({ icon, children }) {
     <HStack spacing="3">
       <Icon as={icon} fontSize="4xl" />
       <Text fontFamily="heading" fontSize="xl">
-        {children}
-      </Text>
-    </HStack>
-  );
-}
-
-function LinkItem({ icon, children, href }) {
-  return (
-    <HStack as="a" href={href} rel="noopener" target="_blank" spacing="3">
-      <Icon aria-hidden as={icon} fontSize="4xl" color="#FEB48C" />
-      <Text
-        fontSize="lg"
-        textDecoration="underline"
-        textDecorationThickness="1px"
-        textUnderlineOffset="3px"
-      >
         {children}
       </Text>
     </HStack>
@@ -72,7 +59,7 @@ export default function HomePage() {
             letterSpacing={{ base: '-2px', md: '-4px' }}
             lineHeight="1"
             marginBottom="56px"
-            fontWeight="bold"
+            fontWeight="normal"
             userSelect="none"
           >
             <span>Segun Adebayo</span>
@@ -129,21 +116,31 @@ export default function HomePage() {
           </Box>
         </Flex>
 
-        <Flex py="100px" justify="space-between">
+        <Flex
+          py="100px"
+          justify="space-between"
+          direction={{ base: 'column', md: 'row' }}
+        >
           <Box maxW="560px">
-            <Circle size="95px" float="left" mr="6" overflow="hidden">
+            <Circle
+              position={'relative'}
+              size={{ base: '50px', md: '100px' }}
+              float="left"
+              mr={{ base: '3', md: '6' }}
+              overflow="hidden"
+            >
               <Image
                 alt="Segun adebayo"
                 src="/static/images/segun-adebayo-headshot.jpg"
-                layout="fixed"
-                width="95px"
-                height="95px"
+                layout="fill"
+                objectFit="cover"
+                width="100%"
               />
             </Circle>
             <Text
               fontFamily="heading"
               lineHeight="1"
-              fontSize="100px"
+              fontSize={{ base: '50px', md: '100px' }}
               letterSpacing="-0.04em"
             >
               I design{' '}
@@ -152,8 +149,8 @@ export default function HomePage() {
               </Box>
             </Text>
           </Box>
-          <Box maxW="440px" mt="4">
-            <Text fontSize="2xl">
+          <Box maxW={{ md: '440px' }} mt="4">
+            <Text fontSize={{ base: 'lg', md: '2xl' }}>
               An engineer with a strong design background, specializing in
               design systems, accessibility and interface design for digital
               products since 2016
@@ -177,7 +174,7 @@ export default function HomePage() {
 
         <Box as="section" aria-labelledby="heading" py="100px">
           <VisuallyHidden>Recommendations</VisuallyHidden>
-          <SimpleGrid columns={2} spacing="6">
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6">
             {chunk(allTestimonials, 2).map((testimonials, index) => (
               <Stack key={index} spacing="6">
                 {testimonials.map((data) => (
@@ -186,6 +183,29 @@ export default function HomePage() {
               </Stack>
             ))}
           </SimpleGrid>
+        </Box>
+
+        <Box as="section" py="100px">
+          <Heading size="3xl" letterSpacing="-0.04em">
+            Projects
+          </Heading>
+          <Box mt="100px">
+            <Stack spacing="20">
+              {allProjects.map((project) => (
+                <ProjectCard key={project.title} data={project} />
+              ))}
+            </Stack>
+          </Box>
+        </Box>
+
+        <Box as="section" py="100px" position="relative">
+          <StartSideGradient />
+          <Heading size="3xl" letterSpacing="-0.04em">
+            Talks
+          </Heading>
+          <Box mt="100px">
+            <Stack spacing="20"></Stack>
+          </Box>
         </Box>
       </Box>
     </Box>

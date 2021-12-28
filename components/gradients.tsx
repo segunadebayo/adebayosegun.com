@@ -27,3 +27,17 @@ export function SpanGradient() {
     />
   );
 }
+
+export function StartSideGradient() {
+  return (
+    <Box
+      width="100%"
+      height="1000px"
+      position="absolute"
+      left="-400px"
+      top="-10"
+      bg="radial-gradient(50% 50% at 50% 50%, #FF7D35 0%, rgba(0, 0, 0, 0) 100%)"
+      opacity="0.4"
+    />
+  );
+}

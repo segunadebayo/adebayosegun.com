@@ -1,6 +1,6 @@
 import { Testimonial } from '.contentlayer/types';
 import { Avatar, Box, HStack, Text } from '@chakra-ui/react';
-import { FullLinkedInLogo } from './social-icons';
+import { FullLinkedInLogo, LinkedInIcon } from './social-icons';
 
 type TestimonialCardProps = {
   data: Testimonial;
@@ -10,15 +10,12 @@ export default function TestimonialCard(props: TestimonialCardProps) {
   const { data: testimonial } = props;
   return (
     <Box
-      as="figure"
       bg="rgba(254, 180, 140, 0.11)"
       rounded="2xl"
       position="relative"
       padding="6"
     >
-      <Box position={'absolute'} right="6">
-        <FullLinkedInLogo />
-      </Box>
+      <LinkedInBadge />
       <Box>
         <HStack spacing="5">
           <Avatar name={testimonial.name} src={testimonial.image} />
@@ -43,5 +40,22 @@ export default function TestimonialCard(props: TestimonialCardProps) {
         }}
       />
     </Box>
+  );
+}
+
+function LinkedInBadge() {
+  return (
+    <>
+      <Box
+        position={'absolute'}
+        right="6"
+        display={{ base: 'none', md: 'block' }}
+      >
+        <FullLinkedInLogo />
+      </Box>
+      <Box position={'absolute'} right="6" display={{ md: 'none' }}>
+        <LinkedInIcon />
+      </Box>
+    </>
   );
 }

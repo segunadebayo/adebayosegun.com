@@ -95,8 +95,10 @@ const Project = defineDocumentType(() => ({
   bodyType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
-    description: { type: 'string', required: true },
-    logo: { type: 'string', required: true },
+    description: { type: 'string' },
+    github: { type: 'string' },
+    website: { type: 'string' },
+    metadata: { type: 'json' },
   },
   computedFields,
 }));
