@@ -30,8 +30,8 @@ export default function TalkCard(props: TalkCardProps) {
       flexDirection={{ base: 'column', md: 'row' }}
       _hover={{ bg: 'rgba(254, 180, 140, 0.11)' }}
       rounded="2xl"
-      width="calc(100% + 2rem)"
-      marginLeft="-2rem"
+      width={{ md: 'calc(100% + 2rem)' }}
+      marginLeft={{ md: '-2rem' }}
       padding="2rem"
       transition="background 0.2s ease-in-out"
     >
@@ -50,7 +50,7 @@ export default function TalkCard(props: TalkCardProps) {
           <Text
             casing={'uppercase'}
             fontWeight={'bold'}
-            fontSize={'xs'}
+            fontSize={'sm'}
             letterSpacing={'0.05em'}
           >
             <Box as="span" color="#FEB48C" marginRight="2">
@@ -84,15 +84,8 @@ function TalkCoverImage(props) {
   const { src, alt } = props;
   return (
     <Box position={'relative'}>
-      <Box rounded="lg" overflow={'hidden'}>
-        <Image
-          alt={alt}
-          src={src}
-          objectFit="cover"
-          width="300px"
-          height="180px"
-          layout="fixed"
-        />
+      <Box rounded="lg" overflow={'hidden'} width="300px" height="200px">
+        <Image alt={alt} src={src} objectFit="cover" layout="fill" />
       </Box>
       <AbsoluteCenter display={'none'} _groupHover={{ display: 'block' }}>
         <Icon as={PlayIcon} aria-hidden fontSize="64px" />

@@ -29,6 +29,7 @@ import {
   LinkedInIcon,
   TwitterIcon,
 } from 'components/social-icons';
+import SubscribeForm from 'components/subscribe-form';
 import TalkCard from 'components/talk-card';
 import TestimonialCard from 'components/testimonial.card';
 import ViewMore from 'components/view-more';
@@ -246,6 +247,9 @@ export default function HomePage() {
             ))}
           </Wrap>
         </Box>
+        <Box as="hr" borderColor="whiteAlpha.300" />
+        <SubscribeForm />
+        <Box as="hr" borderColor="whiteAlpha.300" />
       </Box>
       <Footer />
     </Box>
