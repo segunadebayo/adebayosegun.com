@@ -27,7 +27,6 @@ export default function SubscribeForm() {
             name="email"
             aria-label="Enter your email address"
             bg="rgba(254, 180, 140, 0.11)"
-            shadow="0px -2px 0px rgba(255, 185, 146, 0.22)"
             rounded="12px"
             placeholder="sage@apple.com"
             _placeholder={{ color: '#A8806A' }}

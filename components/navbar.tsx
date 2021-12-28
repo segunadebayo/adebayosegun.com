@@ -5,15 +5,12 @@ import {
   HStack,
   Icon,
   Text,
-  VisuallyHidden
+  VisuallyHidden,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ElementType, ReactNode } from 'react';
-import BlogIcon from './blog-icon';
-import ProjectIcon from './project-icon';
-import SnippetIcon from './snippet-icon';
-import TalksIcon from './talks-icon';
+import { BlogIcon, ProjectIcon, SnippetIcon, TalksIcon } from './nav-icons';
 
 type NavItemProps = {
   children: ReactNode;
@@ -29,16 +26,14 @@ function NavItem(props: NavItemProps) {
       <HStack
         as="a"
         spacing="2"
-        px="3"
-        py="2.5"
+        paddingX="3"
+        paddingY="2.5"
         rounded="lg"
         aria-current={active ? 'page' : undefined}
-        _hover={{ color: '#FEB48C' }}
-        _activeLink={{
-          bg: '#FEB48C'
-        }}
+        _hover={{ color: 'sage.base' }}
+        _activeLink={{ bg: 'sage.base' }}
       >
-        <Icon as={icon} color="#FEB48C" fontSize="20px" />
+        <Icon as={icon} color="#FEB48C" fontSize="lg" />
         <Text fontFamily="heading">{children}</Text>
       </HStack>
     </Link>
@@ -69,10 +64,11 @@ function Headshot() {
     <Circle
       rounded="9999px"
       overflow="hidden"
-      outline="2px solid #FEB48C"
+      outline="2px solid"
+      outlineColor="sage.base"
       outlineOffset="4px"
-      width="32px"
-      height="32px"
+      width="8"
+      height="8"
     >
       <Image
         alt="Segun Adebayo"
@@ -88,7 +84,13 @@ function Headshot() {
 
 export default function Navbar() {
   return (
-    <Box as="header" py="6" maxW="1080px" mx="auto" px="24px">
+    <Box
+      as="header"
+      paddingY="6"
+      maxWidth="1080px"
+      marginX="auto"
+      paddingX="24px"
+    >
       <Flex justify="space-between">
         <Link href="/">
           <>

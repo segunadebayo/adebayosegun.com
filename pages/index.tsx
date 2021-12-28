@@ -4,6 +4,7 @@ import {
   Circle,
   Flex,
   Heading,
+  HeadingProps,
   HStack,
   Icon,
   SimpleGrid,
@@ -37,6 +38,7 @@ import chunk from 'lib/chunk';
 import sortByPublishedDate from 'lib/sort';
 import tools from 'lib/tools';
 import Image from 'next/image';
+import { PropsWithChildren } from 'react';
 import siteConfig from 'site.config';
 
 function AchievementItem({ icon, children }) {
@@ -50,64 +52,74 @@ function AchievementItem({ icon, children }) {
   );
 }
 
+function Emoji(props: PropsWithChildren<{ label: string }>) {
+  const { label, ...rest } = props;
+  return <span role="img" aria-label={label} {...rest} />;
+}
+
+function MainHeading(props: HeadingProps) {
+  return (
+    <Heading
+      as="h1"
+      width="full"
+      maxWidth={{ md: '70vw' }}
+      fontFamily="heading"
+      fontSize={{ base: '3.5rem', md: 'max(8vw, 4rem)' }}
+      letterSpacing="tight"
+      lineHeight="1"
+      marginBottom="14"
+      userSelect="none"
+      {...props}
+    />
+  );
+}
+
 export default function HomePage() {
   return (
     <Box>
       {/* <Navbar /> */}
-      <Box maxW="1080px" mx="auto" pt="10" px="24px">
+      <Box maxWidth="6xl" marginX="auto" paddingTop="10" paddingX="6">
         <AboveTheFoldGradient />
         <SpanGradient />
-        <Flex direction="column" align="center" position="relative" py="100px">
-          <Heading
-            as="h1"
-            width="full"
-            maxW={{ md: '69vw' }}
-            fontFamily="heading"
-            fontSize={{ base: '3.5rem', md: 'max(8vw, 4rem)' }}
-            letterSpacing={{ base: '-2px', md: '-4px' }}
-            lineHeight="1"
-            marginBottom="56px"
-            userSelect="none"
-          >
+
+        {/* Segun Adebayo - ui engineer & product designer  */}
+        <Flex
+          direction="column"
+          align="center"
+          position="relative"
+          paddingY="24"
+        >
+          <MainHeading>
             <span>Segun Adebayo</span>
             <Box
               as="span"
-              color="#FEB48C"
+              color="sage.base"
               display="block"
               textAlign={{ md: 'end' }}
+              _before={{ content: `"— "` }}
             >
-              — ui engineer
+              ui engineer
             </Box>
-            <Box as="span" color="#FEB48C" display="block">
-              & product designer
+            <Box as="span" color="sage.base" display="block">
+              &amp; product designer
             </Box>
-          </Heading>
+          </MainHeading>
+
+          {/* I'm passionate about... */}
           <Text
             align={{ base: 'start', md: 'center' }}
             fontFamily="body"
-            fontWeight="medium"
-            maxW="640px"
+            maxWidth="40rem"
             fontSize={{ base: 'lg', md: '2xl' }}
           >
-            I'm passionate about{' '}
-            <span role="img" aria-label="design system">
-              🎨
-            </span>{' '}
-            design systems,{' '}
-            <span role="img" aria-label="accessibility">
-              ♿️
-            </span>{' '}
-            accessibility,{' '}
-            <span role="img" aria-label="state machine">
-              ⚙️
-            </span>{' '}
-            state machines, and{' '}
-            <span role="img" aria-label="love">
-              😍{' '}
-            </span>{' '}
-            user experience
+            I'm passionate about <Emoji label="design system">🎨</Emoji> design
+            systems, <Emoji label="accessibility">♿️</Emoji> accessibility,{' '}
+            <Emoji label="state machine">⚙️</Emoji> state machines, and{' '}
+            <Emoji label="love">😍 </Emoji> user experience
           </Text>
-          <Box mt={{ base: '8', md: '14' }} width="full">
+
+          {/* Github star and Chakra brag */}
+          <Box marginTop={{ base: '8', md: '14' }} width="full">
             <Flex
               direction={{ base: 'column', md: 'row' }}
               justify={{ base: 'flex-start', md: 'center' }}
@@ -123,19 +135,21 @@ export default function HomePage() {
           </Box>
         </Flex>
 
+        {/* I design component systems... */}
         <Flex
-          py="100px"
+          paddingY="vGutter"
           gap={{ base: '5', lg: '20' }}
           justify="space-between"
           direction={{ base: 'column', lg: 'row' }}
         >
-          <Box maxW={{ lg: '560px' }}>
+          <Box maxWidth={{ lg: '36rem' }}>
+            {/* Circular Headshot */}
             <Circle
               display={{ base: 'none', lg: 'flex' }}
               position={'relative'}
-              size="100px"
+              size="6.25rem"
               float="left"
-              mr="6"
+              marginRight="6"
               overflow="hidden"
             >
               <Image
@@ -143,28 +157,35 @@ export default function HomePage() {
                 src="/static/images/segun-adebayo-headshot.jpg"
                 layout="fill"
                 objectFit="cover"
-                width="100%"
               />
             </Circle>
-            <Text
-              fontFamily="heading"
+
+            <Heading
               lineHeight="1"
-              fontSize={{ base: '50px', md: '80px', lg: '100px' }}
-              letterSpacing="-0.04em"
+              fontSize={{ base: '3.125rem', md: '5rem', lg: '6.25rem' }}
+              letterSpacing="tight"
             >
               I design{' '}
-              <Box as="span" color="#FEB48C">
+              <Box as="span" color="sage.base">
                 component systems
               </Box>
-            </Text>
+            </Heading>
           </Box>
-          <Box maxW={{ lg: '440px' }} mt="4">
+
+          <Box maxWidth={{ lg: '27.5rem' }} marginTop="4">
             <Text fontSize={{ base: 'lg', md: '2xl' }}>
               An engineer with a strong design background, specializing in
               design systems, accessibility and interface design for digital
               products since 2016
             </Text>
-            <SimpleGrid columns={2} mt="10" spacing="10" maxW="256px">
+
+            {/* Profile links */}
+            <SimpleGrid
+              columns={2}
+              marginTop="10"
+              spacing="10"
+              maxWidth="16rem"
+            >
               <LinkItem icon={LinkedInIcon} href={siteConfig.profiles.linkedin}>
                 LinkedIn
               </LinkItem>
@@ -181,7 +202,8 @@ export default function HomePage() {
           </Box>
         </Flex>
 
-        <Box as="section" aria-labelledby="heading" py="100px">
+        {/* Testimonials */}
+        <Box as="section" aria-labelledby="heading" py="vGutter">
           <VisuallyHidden>Recommendations</VisuallyHidden>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6">
             {chunk(allTestimonials, 2).map((testimonials, index) => (
@@ -194,11 +216,12 @@ export default function HomePage() {
           </SimpleGrid>
         </Box>
 
-        <Box as="section" py="100px">
-          <Heading size="3xl" letterSpacing="-0.04em">
+        {/* Featured projects */}
+        <Box as="section" py="vGutter">
+          <Heading size="3xl" letterSpacing="tight">
             Featured Projects
           </Heading>
-          <Box mt="100px">
+          <Box marginTop="vGutter">
             <Stack spacing="20">
               {allProjects.map((project) => (
                 <ProjectCard key={project.title} data={project} />
@@ -207,15 +230,16 @@ export default function HomePage() {
           </Box>
         </Box>
 
-        <Box as="section" py="100px" position="relative">
+        {/* Featured Talks */}
+        <Box as="section" py="vGutter" position="relative">
           <StartSideGradient />
-          <Heading size="3xl" letterSpacing="-0.04em">
+          <Heading size="3xl" letterSpacing="tight">
             Featured Talks
           </Heading>
-          <Box my="40px">
-            <Flex direction={'column'} gap="6">
+          <Box marginY="10">
+            <Flex direction="column" gap="6">
               {allTalks
-                .filter((a) => a.featured)
+                .filter((talk) => talk.featured)
                 .sort(sortByPublishedDate)
                 .map((talk) => (
                   <TalkCard key={talk.title} data={talk} />
@@ -225,22 +249,25 @@ export default function HomePage() {
           <ViewMore>View all Talks</ViewMore>
         </Box>
 
-        <Box as="section" py="100px">
-          <Box mb="16">
-            <Heading size="3xl" letterSpacing="-0.04em">
-              Tools
+        {/* Tools & Softwares */}
+        <Box as="section" py="vGutter">
+          <Box marginBottom="16">
+            <Heading size="3xl" letterSpacing="tight">
+              Tools &amp; Softwares
             </Heading>
-            <Text mt="5" fontSize="lg" maxW={{ md: '720px' }}>
+            <Text marginTop="5" fontSize="lg" maxWidth={{ md: '45rem' }}>
               Over the years, I had the opportunity to work with various
               software, tools and frameworks. Here are some of them:
             </Text>
           </Box>
+
+          {/* ToolList */}
           <Wrap spacing="10">
             {tools.map((tool) => (
               <WrapItem
-                fontFamily={'heading'}
-                fontSize={'3xl'}
-                color="#FEB48C"
+                fontFamily="heading"
+                fontSize="3xl"
+                color="sage.base"
                 key={tool}
               >
                 {tool}
@@ -248,10 +275,13 @@ export default function HomePage() {
             ))}
           </Wrap>
         </Box>
+
+        {/* Subscribe callout */}
         <Box as="hr" borderColor="whiteAlpha.300" />
         <SubscribeForm />
         <Box as="hr" borderColor="whiteAlpha.300" />
       </Box>
+
       <Footer />
     </Box>
   );

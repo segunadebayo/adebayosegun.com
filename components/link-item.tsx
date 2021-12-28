@@ -3,7 +3,7 @@ import { HStack, Icon, Text } from '@chakra-ui/react';
 export default function LinkItem({ icon, children, href }) {
   return (
     <HStack as="a" href={href} rel="noopener" target="_blank" spacing="3">
-      <Icon aria-hidden as={icon} fontSize="4xl" color="#FEB48C" />
+      <Icon aria-hidden as={icon} fontSize="4xl" color="sage.base" />
       <Text
         fontSize="lg"
         textDecoration="underline"

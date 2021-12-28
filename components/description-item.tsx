@@ -12,20 +12,15 @@ export function DescriptionList({ data }: { data: DescriptionItem[] }) {
         <Box as="dl" key={item.title}>
           <Box
             as="dt"
-            color="#FEB48C"
+            color="sage.base"
             fontSize="sm"
             fontWeight="semibold"
             textTransform="uppercase"
-            letterSpacing="0.13em"
+            letterSpacing="widest"
           >
             {item.title}
           </Box>
-          <Box
-            as="dd"
-            fontSize="3xl"
-            fontFamily={'heading'}
-            fontWeight={'bold'}
-          >
+          <Box as="dd" fontSize="3xl" fontFamily="heading" fontWeight="bold">
             {item.content}
           </Box>
         </Box>

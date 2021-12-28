@@ -1,3 +1,5 @@
+import { extendTheme } from '@chakra-ui/react';
+
 const colors = {
   gray: {
     50: '#F7FAFC',
@@ -11,6 +13,23 @@ const colors = {
     800: '#1A202C',
     900: '#171923',
   },
+  sage: {
+    base: '#FEB48C',
+    dark: '#E99465',
+    darker: '#D37B4A',
+  },
+  dust: {
+    light: '#74503D',
+    base: '#483327',
+    dark: '#36261D',
+    darker: '#1B1512',
+  },
+  dustAlpha: {
+    light: 'rgba(254, 180, 140, 0.45)',
+    base: 'rgba(254, 180, 140, 0.28)',
+    dark: 'rgba(254, 180, 140, 0.21)',
+    darker: 'rgba(254, 180, 140, 0.11)',
+  },
 };
 
 const fonts = {
@@ -22,16 +41,25 @@ const fonts = {
 const theme = {
   colors,
   fonts,
+  space: {
+    vGutter: '6.25rem',
+  },
   styles: {
     global: {
       'html, body': {
-        bg: '#000',
+        bg: 'black',
         color: 'white',
         minH: '100vh',
         overflowX: 'hidden',
+      },
+      '*:focus': {
+        outline: '2px solid',
+        outlineColor: 'sage.base',
+        outlineOffset: '3px',
+        rounded: 'md',
       },
     },
   },
 };
 
-export default theme;
+export default extendTheme(theme);

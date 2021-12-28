@@ -23,13 +23,14 @@ function FooterLink({ href, children }) {
 
 export default function Footer() {
   return (
-    <Box as="footer" position="relative" py="80px">
+    <Box as="footer" position="relative" paddingY="20">
       <FooterGradient />
-      <Box maxW="1080px" mx="auto" px="6">
+
+      <Box maxWidth="6xl" marginX="auto" paddingX="6">
         <SimpleGrid columns={{ base: 4, md: 12 }} spacing="16">
           <GridItem colSpan={6}>
             <Box>
-              <Heading mb="6" size="lg">
+              <Heading marginBottom="6" size="lg">
                 Segun Adebayo
               </Heading>
               <Text fontSize="lg">
@@ -37,7 +38,8 @@ export default function Footer() {
                 code
               </Text>
             </Box>
-            <HStack mt="9" spacing="10">
+
+            <HStack marginTop="9" spacing="10">
               <LinkItem href={siteConfig.profiles.linkedin} icon={LinkedInIcon}>
                 LinkedIn
               </LinkItem>
@@ -49,11 +51,12 @@ export default function Footer() {
               </LinkItem>
             </HStack>
           </GridItem>
+
           <GridItem colSpan={3}>
-            <Heading as="h2" mb="6" size="lg">
+            <Heading as="h2" marginBottom="6" size="lg">
               Contact
             </Heading>
-            <Flex direction={'column'} gap="16px">
+            <Flex direction="column" gap="4">
               <FooterLink href={siteConfig.profiles.email}>
                 Email Segun
               </FooterLink>
@@ -63,18 +66,20 @@ export default function Footer() {
               </FooterLink>
             </Flex>
           </GridItem>
+
           <GridItem colSpan={3}>
-            <Heading as="h2" mb="6" size="lg">
+            <Heading as="h2" marginBottom="6" size="lg">
               General
             </Heading>
-            <Flex direction={'column'} gap="16px">
-              <FooterLink href={'/mission'}>My Mission</FooterLink>
-              <FooterLink href={'/story'}>My Story</FooterLink>
-              <FooterLink href={'/family'}>My Family</FooterLink>
+            <Flex direction="column" gap="4">
+              <FooterLink href="/mission">My Mission</FooterLink>
+              <FooterLink href="/story">My Story</FooterLink>
+              <FooterLink href="/family">My Family</FooterLink>
             </Flex>
           </GridItem>
         </SimpleGrid>
-        <Text mt="72px">
+
+        <Text marginTop="20">
           All rights reserved &copy; Segun Adebayo {new Date().getFullYear()}
         </Text>
       </Box>
