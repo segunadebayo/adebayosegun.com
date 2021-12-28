@@ -48,11 +48,12 @@ export function FooterGradient() {
     <Box
       position="absolute"
       pointerEvents={'none'}
-      width="1440px"
-      height="2052px"
+      width="full"
+      height="1000px"
       left="0px"
-      top="3743px"
+      bottom="0px"
       bg="linear-gradient(180deg, rgba(56, 32, 19, 0) 0%, rgba(240, 108, 35, 0.4) 100%)"
+      opacity={0.64}
     />
   );
 }

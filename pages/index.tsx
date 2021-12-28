@@ -14,6 +14,7 @@ import {
   WrapItem,
 } from '@chakra-ui/react';
 import ChakraLogo from 'components/chakra-logo';
+import Footer from 'components/footer';
 import GithubStarIcon from 'components/github-star';
 import {
   AboveTheFoldGradient,
@@ -246,6 +247,7 @@ export default function HomePage() {
           </Wrap>
         </Box>
       </Box>
+      <Footer />
     </Box>
   );
 }
