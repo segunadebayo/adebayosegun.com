@@ -1,25 +1,50 @@
-import { Box, Circle, Flex, HStack, Icon, Text, VisuallyHidden } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Circle,
+  Drawer,
+  DrawerContent,
+  DrawerOverlay,
+  Flex,
+  HStack,
+  Icon,
+  Stack,
+  StackDivider,
+  StackProps,
+  Text,
+  useBreakpointValue,
+  useDisclosure,
+  VisuallyHidden,
+} from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ElementType, ReactNode } from 'react';
-import { BlogIcon, ProjectIcon, SnippetIcon, TalksIcon } from './nav-icons';
+import { ElementType, ReactNode, useEffect } from 'react';
+import {
+  BlogIcon,
+  CloseIcon,
+  HamburgerMenuIcon,
+  ProjectIcon,
+  SnippetIcon,
+  TalksIcon,
+} from './nav-icons';
 
 type NavItemProps = {
   children: ReactNode;
   active?: boolean;
   icon: ElementType;
   href?: string;
+  large?: boolean;
 };
 
 function NavItem(props: NavItemProps) {
-  const { children, icon, active, href } = props;
+  const { children, icon, active, href, large } = props;
   return (
     <Link href={href} passHref>
       <HStack
         as="a"
         spacing="2"
         paddingX="3"
-        paddingY="2.5"
+        paddingY={large ? '5' : '2.5'}
         rounded="lg"
         aria-current={active ? 'page' : undefined}
         _hover={{ color: 'sage.base' }}
@@ -39,15 +64,33 @@ const items = [
   { label: 'Snippets', href: '/snippets', icon: SnippetIcon },
 ];
 
-export function NavItemGroup() {
+function DesktopNavItemGroup(props: StackProps) {
   return (
-    <HStack as="nav" aria-label="Main navigation" spacing="8">
+    <HStack as="nav" aria-label="Main navigation" spacing="8" {...props}>
       {items.map((item) => (
         <NavItem key={item.label} href={item.href} icon={item.icon}>
           {item.label}
         </NavItem>
       ))}
     </HStack>
+  );
+}
+
+function MobileNavItemGroup(props: StackProps) {
+  return (
+    <Stack
+      divider={<StackDivider borderColor="whiteAlpha.300" />}
+      as="nav"
+      aria-label="Main navigation"
+      spacing="0"
+      {...props}
+    >
+      {items.map((item) => (
+        <NavItem key={item.label} href={item.href} icon={item.icon} large>
+          {item.label}
+        </NavItem>
+      ))}
+    </Stack>
   );
 }
 
@@ -62,6 +105,7 @@ function Headshot() {
       width="8"
       height="8"
     >
+      <VisuallyHidden>Home</VisuallyHidden>
       <Image
         alt="Segun Adebayo"
         src="/static/images/segun-adebayo-headshot.jpg"
@@ -74,17 +118,51 @@ function Headshot() {
   );
 }
 
+function MobileNavMenu() {
+  const menu = useDisclosure();
+
+  const breakpoint = useBreakpointValue({ base: true, md: false });
+
+  useEffect(() => {
+    if (menu.isOpen && !breakpoint) {
+      menu.onClose();
+    }
+  }, [breakpoint, menu]);
+
+  return (
+    <>
+      <Center
+        width="40px"
+        height="40px"
+        display={{ base: 'flex', md: 'none' }}
+        as="button"
+        aria-haspopup="true"
+        aria-controls="nav-menu"
+        id="nav-menu--trigger"
+        type="button"
+        onClick={menu.onOpen}
+      >
+        {menu.isOpen ? <CloseIcon /> : <HamburgerMenuIcon />}
+      </Center>
+      <Drawer isOpen={menu.isOpen} onClose={menu.onClose} placement="bottom">
+        <DrawerOverlay />
+        <DrawerContent id="nav-menu" bg="black" padding="6">
+          <MobileNavItemGroup />
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
+}
+
 export default function Navbar() {
   return (
     <Box as="header" paddingY="6" maxWidth="6xl" marginX="auto" paddingX="6">
-      <Flex justify="space-between">
-        <Link href="/">
-          <>
-            <VisuallyHidden>Home</VisuallyHidden>
-            <Headshot />
-          </>
+      <Flex justify="space-between" align="center">
+        <Link href="/" passHref>
+          <Headshot />
         </Link>
-        <NavItemGroup />
+        <DesktopNavItemGroup display={{ base: 'none', md: 'flex' }} />
+        <MobileNavMenu />
       </Flex>
     </Box>
   );
