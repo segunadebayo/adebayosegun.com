@@ -11,9 +11,11 @@ import {
   LinkOverlay,
   Stack,
   Text,
+  useToken,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SVGProps } from 'react';
 
 type TalkCardProps = {
   data: Talk;
@@ -24,7 +26,7 @@ export default function TalkCard(props: TalkCardProps) {
 
   return (
     <LinkBox
-      display={'flex'}
+      display="flex"
       data-group
       gap="2rem"
       flexDirection={{ base: 'column', md: 'row' }}
@@ -38,23 +40,24 @@ export default function TalkCard(props: TalkCardProps) {
       <Box>
         <TalkCoverImage src={talk.image} alt={talk.title} />
       </Box>
-      <Stack spacing="4" mt="2">
-        <Heading size="lg">
+      <Stack spacing="4" marginTop="2">
+        <Heading as="h3" size="lg">
           <Link passHref href={talk.url}>
             <LinkOverlay isExternal>{talk.title}</LinkOverlay>
           </Link>
         </Heading>
-        <Text maxWidth={{ md: '600px' }}>{talk.description}</Text>
+
+        <Text maxWidth={{ md: '37.5rem' }}>{talk.description}</Text>
 
         <HStack spacing="10">
-          <Text casing="uppercase" fontWeight="bold" fontSize="sm" letterSpacing="0.05em">
-            <Box as="span" color="#FEB48C" marginRight="2">
+          <Text casing="uppercase" fontWeight="bold" fontSize="sm" letterSpacing="wider">
+            <Box as="span" color="sage.base" marginRight="2">
               Host:
             </Box>
             {talk.host}
           </Text>
           <DarkMode>
-            <Badge color="#FEB48C" colorScheme={'orange'}>
+            <Badge color="sage.base" colorScheme="orange">
               {talk.type}
             </Badge>
           </DarkMode>
@@ -64,26 +67,32 @@ export default function TalkCard(props: TalkCardProps) {
   );
 }
 
-function PlayIcon(props) {
+function PlayIcon(props: SVGProps<SVGSVGElement>) {
+  const sageBase = useToken('colors', 'sage.base');
   return (
     <svg width="75" height="75" viewBox="0 0 75 75" {...props}>
       <path
         d="M37.5 0C16.8219 0 0 16.8219 0 37.5C0 58.1781 16.8219 75 37.5 75C58.1781 75 75 58.1781 75 37.5C75 16.8219 58.1781 0 37.5 0ZM28.125 53.125V21.875L53.125 37.5L28.125 53.125Z"
-        fill="#FFB992"
+        fill={sageBase}
       />
     </svg>
   );
 }
 
-function TalkCoverImage(props) {
+type TalkCoverImageProps = {
+  src: string;
+  alt: string;
+};
+
+function TalkCoverImage(props: TalkCoverImageProps) {
   const { src, alt } = props;
   return (
-    <Box position={'relative'}>
-      <Box rounded="lg" overflow={'hidden'} width="300px" height="200px">
+    <Box position="relative">
+      <Box rounded="lg" overflow="hidden" width="18.75rem" height="12.5rem">
         <Image alt={alt} src={src} objectFit="cover" layout="fill" />
       </Box>
-      <AbsoluteCenter display={'none'} _groupHover={{ display: 'block' }}>
-        <Icon as={PlayIcon} aria-hidden fontSize="64px" />
+      <AbsoluteCenter display="none" _groupHover={{ display: 'block' }}>
+        <Icon as={PlayIcon} aria-hidden fontSize="6xl" />
       </AbsoluteCenter>
     </Box>
   );

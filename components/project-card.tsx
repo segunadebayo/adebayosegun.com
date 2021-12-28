@@ -1,5 +1,5 @@
 import { Project } from '.contentlayer/types';
-import { Box, Flex, Heading, HStack, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, HStack, Stack } from '@chakra-ui/react';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { DescriptionList } from './description-item';
 import LinkItem from './link-item';
@@ -12,11 +12,12 @@ type ProjectCardProps = {
 export default function ProjectCard(props: ProjectCardProps) {
   const { data: project } = props;
   const Component = useMDXComponent(project.body.code);
+
   return (
     <Flex gap="20" direction={{ base: 'column', md: 'row' }}>
-      <Box maxW={{ md: '440px' }} flex="1">
+      <Box maxWidth={{ md: '27.5rem' }} flex="1">
         <Stack spacing="6">
-          <Heading color="#F7B590" letterSpacing="-0.03em">
+          <Heading as="h3" color="sage.dark" letterSpacing="tight">
             {project.title}
           </Heading>
           <HStack spacing="12">
@@ -36,7 +37,7 @@ export default function ProjectCard(props: ProjectCardProps) {
           </Box>
         </Stack>
 
-        <Box mt="12">
+        <Box marginTop="12">
           <DescriptionList data={project.metadata} />
         </Box>
       </Box>
@@ -51,7 +52,7 @@ function ProjectImageCard({ src }: { src?: string }) {
     <Box
       flex={{ md: '1' }}
       position="relative"
-      height="400px"
+      height="25rem"
       width="100%"
       overflow="hidden"
       bg="linear-gradient(180deg, #FEB48C 0%, #1EBBFF 100%);"
@@ -61,8 +62,8 @@ function ProjectImageCard({ src }: { src?: string }) {
         position="absolute"
         left="10"
         top="10"
-        width="900px"
-        height="500px"
+        width="56.25rem"
+        height="31.25rem"
         bg="white"
         rounded="lg"
         overflow="hidden"

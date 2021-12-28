@@ -76,7 +76,7 @@ function Headshot() {
 
 export default function Navbar() {
   return (
-    <Box as="header" paddingY="6" maxWidth="1080px" marginX="auto" paddingX="24px">
+    <Box as="header" paddingY="6" maxWidth="6xl" marginX="auto" paddingX="6">
       <Flex justify="space-between">
         <Link href="/">
           <>
