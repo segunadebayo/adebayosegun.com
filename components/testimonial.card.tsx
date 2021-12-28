@@ -43,10 +43,10 @@ export default function TestimonialCard(props: TestimonialCardProps) {
 function LinkedInBadge() {
   return (
     <>
-      <Box position="absolute" right="6" display={{ base: 'none', md: 'block' }}>
+      <Box position="absolute" right="6" display={{ base: 'none', md: 'block' }} color="sage.base">
         <FullLinkedInLogo />
       </Box>
-      <Box position="absolute" right="6" display={{ md: 'none' }}>
+      <Box position="absolute" right="6" display={{ md: 'none' }} color="sage.base">
         <LinkedInIcon />
       </Box>
     </>

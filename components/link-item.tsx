@@ -1,9 +1,18 @@
-import { HStack, Icon, Text } from '@chakra-ui/react';
+import { HStack, Icon, SystemProps, Text } from '@chakra-ui/react';
+import { ElementType } from 'react';
 
-export default function LinkItem({ icon, children, href }) {
+type LinkItemProps = {
+  icon: ElementType;
+  children: string;
+  href: string;
+  iconColor: SystemProps['color'];
+};
+
+export default function LinkItem(props: LinkItemProps) {
+  const { icon, children, href, iconColor = 'sage.base' } = props;
   return (
     <HStack as="a" href={href} rel="noopener" target="_blank" spacing="3">
-      <Icon aria-hidden as={icon} fontSize="4xl" color="sage.base" />
+      <Icon aria-hidden as={icon} fontSize="2xl" color={iconColor} />
       <Text
         fontSize="lg"
         textDecoration="underline"

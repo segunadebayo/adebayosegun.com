@@ -2,12 +2,14 @@ import { Box, chakra, Flex, Heading, Text } from '@chakra-ui/react';
 
 export default function SubscribeForm() {
   return (
-    <Box maxWidth="35rem" py="vGutter">
+    <Box maxWidth="42rem" py="vGutter">
       <Heading marginBottom="4" size="2xl" letterSpacing="tight">
         Stay up to date
       </Heading>
 
-      <Text>Get emails from me about web development, tech, and early access to new projects.</Text>
+      <Text maxW="32rem" fontSize="lg">
+        Get emails from me about web development, tech, and early access to new projects.
+      </Text>
 
       <form
         onSubmit={(event) => {
