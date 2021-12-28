@@ -67,7 +67,6 @@ export default function HomePage() {
             letterSpacing={{ base: '-2px', md: '-4px' }}
             lineHeight="1"
             marginBottom="56px"
-            fontWeight="normal"
             userSelect="none"
           >
             <span>Segun Adebayo</span>
@@ -126,15 +125,17 @@ export default function HomePage() {
 
         <Flex
           py="100px"
+          gap={{ base: '5', lg: '20' }}
           justify="space-between"
-          direction={{ base: 'column', md: 'row' }}
+          direction={{ base: 'column', lg: 'row' }}
         >
-          <Box maxW="560px">
+          <Box maxW={{ lg: '560px' }}>
             <Circle
+              display={{ base: 'none', lg: 'flex' }}
               position={'relative'}
-              size={{ base: '50px', md: '100px' }}
+              size="100px"
               float="left"
-              mr={{ base: '3', md: '6' }}
+              mr="6"
               overflow="hidden"
             >
               <Image
@@ -148,7 +149,7 @@ export default function HomePage() {
             <Text
               fontFamily="heading"
               lineHeight="1"
-              fontSize={{ base: '50px', md: '100px' }}
+              fontSize={{ base: '50px', md: '80px', lg: '100px' }}
               letterSpacing="-0.04em"
             >
               I design{' '}
@@ -157,7 +158,7 @@ export default function HomePage() {
               </Box>
             </Text>
           </Box>
-          <Box maxW={{ md: '440px' }} mt="4">
+          <Box maxW={{ lg: '440px' }} mt="4">
             <Text fontSize={{ base: 'lg', md: '2xl' }}>
               An engineer with a strong design background, specializing in
               design systems, accessibility and interface design for digital
