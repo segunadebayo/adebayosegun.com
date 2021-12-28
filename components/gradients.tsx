@@ -31,13 +31,28 @@ export function SpanGradient() {
 export function StartSideGradient() {
   return (
     <Box
-      width="100%"
+      width="3279px"
       height="1000px"
       position="absolute"
-      left="-400px"
-      top="-10"
+      pointerEvents="none"
+      right="-400px"
+      top="-300px"
       bg="radial-gradient(50% 50% at 50% 50%, #FF7D35 0%, rgba(0, 0, 0, 0) 100%)"
-      opacity="0.4"
+      opacity="0.24"
+    />
+  );
+}
+
+export function FooterGradient() {
+  return (
+    <Box
+      position="absolute"
+      pointerEvents={'none'}
+      width="1440px"
+      height="2052px"
+      left="0px"
+      top="3743px"
+      bg="linear-gradient(180deg, rgba(56, 32, 19, 0) 0%, rgba(240, 108, 35, 0.4) 100%)"
     />
   );
 }

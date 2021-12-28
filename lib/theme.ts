@@ -9,19 +9,29 @@ const colors = {
     600: '#4A5568',
     700: '#2D3748',
     800: '#1A202C',
-    900: '#171923'
-  }
+    900: '#171923',
+  },
 };
 
 const fonts = {
   heading: 'PolySans, -apple-system, system-ui, sans-serif',
   body: 'Inter, -apple-system, system-ui, sans-serif',
-  mono: `SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`
+  mono: `SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`,
 };
 
 const theme = {
   colors,
-  fonts
+  fonts,
+  styles: {
+    global: {
+      'html, body': {
+        bg: '#000',
+        color: 'white',
+        minH: '100vh',
+        overflowX: 'hidden',
+      },
+    },
+  },
 };
 
 export default theme;

@@ -10,6 +10,8 @@ import {
   Stack,
   Text,
   VisuallyHidden,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react';
 import ChakraLogo from 'components/chakra-logo';
 import GithubStarIcon from 'components/github-star';
@@ -26,8 +28,12 @@ import {
   LinkedInIcon,
   TwitterIcon,
 } from 'components/social-icons';
+import TalkCard from 'components/talk-card';
 import TestimonialCard from 'components/testimonial.card';
+import ViewMore from 'components/view-more';
 import chunk from 'lib/chunk';
+import sortByPublishedDate from 'lib/sort';
+import tools from 'lib/tools';
 import Image from 'next/image';
 import siteConfig from 'site.config';
 
@@ -44,7 +50,7 @@ function AchievementItem({ icon, children }) {
 
 export default function HomePage() {
   return (
-    <Box bg="#000" color="white" minH="100vh">
+    <Box>
       {/* <Navbar /> */}
       <Box maxW="1080px" mx="auto" pt="10" px="24px">
         <AboveTheFoldGradient />
@@ -187,7 +193,7 @@ export default function HomePage() {
 
         <Box as="section" py="100px">
           <Heading size="3xl" letterSpacing="-0.04em">
-            Projects
+            Featured Projects
           </Heading>
           <Box mt="100px">
             <Stack spacing="20">
@@ -201,11 +207,43 @@ export default function HomePage() {
         <Box as="section" py="100px" position="relative">
           <StartSideGradient />
           <Heading size="3xl" letterSpacing="-0.04em">
-            Talks
+            Featured Talks
           </Heading>
-          <Box mt="100px">
-            <Stack spacing="20"></Stack>
+          <Box my="40px">
+            <Flex direction={'column'} gap="6">
+              {allTalks
+                .filter((a) => a.featured)
+                .sort(sortByPublishedDate)
+                .map((talk) => (
+                  <TalkCard key={talk.title} data={talk} />
+                ))}
+            </Flex>
           </Box>
+          <ViewMore>View all Talks</ViewMore>
+        </Box>
+
+        <Box as="section" py="100px">
+          <Box mb="16">
+            <Heading size="3xl" letterSpacing="-0.04em">
+              Tools
+            </Heading>
+            <Text mt="5" fontSize="lg" maxW={{ md: '720px' }}>
+              Over the years, I had the opportunity to work with various
+              software, tools and frameworks. Here are some of them:
+            </Text>
+          </Box>
+          <Wrap spacing="10">
+            {tools.map((tool) => (
+              <WrapItem
+                fontFamily={'heading'}
+                fontSize={'3xl'}
+                color="#FEB48C"
+                key={tool}
+              >
+                {tool}
+              </WrapItem>
+            ))}
+          </Wrap>
         </Box>
       </Box>
     </Box>
