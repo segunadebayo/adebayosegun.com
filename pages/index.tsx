@@ -209,7 +209,7 @@ export default function HomePage() {
         {/* Featured Talks */}
         <Box as="section" py="vGutter" position="relative">
           <StartSideGradient />
-          <Heading size="3xl" letterSpacing="tight">
+          <Heading size="3xl" letterSpacing="tight" position="relative">
             Featured Talks
           </Heading>
           <Box marginY="10">
