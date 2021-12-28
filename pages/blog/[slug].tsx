@@ -3,27 +3,24 @@ import { Blog } from '.contentlayer/types';
 import { Circle, Flex, HStack } from '@chakra-ui/layout';
 import { chakra } from '@chakra-ui/system';
 import MDXComponents from 'components/mdx-components';
+import formatDate from 'lib/format-date';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Image from 'next/image';
 
 export default function BlogPage({ blog }: { blog: Blog }) {
   const Component = useMDXComponent(blog.body.code);
-
-  const date = new Date(blog.publishedAt);
-  const formattedDate = `${date.toLocaleString('default', {
-    month: 'long',
-  })} ${date.getDate()}, ${date.getFullYear()}`;
+  const date = formatDate(blog.publishedAt);
 
   return (
     <chakra.div>
-      <chakra.div mb="12" mt="8" />
+      <chakra.div marginBottom="12" marginTop="8" />
       <chakra.article
         display="flex"
         flexDir="column"
         width="full"
-        maxW="2xl"
-        mx="auto"
+        maxWidth="2xl"
+        marginX="auto"
         sx={{
           fontSize: 'sm',
           'p + p': {
@@ -31,8 +28,8 @@ export default function BlogPage({ blog }: { blog: Blog }) {
           },
         }}
       >
-        <chakra.div mb="6">
-          <chakra.h1 fontSize="2xl" fontWeight="bold" mb="3">
+        <chakra.div marginBottom="6">
+          <chakra.h1 fontSize="2xl" fontWeight="bold" marginBottom="3">
             {blog.title}
           </chakra.h1>
           <Flex justify="space-between">
@@ -48,7 +45,7 @@ export default function BlogPage({ blog }: { blog: Blog }) {
               </Circle>
               <p>Segun Adebayo</p>
               <chakra.span color="gray.300">/</chakra.span>
-              <time dateTime={date.toISOString()}>{formattedDate}</time>
+              <time dateTime={date.iso}>{date.pretty}</time>
             </HStack>
             <chakra.span>{blog.readingTime.text}</chakra.span>
           </Flex>
