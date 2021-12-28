@@ -32,21 +32,21 @@ function NavItem(props: NavItemProps) {
   );
 }
 
+const items = [
+  { label: 'Talks', href: '/talks', icon: TalksIcon },
+  { label: 'Blogs', href: '/blogs', icon: BlogIcon },
+  { label: 'Projects', href: '/projects', icon: ProjectIcon },
+  { label: 'Snippets', href: '/snippets', icon: SnippetIcon },
+];
+
 export function NavItemGroup() {
   return (
     <HStack as="nav" aria-label="Main navigation" spacing="8">
-      <NavItem href="/talks" icon={TalksIcon}>
-        Talks
-      </NavItem>
-      <NavItem href="/blog" icon={BlogIcon}>
-        Blogs
-      </NavItem>
-      <NavItem href="/projects" icon={ProjectIcon}>
-        Projects
-      </NavItem>
-      <NavItem href="/snippets" icon={SnippetIcon}>
-        Snippets
-      </NavItem>
+      {items.map((item) => (
+        <NavItem key={item.label} href={item.href} icon={item.icon}>
+          {item.label}
+        </NavItem>
+      ))}
     </HStack>
   );
 }

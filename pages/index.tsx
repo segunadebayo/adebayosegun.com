@@ -19,6 +19,7 @@ import Footer from 'components/footer';
 import GithubStarIcon from 'components/github-star';
 import { AboveTheFoldGradient, SpanGradient, StartSideGradient } from 'components/gradients';
 import LinkItem from 'components/link-item';
+import Navbar from 'components/navbar';
 import ProjectCard from 'components/project-card';
 import { EmailIcon, FileIcon, LinkedInIcon, TwitterIcon } from 'components/social-icons';
 import SubscribeForm from 'components/subscribe-form';
@@ -68,13 +69,19 @@ function MainHeading(props: HeadingProps) {
 export default function HomePage() {
   return (
     <Box>
-      {/* <Navbar /> */}
-      <Box maxWidth="6xl" marginX="auto" paddingTop="10" paddingX="6">
+      <Navbar />
+      <Box maxWidth="6xl" marginX="auto" paddingX="6">
         <AboveTheFoldGradient />
         <SpanGradient />
 
         {/* Segun Adebayo - ui engineer & product designer  */}
-        <Flex direction="column" align="center" position="relative" paddingY="24">
+        <Flex
+          direction="column"
+          align="center"
+          position="relative"
+          paddingBottom="24"
+          paddingTop="12"
+        >
           <MainHeading>
             <span>Segun Adebayo</span>
             <Box

@@ -5,7 +5,7 @@ type LinkItemProps = {
   icon: ElementType;
   children: string;
   href: string;
-  iconColor: SystemProps['color'];
+  iconColor?: SystemProps['color'];
 };
 
 export default function LinkItem(props: LinkItemProps) {
