@@ -16,7 +16,7 @@ const CustomLink = (props) => {
 };
 
 const MDXComponents = {
-  a: CustomLink
+  a: CustomLink,
 };
 
 export default MDXComponents;

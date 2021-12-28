@@ -12,14 +12,7 @@ export default function ChakraLogo(props: SVGProps<SVGSVGElement>) {
         fill="white"
       />
       <defs>
-        <linearGradient
-          id="mask"
-          x1="24"
-          y1="0"
-          x2="24"
-          y2="48"
-          gradientUnits="userSpaceOnUse"
-        >
+        <linearGradient id="mask" x1="24" y1="0" x2="24" y2="48" gradientUnits="userSpaceOnUse">
           <stop stopColor="#7BCBD4" />
           <stop offset="1" stopColor="#29C6B7" />
         </linearGradient>

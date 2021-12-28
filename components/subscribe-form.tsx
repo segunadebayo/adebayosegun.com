@@ -6,20 +6,13 @@ export default function SubscribeForm() {
       <Heading mb="4" size="2xl" letterSpacing={'-0.04em'}>
         Stay up to date
       </Heading>
-      <Text>
-        Get emails from me about web development, tech, and early access to new
-        projects.
-      </Text>
+      <Text>Get emails from me about web development, tech, and early access to new projects.</Text>
       <form
         onSubmit={(event) => {
           event.preventDefault();
         }}
       >
-        <Flex
-          gap={{ base: '4', md: '6' }}
-          mt="8"
-          direction={{ base: 'column', md: 'row' }}
-        >
+        <Flex gap={{ base: '4', md: '6' }} mt="8" direction={{ base: 'column', md: 'row' }}>
           <chakra.input
             flex="1"
             px="6"

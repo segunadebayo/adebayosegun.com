@@ -12,7 +12,7 @@ export default function BlogPage({ blog }: { blog: Blog }) {
 
   const date = new Date(blog.publishedAt);
   const formattedDate = `${date.toLocaleString('default', {
-    month: 'long'
+    month: 'long',
   })} ${date.getDate()}, ${date.getFullYear()}`;
 
   return (
@@ -27,8 +27,8 @@ export default function BlogPage({ blog }: { blog: Blog }) {
         sx={{
           fontSize: 'sm',
           'p + p': {
-            marginTop: '2'
-          }
+            marginTop: '2',
+          },
         }}
       >
         <chakra.div mb="6">
@@ -62,7 +62,7 @@ export default function BlogPage({ blog }: { blog: Blog }) {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: allBlogs.map((blog) => ({ params: { slug: blog.slug } })),
-    fallback: false
+    fallback: false,
   };
 };
 

@@ -7,7 +7,7 @@ export default function ProjectPage() {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: false
+    fallback: false,
   };
 };
 

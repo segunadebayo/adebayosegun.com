@@ -1,12 +1,4 @@
-import {
-  Box,
-  Circle,
-  Flex,
-  HStack,
-  Icon,
-  Text,
-  VisuallyHidden,
-} from '@chakra-ui/react';
+import { Box, Circle, Flex, HStack, Icon, Text, VisuallyHidden } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ElementType, ReactNode } from 'react';
@@ -84,13 +76,7 @@ function Headshot() {
 
 export default function Navbar() {
   return (
-    <Box
-      as="header"
-      paddingY="6"
-      maxWidth="1080px"
-      marginX="auto"
-      paddingX="24px"
-    >
+    <Box as="header" paddingY="6" maxWidth="1080px" marginX="auto" paddingX="24px">
       <Flex justify="space-between">
         <Link href="/">
           <>

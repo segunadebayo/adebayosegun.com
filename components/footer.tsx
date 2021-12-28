@@ -1,12 +1,4 @@
-import {
-  Box,
-  Flex,
-  GridItem,
-  Heading,
-  HStack,
-  SimpleGrid,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Flex, GridItem, Heading, HStack, SimpleGrid, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import siteConfig from 'site.config';
 import { FooterGradient } from './gradients';
@@ -34,8 +26,7 @@ export default function Footer() {
                 Segun Adebayo
               </Heading>
               <Text fontSize="lg">
-                Passionate UI engineer looking bridge the gap between design and
-                code
+                Passionate UI engineer looking bridge the gap between design and code
               </Text>
             </Box>
 
@@ -57,13 +48,9 @@ export default function Footer() {
               Contact
             </Heading>
             <Flex direction="column" gap="4">
-              <FooterLink href={siteConfig.profiles.email}>
-                Email Segun
-              </FooterLink>
+              <FooterLink href={siteConfig.profiles.email}>Email Segun</FooterLink>
               <FooterLink href="#">Call Segun</FooterLink>
-              <FooterLink href={siteConfig.profiles.email}>
-                Join Discord
-              </FooterLink>
+              <FooterLink href={siteConfig.profiles.email}>Join Discord</FooterLink>
             </Flex>
           </GridItem>
 

@@ -1,13 +1,13 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
 export default function NewsletterPage() {
-  return <div>Newsletter page</div>
+  return <div>Newsletter page</div>;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: false
+    fallback: false,
   };
 };
 

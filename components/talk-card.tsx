@@ -47,12 +47,7 @@ export default function TalkCard(props: TalkCardProps) {
         <Text maxWidth={{ md: '600px' }}>{talk.description}</Text>
 
         <HStack spacing="10">
-          <Text
-            casing={'uppercase'}
-            fontWeight={'bold'}
-            fontSize={'sm'}
-            letterSpacing={'0.05em'}
-          >
+          <Text casing="uppercase" fontWeight="bold" fontSize="sm" letterSpacing="0.05em">
             <Box as="span" color="#FEB48C" marginRight="2">
               Host:
             </Box>

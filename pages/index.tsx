@@ -17,19 +17,10 @@ import {
 import ChakraLogo from 'components/chakra-logo';
 import Footer from 'components/footer';
 import GithubStarIcon from 'components/github-star';
-import {
-  AboveTheFoldGradient,
-  SpanGradient,
-  StartSideGradient,
-} from 'components/gradients';
+import { AboveTheFoldGradient, SpanGradient, StartSideGradient } from 'components/gradients';
 import LinkItem from 'components/link-item';
 import ProjectCard from 'components/project-card';
-import {
-  EmailIcon,
-  FileIcon,
-  LinkedInIcon,
-  TwitterIcon,
-} from 'components/social-icons';
+import { EmailIcon, FileIcon, LinkedInIcon, TwitterIcon } from 'components/social-icons';
 import SubscribeForm from 'components/subscribe-form';
 import TalkCard from 'components/talk-card';
 import TestimonialCard from 'components/testimonial.card';
@@ -83,12 +74,7 @@ export default function HomePage() {
         <SpanGradient />
 
         {/* Segun Adebayo - ui engineer & product designer  */}
-        <Flex
-          direction="column"
-          align="center"
-          position="relative"
-          paddingY="24"
-        >
+        <Flex direction="column" align="center" position="relative" paddingY="24">
           <MainHeading>
             <span>Segun Adebayo</span>
             <Box
@@ -112,8 +98,8 @@ export default function HomePage() {
             maxWidth="40rem"
             fontSize={{ base: 'lg', md: '2xl' }}
           >
-            I'm passionate about <Emoji label="design system">🎨</Emoji> design
-            systems, <Emoji label="accessibility">♿️</Emoji> accessibility,{' '}
+            I'm passionate about <Emoji label="design system">🎨</Emoji> design systems,{' '}
+            <Emoji label="accessibility">♿️</Emoji> accessibility,{' '}
             <Emoji label="state machine">⚙️</Emoji> state machines, and{' '}
             <Emoji label="love">😍 </Emoji> user experience
           </Text>
@@ -125,12 +111,8 @@ export default function HomePage() {
               justify={{ base: 'flex-start', md: 'center' }}
               gap={{ base: '5', md: '10' }}
             >
-              <AchievementItem icon={GithubStarIcon}>
-                Github Star
-              </AchievementItem>
-              <AchievementItem icon={ChakraLogo}>
-                Creator, Chakra UI
-              </AchievementItem>
+              <AchievementItem icon={GithubStarIcon}>Github Star</AchievementItem>
+              <AchievementItem icon={ChakraLogo}>Creator, Chakra UI</AchievementItem>
             </Flex>
           </Box>
         </Flex>
@@ -174,18 +156,12 @@ export default function HomePage() {
 
           <Box maxWidth={{ lg: '27.5rem' }} marginTop="4">
             <Text fontSize={{ base: 'lg', md: '2xl' }}>
-              An engineer with a strong design background, specializing in
-              design systems, accessibility and interface design for digital
-              products since 2016
+              An engineer with a strong design background, specializing in design systems,
+              accessibility and interface design for digital products since 2016
             </Text>
 
             {/* Profile links */}
-            <SimpleGrid
-              columns={2}
-              marginTop="10"
-              spacing="10"
-              maxWidth="16rem"
-            >
+            <SimpleGrid columns={2} marginTop="10" spacing="10" maxWidth="16rem">
               <LinkItem icon={LinkedInIcon} href={siteConfig.profiles.linkedin}>
                 LinkedIn
               </LinkItem>
@@ -256,20 +232,15 @@ export default function HomePage() {
               Tools &amp; Softwares
             </Heading>
             <Text marginTop="5" fontSize="lg" maxWidth={{ md: '45rem' }}>
-              Over the years, I had the opportunity to work with various
-              software, tools and frameworks. Here are some of them:
+              Over the years, I had the opportunity to work with various software, tools and
+              frameworks. Here are some of them:
             </Text>
           </Box>
 
           {/* ToolList */}
           <Wrap spacing="10">
             {tools.map((tool) => (
-              <WrapItem
-                fontFamily="heading"
-                fontSize="3xl"
-                color="sage.base"
-                key={tool}
-              >
+              <WrapItem fontFamily="heading" fontSize="3xl" color="sage.base" key={tool}>
                 {tool}
               </WrapItem>
             ))}
