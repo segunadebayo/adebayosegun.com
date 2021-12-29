@@ -26,6 +26,22 @@ const computedFields: ComputedFields = {
   },
 };
 
+const CATEGORIES = [
+  'uncategorized',
+  'design',
+  'state machine',
+  'talks',
+  'chakra ui',
+  'react',
+  'react native',
+  'typescript',
+  'javascript',
+  'learning',
+  'open source',
+  'personal',
+  'design system',
+];
+
 const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: 'blog/*.mdx',
@@ -35,6 +51,8 @@ const Blog = defineDocumentType(() => ({
     publishedAt: { type: 'string', required: true },
     description: { type: 'string', required: true },
     image: { type: 'string', required: true },
+    tags: { type: 'list', of: { type: 'string' } },
+    categories: { type: 'enum', options: CATEGORIES, default: 'uncategorized' },
   },
   computedFields,
 }));

@@ -59,7 +59,7 @@ function NavItem(props: NavItemProps) {
 
 const items = [
   { label: 'Talks', href: '/talks', icon: TalksIcon },
-  { label: 'Blogs', href: '/blogs', icon: BlogIcon },
+  { label: 'Blogs', href: '/blog', icon: BlogIcon },
   { label: 'Projects', href: '/projects', icon: ProjectIcon },
   { label: 'Snippets', href: '/snippets', icon: SnippetIcon },
 ];
@@ -132,11 +132,12 @@ function MobileNavMenu() {
   return (
     <>
       <Center
-        width="40px"
-        height="40px"
+        width="10"
+        height="10"
         display={{ base: 'flex', md: 'none' }}
         as="button"
         aria-haspopup="true"
+        aria-expanded={menu.isOpen}
         aria-controls="nav-menu"
         id="nav-menu--trigger"
         type="button"
@@ -159,7 +160,9 @@ export default function Navbar() {
     <Box as="header" paddingY="6" maxWidth="6xl" marginX="auto" paddingX="6">
       <Flex justify="space-between" align="center">
         <Link href="/" passHref>
-          <Headshot />
+          <a>
+            <Headshot />
+          </a>
         </Link>
         <DesktopNavItemGroup display={{ base: 'none', md: 'flex' }} />
         <MobileNavMenu />

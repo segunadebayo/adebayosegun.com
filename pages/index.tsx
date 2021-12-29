@@ -15,6 +15,7 @@ import {
   WrapItem,
 } from '@chakra-ui/react';
 import ChakraLogo from 'components/chakra-logo';
+import Container from 'components/container';
 import Footer from 'components/footer';
 import GithubStarIcon from 'components/github-star';
 import { AboveTheFoldGradient, SpanGradient, StartSideGradient } from 'components/gradients';
@@ -68,199 +69,194 @@ function MainHeading(props: HeadingProps) {
 
 export default function HomePage() {
   return (
-    <Box>
-      <Navbar />
-      <Box maxWidth="6xl" marginX="auto" paddingX="6">
-        <AboveTheFoldGradient />
-        <SpanGradient />
+    <Container>
+      <AboveTheFoldGradient />
+      <SpanGradient />
 
-        {/* Segun Adebayo - ui engineer & product designer  */}
-        <Flex
-          direction="column"
-          align="center"
-          position="relative"
-          paddingBottom="24"
-          paddingTop="12"
-        >
-          <MainHeading>
-            <span>Segun Adebayo</span>
-            <Box
-              as="span"
-              color="sage.base"
-              display="block"
-              textAlign={{ md: 'end' }}
-              _before={{ content: `"— "` }}
-            >
-              ui engineer
-            </Box>
-            <Box as="span" color="sage.base" display="block">
-              &amp; product designer
-            </Box>
-          </MainHeading>
-
-          {/* I'm passionate about... */}
-          <Text
-            align={{ base: 'start', md: 'center' }}
-            fontFamily="body"
-            maxWidth="40rem"
-            fontSize={{ base: 'lg', md: '2xl' }}
+      {/* Segun Adebayo - ui engineer & product designer  */}
+      <Flex
+        direction="column"
+        align="center"
+        position="relative"
+        paddingBottom="24"
+        paddingTop="12"
+      >
+        <MainHeading>
+          <span>Segun Adebayo</span>
+          <Box
+            as="span"
+            color="sage.base"
+            display="block"
+            textAlign={{ md: 'end' }}
+            _before={{ content: `"— "` }}
           >
-            I'm passionate about <Emoji label="design system">🎨</Emoji> design systems,{' '}
-            <Emoji label="accessibility">♿️</Emoji> accessibility,{' '}
-            <Emoji label="state machine">⚙️</Emoji> state machines, and{' '}
-            <Emoji label="love">😍 </Emoji> user experience
+            ui engineer
+          </Box>
+          <Box as="span" color="sage.base" display="block">
+            &amp; product designer
+          </Box>
+        </MainHeading>
+
+        {/* I'm passionate about... */}
+        <Text
+          align={{ base: 'start', md: 'center' }}
+          fontFamily="body"
+          maxWidth="40rem"
+          fontSize={{ base: 'lg', md: '2xl' }}
+        >
+          I'm passionate about <Emoji label="design system">🎨</Emoji> design systems,{' '}
+          <Emoji label="accessibility">♿️</Emoji> accessibility,{' '}
+          <Emoji label="state machine">⚙️</Emoji> state machines, and{' '}
+          <Emoji label="love">😍 </Emoji> user experience
+        </Text>
+
+        {/* Github star and Chakra brag */}
+        <Box marginTop={{ base: '8', md: '14' }} width="full">
+          <Flex
+            direction={{ base: 'column', md: 'row' }}
+            justify={{ base: 'flex-start', md: 'center' }}
+            gap={{ base: '5', md: '10' }}
+          >
+            <AchievementItem icon={GithubStarIcon}>Github Star</AchievementItem>
+            <AchievementItem icon={ChakraLogo}>Creator, Chakra UI</AchievementItem>
+          </Flex>
+        </Box>
+      </Flex>
+
+      {/* I design component systems... */}
+      <Flex
+        paddingY="vGutter"
+        gap={{ base: '5', lg: '20' }}
+        justify="space-between"
+        direction={{ base: 'column', lg: 'row' }}
+      >
+        <Box maxWidth={{ lg: '36rem' }}>
+          {/* Circular Headshot */}
+          <Circle
+            display={{ base: 'none', lg: 'flex' }}
+            position={'relative'}
+            size="6.25rem"
+            float="left"
+            marginRight="6"
+            overflow="hidden"
+          >
+            <Image
+              alt="Segun adebayo"
+              src="/static/images/segun-adebayo-headshot.jpg"
+              layout="fill"
+              objectFit="cover"
+            />
+          </Circle>
+
+          <Heading
+            lineHeight="1"
+            fontSize={{ base: '3.125rem', md: '5rem', lg: '6.25rem' }}
+            letterSpacing="tight"
+          >
+            I design{' '}
+            <Box as="span" color="sage.base">
+              component systems
+            </Box>
+          </Heading>
+        </Box>
+
+        <Box maxWidth={{ lg: '27.5rem' }} marginTop="4">
+          <Text fontSize={{ base: 'lg', md: '2xl' }}>
+            An engineer with a strong design background, specializing in design systems,
+            accessibility and interface design for digital products since 2016
           </Text>
 
-          {/* Github star and Chakra brag */}
-          <Box marginTop={{ base: '8', md: '14' }} width="full">
-            <Flex
-              direction={{ base: 'column', md: 'row' }}
-              justify={{ base: 'flex-start', md: 'center' }}
-              gap={{ base: '5', md: '10' }}
-            >
-              <AchievementItem icon={GithubStarIcon}>Github Star</AchievementItem>
-              <AchievementItem icon={ChakraLogo}>Creator, Chakra UI</AchievementItem>
-            </Flex>
-          </Box>
-        </Flex>
-
-        {/* I design component systems... */}
-        <Flex
-          paddingY="vGutter"
-          gap={{ base: '5', lg: '20' }}
-          justify="space-between"
-          direction={{ base: 'column', lg: 'row' }}
-        >
-          <Box maxWidth={{ lg: '36rem' }}>
-            {/* Circular Headshot */}
-            <Circle
-              display={{ base: 'none', lg: 'flex' }}
-              position={'relative'}
-              size="6.25rem"
-              float="left"
-              marginRight="6"
-              overflow="hidden"
-            >
-              <Image
-                alt="Segun adebayo"
-                src="/static/images/segun-adebayo-headshot.jpg"
-                layout="fill"
-                objectFit="cover"
-              />
-            </Circle>
-
-            <Heading
-              lineHeight="1"
-              fontSize={{ base: '3.125rem', md: '5rem', lg: '6.25rem' }}
-              letterSpacing="tight"
-            >
-              I design{' '}
-              <Box as="span" color="sage.base">
-                component systems
-              </Box>
-            </Heading>
-          </Box>
-
-          <Box maxWidth={{ lg: '27.5rem' }} marginTop="4">
-            <Text fontSize={{ base: 'lg', md: '2xl' }}>
-              An engineer with a strong design background, specializing in design systems,
-              accessibility and interface design for digital products since 2016
-            </Text>
-
-            {/* Profile links */}
-            <SimpleGrid columns={2} marginTop="10" spacing="10" maxWidth="16rem">
-              <LinkItem icon={LinkedInIcon} href={siteConfig.profiles.linkedin}>
-                LinkedIn
-              </LinkItem>
-              <LinkItem icon={TwitterIcon} href={siteConfig.profiles.twitter}>
-                Twitter
-              </LinkItem>
-              <LinkItem icon={EmailIcon} href={siteConfig.profiles.email}>
-                Email
-              </LinkItem>
-              <LinkItem icon={FileIcon} href={siteConfig.profiles.linkedin}>
-                Resume
-              </LinkItem>
-            </SimpleGrid>
-          </Box>
-        </Flex>
-
-        {/* Testimonials */}
-        <Box as="section" aria-labelledby="heading" py="vGutter">
-          <VisuallyHidden>Recommendations</VisuallyHidden>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6">
-            {chunk(allTestimonials, 2).map((testimonials, index) => (
-              <Stack key={index} spacing="6">
-                {testimonials.map((data) => (
-                  <TestimonialCard key={data.name} data={data} />
-                ))}
-              </Stack>
-            ))}
+          {/* Profile links */}
+          <SimpleGrid columns={2} marginTop="10" spacing="10" maxWidth="16rem">
+            <LinkItem icon={LinkedInIcon} href={siteConfig.profiles.linkedin}>
+              LinkedIn
+            </LinkItem>
+            <LinkItem icon={TwitterIcon} href={siteConfig.profiles.twitter}>
+              Twitter
+            </LinkItem>
+            <LinkItem icon={EmailIcon} href={siteConfig.profiles.email}>
+              Email
+            </LinkItem>
+            <LinkItem icon={FileIcon} href={siteConfig.profiles.linkedin}>
+              Resume
+            </LinkItem>
           </SimpleGrid>
         </Box>
+      </Flex>
 
-        {/* Featured projects */}
-        <Box as="section" py="vGutter">
-          <Heading size="3xl" letterSpacing="tight">
-            Featured Projects
-          </Heading>
-          <Box marginTop="vGutter">
-            <Stack spacing="20">
-              {allProjects.map((project) => (
-                <ProjectCard key={project.title} data={project} />
+      {/* Testimonials */}
+      <Box as="section" aria-labelledby="heading" py="vGutter">
+        <VisuallyHidden>Recommendations</VisuallyHidden>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6">
+          {chunk(allTestimonials, 2).map((testimonials, index) => (
+            <Stack key={index} spacing="6">
+              {testimonials.map((data) => (
+                <TestimonialCard key={data.name} data={data} />
               ))}
             </Stack>
-          </Box>
-        </Box>
-
-        {/* Featured Talks */}
-        <Box as="section" py="vGutter" position="relative">
-          <StartSideGradient />
-          <Heading size="3xl" letterSpacing="tight" position="relative">
-            Featured Talks
-          </Heading>
-          <Box marginY="10">
-            <Flex direction="column" gap="6">
-              {allTalks
-                .filter((talk) => talk.featured)
-                .sort(sortByPublishedDate)
-                .map((talk) => (
-                  <TalkCard key={talk.title} data={talk} />
-                ))}
-            </Flex>
-          </Box>
-          <ViewMore>View all Talks</ViewMore>
-        </Box>
-
-        {/* Tools & Softwares */}
-        <Box as="section" py="vGutter">
-          <Box marginBottom="16">
-            <Heading size="3xl" letterSpacing="tight">
-              Tools &amp; Softwares
-            </Heading>
-            <Text marginTop="5" fontSize="lg" maxWidth={{ md: '45rem' }}>
-              Over the years, I had the opportunity to work with various software, tools and
-              frameworks. Here are some of them:
-            </Text>
-          </Box>
-
-          {/* ToolList */}
-          <Wrap spacing="10">
-            {tools.map((tool) => (
-              <WrapItem fontFamily="heading" fontSize="3xl" color="sage.base" key={tool}>
-                {tool}
-              </WrapItem>
-            ))}
-          </Wrap>
-        </Box>
-
-        {/* Subscribe callout */}
-        <Box as="hr" borderColor="whiteAlpha.300" />
-        <SubscribeForm />
-        <Box as="hr" borderColor="whiteAlpha.300" />
+          ))}
+        </SimpleGrid>
       </Box>
 
-      <Footer />
-    </Box>
+      {/* Featured projects */}
+      <Box as="section" py="vGutter">
+        <Heading size="3xl" letterSpacing="tight">
+          Featured Projects
+        </Heading>
+        <Box marginTop="vGutter">
+          <Stack spacing="20">
+            {allProjects.map((project) => (
+              <ProjectCard key={project.title} data={project} />
+            ))}
+          </Stack>
+        </Box>
+      </Box>
+
+      {/* Featured Talks */}
+      <Box as="section" py="vGutter" position="relative">
+        <StartSideGradient />
+        <Heading size="3xl" letterSpacing="tight" position="relative">
+          Featured Talks
+        </Heading>
+        <Box marginY="10">
+          <Flex direction="column" gap="6">
+            {allTalks
+              .filter((talk) => talk.featured)
+              .sort(sortByPublishedDate)
+              .map((talk) => (
+                <TalkCard key={talk.title} data={talk} />
+              ))}
+          </Flex>
+        </Box>
+        <ViewMore>View all Talks</ViewMore>
+      </Box>
+
+      {/* Tools & Softwares */}
+      <Box as="section" py="vGutter">
+        <Box marginBottom="16">
+          <Heading size="3xl" letterSpacing="tight">
+            Tools &amp; Softwares
+          </Heading>
+          <Text marginTop="5" fontSize="lg" maxWidth={{ md: '45rem' }}>
+            Over the years, I had the opportunity to work with various software, tools and
+            frameworks. Here are some of them:
+          </Text>
+        </Box>
+
+        {/* ToolList */}
+        <Wrap spacing="10">
+          {tools.map((tool) => (
+            <WrapItem fontFamily="heading" fontSize="3xl" color="sage.base" key={tool}>
+              {tool}
+            </WrapItem>
+          ))}
+        </Wrap>
+      </Box>
+
+      {/* Subscribe callout */}
+      <Box as="hr" borderColor="whiteAlpha.300" />
+      <SubscribeForm />
+      <Box as="hr" borderColor="whiteAlpha.300" />
+    </Container>
   );
 }

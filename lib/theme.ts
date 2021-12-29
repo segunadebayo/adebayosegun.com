@@ -52,7 +52,7 @@ const theme = {
         minH: '100vh',
         overflowX: 'hidden',
       },
-      '*:focus': {
+      '*:focus, *[data-focus]': {
         outline: '2px solid',
         outlineColor: 'sage.base',
         outlineOffset: '3px',
