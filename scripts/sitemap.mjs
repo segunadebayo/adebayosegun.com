@@ -10,7 +10,7 @@ async function generate() {
     '!data/*.mdx',
     '!pages/_*.tsx',
     '!pages/api',
-    '!pages/404.tsx'
+    '!pages/404.tsx',
   ]);
 
   const sitemap = `
@@ -27,7 +27,7 @@ async function generate() {
 
             return `
               <url>
-                  <loc>${`https://leerob.io${route}`}</loc>
+                  <loc>${`https://adebayosegun.com${route}`}</loc>
               </url>
             `;
           })
@@ -37,7 +37,7 @@ async function generate() {
 
   const formatted = prettier.format(sitemap, {
     ...prettierConfig,
-    parser: 'html'
+    parser: 'html',
   });
 
   // eslint-disable-next-line no-sync

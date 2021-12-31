@@ -6,15 +6,15 @@ async function generate() {
   const feed = new RSS({
     title: 'Segun Adebayo',
     site_url: 'https://adebayosegun.com',
-    feed_url: 'https://adebayosegun.com/feed.xml'
+    feed_url: 'https://adebayosegun.com/feed.xml',
   });
 
-  allBlogs.map((post) => {
+  allBlogs.map((blog) => {
     feed.item({
-      title: post.title,
-      url: `https://adebayosegun.com/blog/${post.slug}`,
-      date: post.publishedAt,
-      description: post.summary
+      title: blog.title,
+      url: `https://adebayosegun.com/blog/${blog.slug}`,
+      date: blog.publishedAt,
+      description: blog.description,
     });
   });
 
