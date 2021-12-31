@@ -20,6 +20,16 @@ const computedFields: ComputedFields = {
     type: 'string',
     resolve: (doc) => `${siteConfig.repo.editUrl}${doc._id}`,
   },
+  tweetUrl: {
+    type: 'string',
+    resolve: (doc) => {
+      const slug = doc._raw.sourceFileName.replace(/\.mdx$/, '');
+      return `https://twitter.com/intent/tweet?${new URLSearchParams({
+        url: `https://adebayosegun.com/${slug}`,
+        text: `I just read "${doc.title}" by @thesegunadebayo\n\n`,
+      })}`;
+    },
+  },
   params: {
     type: 'list',
     resolve: (doc) => doc._raw.flattenedPath.split('/'),

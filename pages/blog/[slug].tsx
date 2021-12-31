@@ -83,7 +83,7 @@ export default function BlogPage({ blog }: { blog: Blog }) {
         </article>
 
         <Flex justify={'space-between'} my="20">
-          <LinkItem href="#" icon={TwitterIcon}>
+          <LinkItem href={blog.tweetUrl} icon={TwitterIcon}>
             Tweet this article
           </LinkItem>
           <LinkItem href={blog.editUrl} icon={BlogIcon}>
