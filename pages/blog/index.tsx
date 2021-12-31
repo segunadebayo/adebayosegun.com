@@ -1,8 +1,11 @@
-import { Box, Heading, Text, Wrap } from '@chakra-ui/react';
+import { allBlogs } from '.contentlayer/data';
+import { Box, Heading, SimpleGrid, Text, Wrap } from '@chakra-ui/react';
+import { BlogCard } from 'components/blog-card';
 import CategoryTag from 'components/category-tag';
 import Container from 'components/container';
+import FeaturedBlogCard from 'components/featured-blog-card';
 import SearchInput from 'components/search-input';
-import { getCategories, toKebabCase, toSentenceCase } from 'lib/blog-utils';
+import { getCategories, toKebabCase } from 'lib/blog-utils';
 
 export default function Page() {
   return (
@@ -26,6 +29,15 @@ export default function Page() {
             </CategoryTag>
           ))}
         </Wrap>
+
+        <Box marginTop="10rem">
+          <FeaturedBlogCard data={allBlogs[0]} />
+          <SimpleGrid columns={{ base: 1, md: 3 }} mt="4rem" spacing="10">
+            {allBlogs.map((blog) => (
+              <BlogCard key={blog.title} data={blog} />
+            ))}
+          </SimpleGrid>
+        </Box>
       </Box>
     </Container>
   );

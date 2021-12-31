@@ -16,11 +16,9 @@ import {
 } from '@chakra-ui/react';
 import ChakraLogo from 'components/chakra-logo';
 import Container from 'components/container';
-import Footer from 'components/footer';
 import GithubStarIcon from 'components/github-star';
 import { AboveTheFoldGradient, SpanGradient, StartSideGradient } from 'components/gradients';
 import LinkItem from 'components/link-item';
-import Navbar from 'components/navbar';
 import ProjectCard from 'components/project-card';
 import { EmailIcon, FileIcon, LinkedInIcon, TwitterIcon } from 'components/social-icons';
 import SubscribeForm from 'components/subscribe-form';
@@ -31,6 +29,7 @@ import chunk from 'lib/chunk';
 import sortByPublishedDate from 'lib/sort';
 import tools from 'lib/tools';
 import Image from 'next/image';
+import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 import siteConfig from 'site.config';
 
@@ -228,7 +227,10 @@ export default function HomePage() {
               ))}
           </Flex>
         </Box>
-        <ViewMore>View all Talks</ViewMore>
+
+        <Link href="#" passHref>
+          <ViewMore>View all Talks</ViewMore>
+        </Link>
       </Box>
 
       {/* Tools & Softwares */}
