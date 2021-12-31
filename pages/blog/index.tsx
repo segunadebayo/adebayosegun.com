@@ -12,7 +12,9 @@ export default function Page() {
     <Container>
       <Box py="vGutter">
         <Box>
-          <Heading marginBottom="6">Sage's Blog</Heading>
+          <Heading size="3xl" marginBottom="6">
+            Sage's Blog
+          </Heading>
           <Text fontSize="lg" maxW="560px">
             I've been writing online since 2014, mostly about web development and tech careers.
           </Text>
@@ -30,7 +32,7 @@ export default function Page() {
           ))}
         </Wrap>
 
-        <Box marginTop="10rem">
+        <Box marginTop="6rem">
           <FeaturedBlogCard data={allBlogs[0]} />
           <SimpleGrid columns={{ base: 1, md: 3 }} mt="4rem" spacing="10">
             {allBlogs.map((blog) => (

@@ -1,8 +1,12 @@
 import { allBlogs } from '.contentlayer/data';
 import { Blog } from '.contentlayer/types';
-import { Circle, Flex, HStack } from '@chakra-ui/layout';
+import { Circle, Flex, HStack, Box, Heading, Wrap, WrapItem, Text } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
+import Container from 'components/container';
+import LinkItem from 'components/link-item';
 import MDXComponents from 'components/mdx-components';
+import { BlogIcon } from 'components/nav-icons';
+import { TwitterIcon } from 'components/social-icons';
 import formatDate from 'lib/format-date';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
@@ -13,46 +17,81 @@ export default function BlogPage({ blog }: { blog: Blog }) {
   const date = formatDate(blog.publishedAt);
 
   return (
-    <chakra.div>
-      <chakra.div marginBottom="12" marginTop="8" />
-      <chakra.article
-        display="flex"
-        flexDir="column"
-        width="full"
-        maxWidth="2xl"
-        marginX="auto"
-        sx={{
-          fontSize: 'sm',
-          'p + p': {
-            marginTop: '2',
-          },
-        }}
-      >
-        <chakra.div marginBottom="6">
-          <chakra.h1 fontSize="2xl" fontWeight="bold" marginBottom="3">
-            {blog.title}
-          </chakra.h1>
-          <Flex justify="space-between">
-            <HStack>
-              <Circle overflow="hidden">
-                <Image
-                  alt="Segun Adebayo"
-                  src="https://vercel.com/api/www/avatar/6ad338204b00eabaea90981779d3835976b53833?s=64"
-                  layout="fixed"
-                  width="24px"
-                  height="24px"
-                />
-              </Circle>
-              <p>Segun Adebayo</p>
-              <chakra.span color="gray.300">/</chakra.span>
-              <time dateTime={date.iso}>{date.pretty}</time>
-            </HStack>
-            <chakra.span>{blog.readingTime.text}</chakra.span>
-          </Flex>
-        </chakra.div>
-        <Component components={MDXComponents} />
-      </chakra.article>
-    </chakra.div>
+    <Container>
+      <Box maxWidth="2xl" marginX="auto" paddingTop="12">
+        <article>
+          <Box marginBottom="6">
+            <Heading size="2xl" as="h1" marginBottom="3">
+              {blog.title}
+            </Heading>
+
+            <Wrap>
+              {blog.tags.map((item) => (
+                <WrapItem key={item} opacity={0.8} userSelect="none">
+                  <Box as="span" color="sage.base">
+                    #
+                  </Box>
+                  <span>{item}</span>
+                </WrapItem>
+              ))}
+            </Wrap>
+
+            <Flex justify="space-between" marginTop="8">
+              <HStack spacing="3">
+                <Circle overflow="hidden">
+                  <Image
+                    alt="Segun Adebayo"
+                    src="https://vercel.com/api/www/avatar/6ad338204b00eabaea90981779d3835976b53833?s=64"
+                    layout="fixed"
+                    width="32px"
+                    height="32px"
+                  />
+                </Circle>
+                <Text fontWeight="medium">Segun Adebayo</Text>
+              </HStack>
+
+              <HStack color="sage.base">
+                <chakra.span>{blog.readingTime.text}</chakra.span>
+                <span aria-hidden>•</span>
+                <time dateTime={date.iso}>{date.pretty}</time>
+              </HStack>
+            </Flex>
+          </Box>
+
+          <Box
+            position={'relative'}
+            height="320px"
+            rounded="lg"
+            overflow="hidden"
+            marginTop="10"
+            marginBottom="16"
+          >
+            <Image src={blog.image} alt={blog.title} layout="fill" objectFit="cover" priority />
+          </Box>
+
+          <Box
+            sx={{
+              color: 'gray.400',
+              lineHeight: '1.75',
+              'p + p': {
+                marginTop: '2',
+              },
+            }}
+          >
+            <Component components={MDXComponents} />
+          </Box>
+        </article>
+
+        <Flex justify={'space-between'} my="20">
+          <LinkItem href="#" icon={TwitterIcon}>
+            Tweet this article
+          </LinkItem>
+          <LinkItem href={blog.editUrl} icon={BlogIcon}>
+            Edit on github
+          </LinkItem>
+        </Flex>
+      </Box>
+    </Container>
   );
 }
 

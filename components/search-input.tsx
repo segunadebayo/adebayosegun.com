@@ -36,6 +36,9 @@ export default function SearchInput() {
         fontSize="lg"
         fontFamily="heading"
         placeholder="Search articles"
+        _placeholder={{
+          color: 'whiteAlpha.500',
+        }}
       />
       <AbsoluteCenter axis="vertical" pointerEvents="none" right="5" color="sage.base">
         <SearchIcon />

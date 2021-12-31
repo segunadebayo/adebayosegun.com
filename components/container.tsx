@@ -1,13 +1,25 @@
 import { Box } from '@chakra-ui/react';
 import Footer from 'components/footer';
 import Navbar from 'components/navbar';
+import React from 'react';
+import { AboveTheFoldGradient, SpanGradient } from './gradients';
 
-export default function Container({ children }) {
+export default function Container({
+  children,
+  gradient,
+}: {
+  children: React.ReactNode;
+  gradient?: React.ReactElement;
+}) {
   return (
     <Box>
       <Navbar />
+      <AboveTheFoldGradient />
+      {gradient}
       <Box maxWidth="6xl" marginX="auto" paddingX="6">
-        <main id="content">{children}</main>
+        <Box as="main" id="content" position="relative">
+          {children}
+        </Box>
       </Box>
       <Footer />
     </Box>

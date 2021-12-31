@@ -56,7 +56,28 @@ const theme = {
         outline: '2px solid',
         outlineColor: 'sage.base',
         outlineOffset: '3px',
-        rounded: 'md',
+      },
+      'h2,h3,h4': {
+        scrollMarginTop: '4rem',
+        '&:hover': {
+          'a.anchor': {
+            opacity: 1,
+          },
+        },
+      },
+      '.img': {
+        rounded: 'lg',
+      },
+      'a.anchor': {
+        opacity: 0,
+        marginX: '3',
+        '&:before': {
+          content: `"#"`,
+          color: 'sage.base',
+        },
+        '&:focus': {
+          opacity: 1,
+        },
       },
     },
   },

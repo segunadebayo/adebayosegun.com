@@ -130,6 +130,8 @@ const contentLayerConfig = makeSource({
       [
         rehypeAutolinkHeadings,
         {
+          behavior: 'append',
+          test: ['h2', 'h3', 'h4', 'h5', 'h6'],
           properties: {
             className: ['anchor'],
           },

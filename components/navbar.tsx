@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ElementType, ReactNode, useEffect } from 'react';
 import {
   BlogIcon,
@@ -48,7 +49,7 @@ function NavItem(props: NavItemProps) {
         rounded="lg"
         aria-current={active ? 'page' : undefined}
         _hover={{ color: 'sage.base' }}
-        _activeLink={{ bg: 'sage.base' }}
+        _activeLink={{ bg: 'dustAlpha.darker' }}
       >
         <Icon as={icon} color="#FEB48C" fontSize="lg" />
         <Text fontFamily="heading">{children}</Text>
@@ -65,10 +66,16 @@ const items = [
 ];
 
 function DesktopNavItemGroup(props: StackProps) {
+  const { asPath } = useRouter();
   return (
     <HStack as="nav" aria-label="Main navigation" spacing="8" {...props}>
       {items.map((item) => (
-        <NavItem key={item.label} href={item.href} icon={item.icon}>
+        <NavItem
+          key={item.label}
+          href={item.href}
+          icon={item.icon}
+          active={asPath.startsWith(item.href)}
+        >
           {item.label}
         </NavItem>
       ))}
@@ -107,6 +114,7 @@ function Headshot() {
     >
       <VisuallyHidden>Home</VisuallyHidden>
       <Image
+        priority
         alt="Segun Adebayo"
         src="/static/images/segun-adebayo-headshot.jpg"
         layout="fixed"

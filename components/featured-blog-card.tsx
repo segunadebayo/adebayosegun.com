@@ -23,7 +23,7 @@ export default function FeaturedBlogCard(props: BlogCardProps) {
       gap="12"
       data-group
       padding="10"
-      bg="dust.darker"
+      bg="dustAlpha.darker"
       rounded="xl"
       flexDirection={{ base: 'column', md: 'row' }}
     >

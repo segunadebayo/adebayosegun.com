@@ -24,10 +24,10 @@ export default function CategoryTag(props: CategoryTagProps) {
         data-value={value}
         px="4"
         py="2"
-        bg="dust.base"
+        bg="dustAlpha.darker"
         rounded="lg"
         border="1px solid"
-        borderColor="dust.dark"
+        borderColor="dustAlpha.darker"
         fontWeight="bold"
         fontFamily="heading"
         cursor="pointer"

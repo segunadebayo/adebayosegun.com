@@ -17,7 +17,7 @@ import {
 import ChakraLogo from 'components/chakra-logo';
 import Container from 'components/container';
 import GithubStarIcon from 'components/github-star';
-import { AboveTheFoldGradient, SpanGradient, StartSideGradient } from 'components/gradients';
+import { SpanGradient, StartSideGradient } from 'components/gradients';
 import LinkItem from 'components/link-item';
 import ProjectCard from 'components/project-card';
 import { EmailIcon, FileIcon, LinkedInIcon, TwitterIcon } from 'components/social-icons';
@@ -68,10 +68,7 @@ function MainHeading(props: HeadingProps) {
 
 export default function HomePage() {
   return (
-    <Container>
-      <AboveTheFoldGradient />
-      <SpanGradient />
-
+    <Container gradient={<SpanGradient />}>
       {/* Segun Adebayo - ui engineer & product designer  */}
       <Flex
         direction="column"

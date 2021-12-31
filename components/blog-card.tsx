@@ -13,7 +13,7 @@ type BlogCardProps = {
 
 export function BlogCard(props: BlogCardProps) {
   const { data } = props;
-  const { title, description, publishedAt, image, categories, readingTime, slug } = data;
+  const { title, publishedAt, image, readingTime, slug } = data;
   const date = formatDate(publishedAt);
 
   return (
@@ -28,7 +28,7 @@ export function BlogCard(props: BlogCardProps) {
             <Box as="time" dateTime={date.iso}>
               {date.pretty}
             </Box>
-            <span>•</span>
+            <span aria-hidden>•</span>
             <Box>{readingTime.text}</Box>
           </HStack>
         </HStack>
