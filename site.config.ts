@@ -6,7 +6,7 @@ const urls = {
   website: 'https://adebayosegun.com',
   relative(url: string) {
     return urls.website + url;
-  }
+  },
 };
 
 const siteConfig = {
@@ -22,21 +22,21 @@ const siteConfig = {
     github: 'https://github.com/segunadebayo',
     twitter: 'https://twitter.com/thesegunadebayo',
     linkedin: 'https://linkedin.com/in/thesegunadebayo',
-    email: 'mailto:sage@adebayosegun.com'
+    email: 'mailto:sage@adebayosegun.com',
   },
   repo: {
     url: urls.repo,
-    editUrl: urls.editUrl
+    editUrl: urls.editUrl,
   },
   twitter: {
     handle: '@thesegunadebayo',
     site: '@thesegunadebayo',
-    cardType: 'summary_large_image'
+    cardType: 'summary_large_image',
   },
   ogImages: [
     { url: urls.relative('/og-image.png'), width: 1240, height: 480 },
-    { url: urls.relative('/twitter-og-image.png'), width: 1012, height: 506 }
-  ]
+    { url: urls.relative('/twitter-og-image.png'), width: 1012, height: 506 },
+  ],
 };
 
 export default siteConfig;
