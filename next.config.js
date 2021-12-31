@@ -12,7 +12,7 @@ module.exports = withContentlayer()({
       'i.ytimg.com',
       'images.unsplash.com',
       'og-image-react-egghead.vercel.app',
-      'images.ctfassets.net'
-    ]
-  }
+      'images.ctfassets.net',
+    ],
+  },
 });

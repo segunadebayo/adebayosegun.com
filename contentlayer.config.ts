@@ -26,33 +26,18 @@ const computedFields: ComputedFields = {
   },
 };
 
-const CATEGORIES = [
-  'uncategorized',
-  'design',
-  'state machine',
-  'talks',
-  'chakra ui',
-  'react',
-  'react native',
-  'typescript',
-  'javascript',
-  'learning',
-  'open source',
-  'personal',
-  'design system',
-];
-
 const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: 'blog/*.mdx',
   bodyType: 'mdx',
   fields: {
+    featured: { type: 'boolean' },
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
     description: { type: 'string', required: true },
     image: { type: 'string', required: true },
     tags: { type: 'list', of: { type: 'string' } },
-    categories: { type: 'enum', options: CATEGORIES, default: 'uncategorized' },
+    categories: { type: 'list', of: { type: 'string' } },
   },
   computedFields,
 }));
@@ -105,6 +90,7 @@ const Project = defineDocumentType(() => ({
   filePathPattern: 'project/*.mdx',
   bodyType: 'mdx',
   fields: {
+    featured: { type: 'boolean' },
     title: { type: 'string', required: true },
     description: { type: 'string' },
     github: { type: 'string' },
@@ -120,6 +106,7 @@ const Testimonial = defineDocumentType(() => ({
   filePathPattern: 'testimonial/*.md',
   bodyType: 'markdown',
   fields: {
+    featured: { type: 'boolean' },
     image: { type: 'string', required: true },
     name: { type: 'string', required: true },
     title: { type: 'string', required: true },
