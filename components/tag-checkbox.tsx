@@ -1,13 +1,13 @@
 import { Box, useCheckbox, UseCheckboxProps } from '@chakra-ui/react';
 
-type CategoryTagProps = {
+type TagCheckboxProps = {
   value: string;
   children: React.ReactNode;
   onChange?: UseCheckboxProps['onChange'];
   disabled?: boolean;
 };
 
-export default function CategoryTag(props: CategoryTagProps) {
+export default function TagCheckbox(props: TagCheckboxProps) {
   const { value, children, onChange, disabled } = props;
 
   const { getInputProps, getRootProps, getLabelProps, getCheckboxProps } = useCheckbox({
