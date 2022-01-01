@@ -2,6 +2,7 @@ import { Box, Flex, Heading, Text, Wrap } from '@chakra-ui/react';
 import Container from 'components/container';
 import EmptyState from 'components/empty-state';
 import SearchInput from 'components/search-input';
+import SEO from 'components/seo';
 import TagCheckbox from 'components/tag-checkbox';
 import TalkCard from 'components/talk-card';
 import useTalkSearch from 'lib/use-talk-search';
@@ -15,6 +16,7 @@ export default function Page() {
 
   return (
     <Container>
+      <SEO title="Talks" />
       <Box py="vGutter">
         <Box>
           <Heading size="3xl" marginBottom="6">

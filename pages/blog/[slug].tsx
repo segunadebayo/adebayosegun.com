@@ -7,6 +7,7 @@ import Container from 'components/container';
 import LinkItem from 'components/link-item';
 import MDXComponents from 'components/mdx-components';
 import { BlogIcon } from 'components/nav-icons';
+import SEO from 'components/seo';
 import { TwitterIcon } from 'components/social-icons';
 import formatDate from 'lib/format-date';
 import type { GetStaticPaths, GetStaticProps } from 'next';
@@ -19,6 +20,11 @@ export default function BlogPage({ blog }: { blog: Blog }) {
 
   return (
     <Container>
+      <SEO
+        title={blog.title}
+        description={blog.description}
+        post={{ date: date.iso, tags: blog.tags }}
+      />
       <Box maxWidth="2xl" marginX="auto" paddingTop="12" paddingBottom="8rem">
         <article>
           <Box marginBottom="6">

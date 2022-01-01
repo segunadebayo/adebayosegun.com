@@ -1,18 +1,23 @@
-const urls = {
+const shared = {
+  name: 'Segun Adebayo',
   repo: 'https://github.com/segunadebayo/adebayosegun.com',
   editUrl: 'https://github.com/segunadebayo/adebayosegun.com/edit/main/data/',
   website: 'https://adebayosegun.com',
+  title:
+    'Segun Adebayo (aka Sage) - UI Engineer (Design Systems), Software Developer and Product Designer',
+  description:
+    'UI Engineer passionate about design systems, state machines, accessibility, DX and Rust.',
+  image: 'https://adebayosegun.com/static/images/banner.png',
 };
 
 const siteConfig = {
-  name: 'Segun Adebayo',
-  image: 'https://adebayosegun.com/static/images/banner.png',
+  name: shared.name,
+  image: shared.image,
   type: 'website',
-  title:
-    'Segun Adebayo (aka Sage) - Product Designer, UI & Design Systems Engineer, Software Developer',
-  description:
-    'UI Engineer passionate about design systems, state machines, accessibility, DX and Rust.',
-  siteUrl: urls.website,
+  title: shared.title,
+  titleTemplate: '%s - Segun Adebayo',
+  description: shared.description,
+  siteUrl: shared.website,
   profiles: {
     github: 'https://github.com/segunadebayo',
     twitter: 'https://twitter.com/thesegunadebayo',
@@ -20,13 +25,29 @@ const siteConfig = {
     email: 'mailto:sage@adebayosegun.com',
   },
   repo: {
-    url: urls.repo,
-    editUrl: urls.editUrl,
+    url: shared.repo,
+    editUrl: shared.editUrl,
   },
   twitter: {
     handle: '@thesegunadebayo',
     site: '@thesegunadebayo',
     cardType: 'summary_large_image',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: shared.website,
+    title: shared.title,
+    site_name: shared.name,
+    description: shared.description,
+    images: [
+      {
+        url: 'https://adebayosegun.com/static/images/banner.png',
+        width: 1200,
+        height: 630,
+        alt: 'Segun Adebayo (aka Sage) - UI Engineer (Design Systems), Software Developer and Product Designer',
+      },
+    ],
   },
 };
 

@@ -4,6 +4,7 @@ import { BlogCard } from 'components/blog-card';
 import Container from 'components/container';
 import FeaturedBlogCard from 'components/featured-blog-card';
 import SearchInput from 'components/search-input';
+import SEO from 'components/seo';
 import TagCheckbox from 'components/tag-checkbox';
 import useBlogSearch from 'lib/use-blog-search';
 import { useRouter } from 'next/router';
@@ -16,6 +17,7 @@ export default function Page() {
 
   return (
     <Container>
+      <SEO title="Blog" />
       <Box py="vGutter">
         <Box>
           <Heading size="3xl" marginBottom="6">
