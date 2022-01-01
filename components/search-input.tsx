@@ -1,4 +1,8 @@
-import { AbsoluteCenter, Box, chakra, Flex } from '@chakra-ui/react';
+import { AbsoluteCenter, chakra, Flex, Icon, useMergeRefs } from '@chakra-ui/react';
+import useElementState from 'lib/use-element-state';
+import useSearchParams from 'lib/use-search-params';
+import { useRef } from 'react';
+import { CloseIcon } from './nav-icons';
 
 function SearchIcon() {
   return (
@@ -21,11 +25,35 @@ function SearchIcon() {
   );
 }
 
-export default function SearchInput() {
+type SearchInputProps = {
+  placeholder?: string;
+  defaultValue?: string;
+  onChange?(value: string): void;
+};
+
+export default function SearchInput(props: SearchInputProps) {
+  const { placeholder = 'Search articles', onChange, defaultValue } = props;
+
+  const ref = useRef<HTMLInputElement>(null);
+  const [setInputRef, inputStatus] = useElementState();
+  const [setButtonRef, buttonStatus] = useElementState();
+  const params = useSearchParams();
+
+  const hasValue = params.searchString.length > 0;
+  const isInteracting = ['hover', 'focus'].includes(inputStatus) || buttonStatus === 'hover';
+  const showClear = hasValue && isInteracting;
+
   return (
-    <Flex position="relative">
+    <Flex position="relative" role="search">
       <chakra.input
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        onChange={(event) => {
+          onChange(event.target.value);
+        }}
         type="search"
+        ref={useMergeRefs(setInputRef, ref)}
+        id="query"
         name="q"
         bg="whiteAlpha.200"
         flex="1"
@@ -35,11 +63,41 @@ export default function SearchInput() {
         paddingRight="16"
         fontSize="lg"
         fontFamily="heading"
-        placeholder="Search articles"
         _placeholder={{
           color: 'whiteAlpha.500',
         }}
       />
+      <AbsoluteCenter axis="vertical" right="16">
+        <chakra.button
+          boxSize="32px"
+          display="inline-flex"
+          alignItems="center"
+          justifyContent="center"
+          rounded="md"
+          ref={setButtonRef}
+          hidden={!showClear}
+          tabIndex={-1}
+          type="button"
+          aria-controls="query"
+          color="white"
+          onPointerDown={(event) => {
+            event.preventDefault();
+          }}
+          onClick={() => {
+            const el = ref.current;
+            el.value = '';
+            onChange?.('');
+            setTimeout(() => {
+              el.focus();
+            });
+          }}
+          _hover={{
+            bg: 'whiteAlpha.300',
+          }}
+        >
+          <Icon as={CloseIcon} fontSize="lg" />
+        </chakra.button>
+      </AbsoluteCenter>
       <AbsoluteCenter axis="vertical" pointerEvents="none" right="5" color="sage.base">
         <SearchIcon />
       </AbsoluteCenter>
