@@ -14,7 +14,7 @@ export default function Document() {
             href={`/fonts/${font}.ttf`}
             as="font"
             type="font/woff2"
-            crossOrigin="anonymous"
+            crossOrigin=""
           />
         ))}
         <link
