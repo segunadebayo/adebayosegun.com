@@ -2,21 +2,21 @@ import { useUpdateEffect } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useDebounce } from './debounce';
-import { addQuery, getQueries, removeQuery } from './router-utils';
+import { addQuery, removeQuery } from './router-utils';
 
 export default function useSearchParams() {
   const router = useRouter();
-  const query = getQueries(router);
+  const query = router.query;
   const searchString = decodeURI(query.q?.toString() ?? '');
-  const [tags, setTags] = useState<string[]>([]);
+  const [filters, setFilters] = useState<string[]>([]);
 
   useUpdateEffect(() => {
-    if (tags.length === 0) {
-      removeQuery(router, 'tags');
+    if (filters.length === 0) {
+      removeQuery(router, 'filter');
     } else {
-      addQuery(router, 'tags', tags);
+      addQuery(router, 'filter', filters);
     }
-  }, [tags]);
+  }, [filters]);
 
   const setParams = useDebounce((value: string) => {
     value = value.replace(/\s+/g, ' ').trim();
@@ -27,21 +27,27 @@ export default function useSearchParams() {
     }
   }, 200);
 
-  const addTag = (tag: string) => {
-    if (tags.includes(tag)) return;
-    setTags((prev) => [...prev, tag]);
+  const addFilter = (tag: string) => {
+    if (filters.includes(tag)) return;
+    setFilters((prev) => [...prev, tag]);
   };
 
-  const removeTag = (tag: string) => {
-    setTags((prev) => prev.filter((t) => t !== tag));
+  const removeFilter = (tag: string) => {
+    setFilters((prev) => prev.filter((t) => t !== tag));
   };
 
   return {
     setParams,
     searchString,
-    tags: (query.tags ?? []) as string[],
-    removeTag,
-    setTags,
-    addTag,
+    filters: toArray(query.filter),
+    removeFilter,
+    setFilters,
+    addFilter,
   };
+}
+
+function toArray(value: string | string[] | undefined) {
+  const split = value?.toString().split(',') ?? [];
+  if (split.length === 1) return split[0];
+  return split;
 }

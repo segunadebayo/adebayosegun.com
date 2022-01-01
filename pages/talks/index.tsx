@@ -5,9 +5,13 @@ import SearchInput from 'components/search-input';
 import TagCheckbox from 'components/tag-checkbox';
 import TalkCard from 'components/talk-card';
 import useTalkSearch from 'lib/use-talk-search';
+import { useRouter } from 'next/router';
 
 export default function Page() {
   const search = useTalkSearch();
+
+  const { isReady } = useRouter();
+  if (!isReady) return null;
 
   return (
     <Container>
@@ -33,19 +37,21 @@ export default function Page() {
         </Box>
 
         <Wrap mt="5" spacing="3">
-          {search.allTags.map((tag) => (
-            <TagCheckbox
-              key={tag}
-              value={tag}
-              disabled={!search.tags.includes(tag)}
-              onChange={(e) => {
-                if (e.target.checked) search.addTag(tag);
-                else search.removeTag(tag);
-              }}
-            >
-              {tag}
-            </TagCheckbox>
-          ))}
+          {search.allTags.map((tag) => {
+            return (
+              <TagCheckbox
+                key={tag}
+                value={tag}
+                checked={search.filters.includes(tag)}
+                onChange={(e) => {
+                  if (e.target.checked) search.addTag(tag);
+                  else search.removeTag(tag);
+                }}
+              >
+                {tag}
+              </TagCheckbox>
+            );
+          })}
         </Wrap>
 
         <Box marginTop="6rem">
@@ -54,7 +60,7 @@ export default function Page() {
           ) : (
             <Flex direction="column" gap="10">
               {search.results.map((talk) => (
-                <TalkCard key={talk._id} data={talk} />
+                <TalkCard key={talk.title} data={talk} />
               ))}
             </Flex>
           )}

@@ -5,25 +5,28 @@ import search from './match-sorter';
 import useSearchParams from './use-search-params';
 
 export default function useTalkSearch() {
-  const { setParams, searchString, addTag, removeTag, tags } = useSearchParams();
+  const { setParams, searchString, addFilter, removeFilter, filters, setFilters } =
+    useSearchParams();
 
   const results = useMemo(() => {
     return search(allTalks, ['title', 'description', 'tags', 'host'], searchString);
   }, [searchString]);
 
   const resultsByTags = useMemo(() => {
-    if (tags.length === 0) return results;
-    return results.filter((result) => result.tags.some((tag) => tags.includes(tag)));
-  }, [results, tags]);
+    if (filters.length === 0) return results;
+    return results.filter((result) => result.tags.some((tag) => filters.includes(tag)));
+  }, [results, filters]);
 
   return {
-    isEmptyResult: results.length === 0,
+    isEmptyResult: resultsByTags.length === 0,
     results: resultsByTags,
     setParams,
-    addTag,
-    removeTag,
+    addTag: addFilter,
+    removeTag: removeFilter,
     defaultValue: searchString || '',
     tags: getTalkTags(resultsByTags),
     allTags: getTalkTags(),
+    filters,
+    clearTags: () => setFilters([]),
   };
 }

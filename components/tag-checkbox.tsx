@@ -4,16 +4,16 @@ type TagCheckboxProps = {
   value: string;
   children: React.ReactNode;
   onChange?: UseCheckboxProps['onChange'];
-  disabled?: boolean;
+  checked?: boolean;
 };
 
 export default function TagCheckbox(props: TagCheckboxProps) {
-  const { value, children, onChange, disabled } = props;
+  const { value, children, onChange, checked } = props;
 
   const { getInputProps, getRootProps, getLabelProps, getCheckboxProps } = useCheckbox({
     onChange,
-    isDisabled: disabled,
     value,
+    isChecked: checked,
   });
 
   return (

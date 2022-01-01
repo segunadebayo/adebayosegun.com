@@ -53,7 +53,7 @@ export function FooterGradient() {
       position="absolute"
       pointerEvents={'none'}
       width="full"
-      height="1600px"
+      height="680px"
       left="0px"
       bottom="0px"
       bg="linear-gradient(180deg, rgba(56, 32, 19, 0) 0%, rgba(240, 108, 35, 0.4) 100%)"
