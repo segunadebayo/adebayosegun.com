@@ -43,6 +43,8 @@ export default function useSearchParams() {
     removeFilter,
     setFilters,
     addFilter,
+    hasFilter: filters.length > 0,
+    hasQuery: searchString !== '',
   };
 }
 

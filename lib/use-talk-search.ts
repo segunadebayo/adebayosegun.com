@@ -27,6 +27,5 @@ export default function useTalkSearch() {
     tags: getTalkTags(resultsByTags),
     allTags: getTalkTags(),
     filters,
-    clearTags: () => setFilters([]),
   };
 }
