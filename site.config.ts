@@ -1,17 +1,12 @@
 const urls = {
   repo: 'https://github.com/segunadebayo/adebayosegun.com',
-  get editUrl() {
-    return `${this.repo}/edit/main/data/`;
-  },
+  editUrl: 'https://github.com/segunadebayo/adebayosegun.com/edit/main/data/',
   website: 'https://adebayosegun.com',
-  relative(url: string) {
-    return urls.website + url;
-  },
 };
 
 const siteConfig = {
   name: 'Segun Adebayo',
-  image: urls.relative('/static/images/banner.png'),
+  image: 'https://adebayosegun.com/static/images/banner.png',
   type: 'website',
   title:
     'Segun Adebayo (aka Sage) - Product Designer, UI & Design Systems Engineer, Software Developer',
@@ -33,10 +28,6 @@ const siteConfig = {
     site: '@thesegunadebayo',
     cardType: 'summary_large_image',
   },
-  ogImages: [
-    { url: urls.relative('/og-image.png'), width: 1240, height: 480 },
-    { url: urls.relative('/twitter-og-image.png'), width: 1012, height: 506 },
-  ],
 };
 
 export default siteConfig;
