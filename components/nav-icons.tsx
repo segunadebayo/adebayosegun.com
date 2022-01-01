@@ -1,6 +1,10 @@
-export function BlogIcon() {
+import { SVGProps } from 'react';
+
+type IconProps = SVGProps<SVGSVGElement>;
+
+export function BlogIcon(props: IconProps) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20">
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
       <path
         d="M17.3337 16.6667H2.66668C2.29867 16.6667 2 16.9654 2 17.3334C2 17.7014 2.29867 18.0001 2.66668 18.0001H17.3337C17.7017 18.0001 18.0004 17.7014 18.0004 17.3334C18.0004 16.9654 17.7017 16.6667 17.3337 16.6667Z"
         fill="#FEB48C"
@@ -17,9 +21,9 @@ export function BlogIcon() {
   );
 }
 
-export function ProjectIcon() {
+export function ProjectIcon(props: IconProps) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20">
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
       <path
         d="M10.3351 9.22941L16.9366 5.56191L10.6916 2.09245C10.5825 2.03182 10.4598 2 10.3351 2C10.2103 2 10.0876 2.03182 9.9786 2.09245L3.73358 5.56191L10.3351 9.22941Z"
         fill="#FEB48C"
@@ -36,9 +40,9 @@ export function ProjectIcon() {
   );
 }
 
-export function SnippetIcon() {
+export function SnippetIcon(props: IconProps) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20">
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
       <path
         d="M5 14.5116L1.0775 10.5891C0.751672 10.2633 0.751672 9.73661 1.0775 9.41078L5 5.48828L6.17834 6.66661L2.84501 9.99995L6.17834 13.3333L5 14.5116Z"
         fill="#FEB48C"
@@ -55,9 +59,9 @@ export function SnippetIcon() {
   );
 }
 
-export function TalksIcon() {
+export function TalksIcon(props: IconProps) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20">
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
       <path
         d="M10 11.6667C11.3833 11.6667 12.5 10.5501 12.5 9.16675V4.16675C12.5 2.78341 11.3833 1.66675 10 1.66675C8.61667 1.66675 7.5 2.78341 7.5 4.16675V9.16675C7.5 10.5501 8.61667 11.6667 10 11.6667Z"
         fill="#FEB48C"
@@ -70,9 +74,9 @@ export function TalksIcon() {
   );
 }
 
-export function HamburgerMenuIcon() {
+export function HamburgerMenuIcon(props: IconProps) {
   return (
-    <svg height="24" width="24" viewBox="0 0 24 24">
+    <svg height="24" width="24" viewBox="0 0 24 24" {...props}>
       <g
         fill="currentColor"
         stroke="currentColor"
@@ -89,9 +93,9 @@ export function HamburgerMenuIcon() {
   );
 }
 
-export function CloseIcon() {
+export function CloseIcon(props: IconProps) {
   return (
-    <svg height="24" width="24" viewBox="0 0 24 24">
+    <svg height="24" width="24" viewBox="0 0 24 24" {...props}>
       <g
         fill="currentColor"
         stroke="currentColor"
