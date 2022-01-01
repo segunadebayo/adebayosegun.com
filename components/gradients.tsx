@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react';
 export function AboveTheFoldGradient() {
   return (
     <Box
+      zIndex={0}
       width="100%"
       height="920px"
       position="absolute"
@@ -17,6 +18,7 @@ export function AboveTheFoldGradient() {
 export function SpanGradient() {
   return (
     <Box
+      zIndex={0}
       width="100%"
       height="1400px"
       position="absolute"
@@ -31,6 +33,7 @@ export function SpanGradient() {
 export function StartSideGradient() {
   return (
     <Box
+      zIndex={0}
       width="3279px"
       height="1000px"
       position="absolute"
@@ -46,6 +49,7 @@ export function StartSideGradient() {
 export function FooterGradient() {
   return (
     <Box
+      zIndex={0}
       position="absolute"
       pointerEvents={'none'}
       width="full"

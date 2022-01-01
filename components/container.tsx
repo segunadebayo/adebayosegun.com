@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react';
 import Footer from 'components/footer';
 import Navbar from 'components/navbar';
 import React from 'react';
-import { AboveTheFoldGradient, SpanGradient } from './gradients';
+import { AboveTheFoldGradient } from './gradients';
 
 export default function Container({
   children,
@@ -17,7 +17,7 @@ export default function Container({
       <AboveTheFoldGradient />
       {gradient}
       <Box maxWidth="6xl" marginX="auto" paddingX="6">
-        <Box as="main" id="content" position="relative">
+        <Box as="main" id="content" position="relative" zIndex={1}>
           {children}
         </Box>
       </Box>
