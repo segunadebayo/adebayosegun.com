@@ -1,5 +1,5 @@
 import { Blog } from '.contentlayer/types';
-import { Box, Heading, HStack, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, HStack, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
 import formatDate from 'lib/format-date';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -22,17 +22,29 @@ export default function FeaturedBlogCard(props: BlogCardProps) {
       display="flex"
       gap="12"
       data-group
-      padding="10"
+      padding={{ base: '6', md: '10' }}
       bg="dustAlpha.darker"
       rounded="xl"
       flexDirection={{ base: 'column', md: 'row' }}
     >
-      <Box width="320px" height="210px" rounded="lg" overflow="hidden" position="relative">
-        <Image src={image} alt={title} layout="fill" priority />
+      <Box
+        width="full"
+        maxWidth="320px"
+        height="210px"
+        rounded="lg"
+        overflow="hidden"
+        position="relative"
+      >
+        <Image src={image} alt={title} layout="fill" priority objectFit="cover" />
       </Box>
 
       <Box flex="1">
-        <HStack spacing="5" fontSize="sm">
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          align={{ md: 'center' }}
+          gap={{ base: '2', md: '5' }}
+          fontSize="sm"
+        >
           <Text fontWeight="semibold">🌟 Featured article</Text>
           <HStack spacing="2" color="sage.base">
             <Box as="time" dateTime={date.iso}>
@@ -41,7 +53,7 @@ export default function FeaturedBlogCard(props: BlogCardProps) {
             <span>•</span>
             <Box>{readingTime.text}</Box>
           </HStack>
-        </HStack>
+        </Flex>
 
         <Box>
           <Heading size="lg" fontWeight="semibold" marginTop="6">
