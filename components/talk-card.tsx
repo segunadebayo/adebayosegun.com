@@ -40,6 +40,7 @@ export default function TalkCard(props: TalkCardProps) {
       <Box>
         <TalkCoverImage src={talk.image} alt={talk.title} />
       </Box>
+
       <Stack spacing="4" marginTop="2">
         <Heading as="h3" size="lg">
           <Link passHref href={talk.url}>
@@ -88,8 +89,8 @@ function TalkCoverImage(props: TalkCoverImageProps) {
   const { src, alt } = props;
   return (
     <Box position="relative">
-      <Box rounded="lg" overflow="hidden" width="18.75rem" height="12.5rem">
-        <Image alt={alt} src={src} objectFit="cover" layout="fill" />
+      <Box position="relative" rounded="lg" overflow="hidden" width="18.75rem" height="10.5rem">
+        <Image alt={alt} src={src} objectFit="cover" layout="fill" priority />
       </Box>
       <AbsoluteCenter display="none" _groupHover={{ display: 'block' }}>
         <Icon as={PlayIcon} aria-hidden fontSize="6xl" />
