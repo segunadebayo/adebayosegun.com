@@ -1,7 +1,8 @@
 import { allBlogs } from '.contentlayer/data';
 import { Blog } from '.contentlayer/types';
-import { Circle, Flex, HStack, Box, Heading, Wrap, WrapItem, Text } from '@chakra-ui/react';
+import { Box, Circle, Flex, Heading, HStack, Text, Wrap, WrapItem } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
+import AuthorProfile from 'components/author-profile';
 import Container from 'components/container';
 import LinkItem from 'components/link-item';
 import MDXComponents from 'components/mdx-components';
@@ -18,7 +19,7 @@ export default function BlogPage({ blog }: { blog: Blog }) {
 
   return (
     <Container>
-      <Box maxWidth="2xl" marginX="auto" paddingTop="12">
+      <Box maxWidth="2xl" marginX="auto" paddingTop="12" paddingBottom="8rem">
         <article>
           <Box marginBottom="6">
             <Heading size="2xl" as="h1" marginBottom="3">
@@ -36,7 +37,12 @@ export default function BlogPage({ blog }: { blog: Blog }) {
               ))}
             </Wrap>
 
-            <Flex justify="space-between" marginTop="8">
+            <Flex
+              direction={{ base: 'column-reverse', md: 'row' }}
+              gap="4"
+              justify="space-between"
+              marginTop={{ base: '4', md: '8' }}
+            >
               <HStack spacing="3">
                 <Circle overflow="hidden">
                   <Image
@@ -82,7 +88,7 @@ export default function BlogPage({ blog }: { blog: Blog }) {
           </Box>
         </article>
 
-        <Flex justify={'space-between'} my="20">
+        <Flex justify="space-between" my="20">
           <LinkItem href={blog.tweetUrl} icon={TwitterIcon}>
             Tweet this article
           </LinkItem>
@@ -90,6 +96,10 @@ export default function BlogPage({ blog }: { blog: Blog }) {
             Edit on github
           </LinkItem>
         </Flex>
+
+        <Box as="hr" borderColor="whiteAlpha.200" marginY="3rem" />
+
+        <AuthorProfile />
       </Box>
     </Container>
   );

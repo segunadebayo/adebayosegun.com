@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import ChakraLogo from 'components/chakra-logo';
 import Container from 'components/container';
+import Emoji from 'components/emoji';
 import GithubStarIcon from 'components/github-star';
 import { SpanGradient, StartSideGradient } from 'components/gradients';
 import LinkItem from 'components/link-item';
@@ -30,7 +31,6 @@ import sortByPublishedDate from 'lib/sort';
 import tools from 'lib/tools';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PropsWithChildren } from 'react';
 import siteConfig from 'site.config';
 
 function AchievementItem({ icon, children }) {
@@ -42,11 +42,6 @@ function AchievementItem({ icon, children }) {
       </Text>
     </HStack>
   );
-}
-
-function Emoji(props: PropsWithChildren<{ label: string }>) {
-  const { label, ...rest } = props;
-  return <span role="img" aria-label={label} {...rest} />;
 }
 
 function MainHeading(props: HeadingProps) {
