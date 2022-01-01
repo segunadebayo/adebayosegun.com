@@ -49,7 +49,7 @@ export default function Footer() {
             </Heading>
             <Flex direction="column" gap="4">
               <FooterLink href={siteConfig.profiles.email}>Email Segun</FooterLink>
-              <FooterLink href="#">Call Segun</FooterLink>
+              <FooterLink href="https://calendly.com/segunadebayo/meet">Chat with Segun</FooterLink>
               <FooterLink href={siteConfig.profiles.email}>Join Discord</FooterLink>
             </Flex>
           </GridItem>
