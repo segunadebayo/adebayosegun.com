@@ -1,33 +1,29 @@
 import { allTalks } from '.contentlayer/data';
-import { matchSorter } from 'match-sorter';
 import { useMemo } from 'react';
 import { getTalkTags } from './contentlayer-utils';
 import search from './match-sorter';
 import useSearchParams from './use-search-params';
 
 export default function useTalkSearch() {
-  const { setParams, searchString } = useSearchParams();
+  const { setParams, searchString, addTag, removeTag, tags } = useSearchParams();
 
   const results = useMemo(() => {
     return search(allTalks, ['title', 'description', 'tags', 'host'], searchString);
   }, [searchString]);
 
+  const resultsByTags = useMemo(() => {
+    if (tags.length === 0) return results;
+    return results.filter((result) => result.tags.some((tag) => tags.includes(tag)));
+  }, [results, tags]);
+
   return {
     isEmptyResult: results.length === 0,
-    results,
+    results: resultsByTags,
     setParams,
+    addTag,
+    removeTag,
     defaultValue: searchString || '',
-    tags: getTalkTags(results),
+    tags: getTalkTags(resultsByTags),
     allTags: getTalkTags(),
-    resultsByTags: (tags: string[]) => {
-      const result: any[] = [];
-      if (tags.length === 0) {
-        return results;
-      }
-      for (const tag of tags) {
-        result.push(matchSorter(results, tag, { keys: ['tags'] }));
-      }
-      return result;
-    },
   };
 }
