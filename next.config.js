@@ -13,6 +13,8 @@ module.exports = withContentlayer()({
       'images.unsplash.com',
       'og-image-react-egghead.vercel.app',
       'images.ctfassets.net',
+      'cdn.changelog.com',
+      'speakeasyjs.com',
     ],
   },
 });
