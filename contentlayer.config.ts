@@ -38,7 +38,7 @@ const computedFields: ComputedFields = {
 
 const Blog = defineDocumentType(() => ({
   name: 'Blog',
-  filePathPattern: 'blog/*.mdx',
+  filePathPattern: 'blog/**/*.mdx',
   bodyType: 'mdx',
   fields: {
     featured: { type: 'boolean' },
@@ -85,12 +85,13 @@ const Newsletter = defineDocumentType(() => ({
 
 const Snippet = defineDocumentType(() => ({
   name: 'Snippet',
-  filePathPattern: 'snippet/*.mdx',
+  filePathPattern: 'snippet/**/*.mdx',
   bodyType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     description: { type: 'string', required: true },
     logo: { type: 'string', required: true },
+    category: { type: 'list', of: { type: 'string', required: true } },
   },
   computedFields,
 }));

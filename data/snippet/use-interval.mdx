@@ -1,0 +1,27 @@
+---
+title: useInterval
+description: A react-friendly alternative to window.setInterval
+logo: react.png
+category: ['react']
+---
+
+```js:use-interval.ts
+function useInterval(callback, delay) {
+  const ref = React.useRef(null);
+  const savedCallback = React.useRef(callback);
+
+  React.useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  React.useEffect(() => {
+    const tick = () => savedCallback.current();
+    if (typeof delay === 'number') {
+      ref.current = window.setInterval(tick, delay);
+      return () => window.clearInterval(ref.current);
+    }
+  }, [delay]);
+
+  return ref;
+}
+```
