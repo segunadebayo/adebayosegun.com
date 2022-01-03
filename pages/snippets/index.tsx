@@ -1,5 +1,5 @@
 import { allSnippets } from '.contentlayer/data';
-import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import Container from 'components/container';
 import SEO from 'components/seo';
 import SnippetCard from 'components/snippet-card';
@@ -18,13 +18,12 @@ export default function Page() {
             copy-paste ready 😉
           </Text>
         </Box>
-
         <Box marginTop="6rem">
-          <Flex direction="column" gap="10">
+          <SimpleGrid columns={{ base: 1, md: 3 }} direction="column" spacing="10">
             {allSnippets.map((snippet) => (
               <SnippetCard key={snippet.title} data={snippet} />
             ))}
-          </Flex>
+          </SimpleGrid>
         </Box>
       </Box>
     </Container>

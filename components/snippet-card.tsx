@@ -1,7 +1,6 @@
 import { Snippet } from '.contentlayer/types';
-import { Box } from '@chakra-ui/react';
-import { useMDXComponent } from 'next-contentlayer/hooks';
-import MDXComponents from './mdx-components';
+import { Box, Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
+import Image from 'next/image';
 
 type SnippetCardProps = {
   data: Snippet;
@@ -9,10 +8,16 @@ type SnippetCardProps = {
 
 export default function SnippetCard(props: SnippetCardProps) {
   const { data: snippet } = props;
-  const Content = useMDXComponent(snippet.body.code);
+
   return (
-    <Box>
-      <Content components={MDXComponents} />
-    </Box>
+    <LinkBox bg="dustAlpha.darker" padding="6" rounded="lg">
+      <Box rounded="md" overflow="hidden" width="10">
+        <Image src={snippet.logo} alt="" />
+      </Box>
+      <Heading size="md" as="h3" marginBottom="2" marginTop="3">
+        <LinkOverlay href={`/snippets/${snippet.slug}`}>{snippet.title}</LinkOverlay>
+      </Heading>
+      <Text opacity={0.7}>{snippet.description}</Text>
+    </LinkBox>
   );
 }

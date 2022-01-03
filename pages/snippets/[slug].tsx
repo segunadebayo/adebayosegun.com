@@ -1,3 +1,4 @@
+import { allSnippets } from '.contentlayer/data';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 
 export default function SnippetPage() {
@@ -6,11 +7,12 @@ export default function SnippetPage() {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [],
+    paths: allSnippets.map((snippet) => ({ params: { slug: snippet.slug } })),
     fallback: false,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  return { props: {} };
+  const snippet = allSnippets.find((snippet) => snippet.slug === params.slug);
+  return { props: { snippet } };
 };
