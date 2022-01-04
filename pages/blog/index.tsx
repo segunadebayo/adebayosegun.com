@@ -1,11 +1,11 @@
 import { allBlogs } from '.contentlayer/data';
-import { Box, Heading, SimpleGrid, Text, Wrap } from '@chakra-ui/react';
+import { Box, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import { BlogCard } from 'components/blog-card';
 import Container from 'components/container';
 import FeaturedBlogCard from 'components/featured-blog-card';
 import SearchInput from 'components/search-input';
 import SEO from 'components/seo';
-import TagCheckbox from 'components/tag-checkbox';
+import TagCheckboxGroup from 'components/tag-checkbox-group';
 import useBlogSearch from 'lib/use-blog-search';
 import { useRouter } from 'next/router';
 
@@ -38,21 +38,15 @@ export default function Page() {
           />
         </Box>
 
-        <Wrap mt="5" spacing="3">
-          {search.allCategories.map((category) => (
-            <TagCheckbox
-              key={category}
-              checked={search.filters.includes(category)}
-              value={category}
-              onChange={(e) => {
-                if (e.target.checked) search.addCategory(category);
-                else search.removeCategory(category);
-              }}
-            >
-              {category}
-            </TagCheckbox>
-          ))}
-        </Wrap>
+        <TagCheckboxGroup
+          marginTop="5"
+          data={search.allCategories}
+          isChecked={(item) => search.filters.includes(item)}
+          onChange={({ checked, value }) => {
+            if (checked) search.addCategory(value);
+            else search.removeCategory(value);
+          }}
+        />
 
         <Box marginTop="6rem">
           {search.hasFilter || search.hasQuery ? null : <FeaturedBlogCard data={allBlogs[0]} />}

@@ -4,6 +4,7 @@ import { Box, Circle, Flex, Heading, HStack, Text, Wrap, WrapItem } from '@chakr
 import { chakra } from '@chakra-ui/system';
 import AuthorProfile from 'components/author-profile';
 import Container from 'components/container';
+import HashTags from 'components/hash-tags';
 import LinkItem from 'components/link-item';
 import MDXComponents from 'components/mdx-components';
 import { BlogIcon } from 'components/nav-icons';
@@ -32,16 +33,7 @@ export default function BlogPage({ blog }: { blog: Blog }) {
               {blog.title}
             </Heading>
 
-            <Wrap>
-              {blog.tags.map((item) => (
-                <WrapItem key={item} opacity={0.8} userSelect="none">
-                  <Box as="span" color="sage.base">
-                    #
-                  </Box>
-                  <span>{item}</span>
-                </WrapItem>
-              ))}
-            </Wrap>
+            <HashTags data={blog.tags} />
 
             <Flex
               direction={{ base: 'column-reverse', md: 'row' }}
@@ -71,7 +63,7 @@ export default function BlogPage({ blog }: { blog: Blog }) {
           </Box>
 
           <Box
-            position={'relative'}
+            position="relative"
             height="320px"
             rounded="lg"
             overflow="hidden"
@@ -83,7 +75,7 @@ export default function BlogPage({ blog }: { blog: Blog }) {
 
           <Box
             sx={{
-              color: 'gray.400',
+              color: 'gray.300',
               lineHeight: '1.75',
               'p + p': {
                 marginTop: '2',

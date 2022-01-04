@@ -1,16 +1,8 @@
-.rehype-code-title {
-  background: var(--chakra-colors-whiteAlpha-100);
-  padding: 1rem 1.25rem;
-  margin-top: 2.4em;
-  border-radius: 1em 1em 0 0;
-  color: var(--chakra-colors-whiteAlpha-700);
-  border-bottom: 1px solid var(--chakra-colors-whiteAlpha-200);
-}
-
 code[class*='language-'],
 pre[class*='language-'] {
   color: #d6deeb;
   text-shadow: none;
+  font-size: 14px;
   font-family: SF Mono, Menlo, Monaco, Consolas, 'Courier New', Courier, monospace;
   direction: ltr;
   text-align: left;
@@ -42,12 +34,27 @@ pre[class*='language-'] {
   overflow: auto;
   border-radius: 1em;
   background: #1e1e1e;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+pre[class*='language-']::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.rehype-code-title {
+  background: #011627;
+  padding: 1rem 1.25rem;
+  margin-top: 2.4em;
+  border-radius: 1em 1em 0 0;
+  color: var(--chakra-colors-whiteAlpha-700);
+  border-bottom: 1px solid var(--chakra-colors-whiteAlpha-200);
 }
 
 :not(pre) > code[class*='language-'],
 pre[class*='language-'] {
   color: white;
-  background: var(--chakra-colors-whiteAlpha-100);
+  background: #011627;
 }
 
 :not(pre) > code[class*='language-'] {
