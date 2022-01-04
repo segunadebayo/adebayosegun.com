@@ -2,11 +2,11 @@
 title: useEffectRef
 description: Perform disposable side-effects when an element's node is connected.
 logo: /static/logos/react.png
-category: ['react']
+categories: ['react']
 ---
 
 ```ts
-import {useRef, useCallback} from 'react';
+import { useRef, useCallback } from 'react';
 
 export type EffectRef<E extends HTMLElement = HTMLElement> = (element: E | null) => void;
 

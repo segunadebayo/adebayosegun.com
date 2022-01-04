@@ -1,0 +1,15 @@
+---
+title: Union to Intersection
+description: Convert union to intersection types
+logo: /static/logos/typescript.png
+categories: ['typescript']
+---
+
+```ts
+export type UnionToIntersection<T> = (T extends any ? (k: T) => void : never) extends (
+  // without this extends you get `T`
+  k: infer I,
+) => void
+  ? I
+  : never;
+```
