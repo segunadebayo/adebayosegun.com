@@ -3,6 +3,7 @@ image: /static/images/pablo-postigo.jpg
 name: Pablo Postigo
 title: CEO, Frontity
 source: linkedin
+featured: true
 ---
 
 Segun is one of the most talented and passionate engineers I've had the chance to work with. During his time at Frontity he has been proactive and not afraid of new challenges.

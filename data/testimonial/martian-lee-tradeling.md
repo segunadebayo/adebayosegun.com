@@ -3,6 +3,7 @@ image: /static/images/martian-lee.jpg
 name: Martian Lee
 title: Senior Frontend Engineer, GraphCMS
 source: linkedin
+featured: true
 ---
 
 Segun is the spearhead of our design system. Both designers and developers consult him for UI guidelines.

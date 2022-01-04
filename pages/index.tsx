@@ -1,4 +1,3 @@
-import { allProjects, allTalks, allTestimonials } from '.contentlayer/data';
 import {
   Box,
   Circle,
@@ -27,6 +26,11 @@ import TalkCard from 'components/talk-card';
 import TestimonialCard from 'components/testimonial.card';
 import ViewMore from 'components/view-more';
 import chunk from 'lib/chunk';
+import {
+  allFeaturedProjects,
+  allFeaturedTalks,
+  allFeaturedTestimonials,
+} from 'lib/contentlayer-utils';
 import sortByPublishedDate from 'lib/sort';
 import tools from 'lib/tools';
 import Image from 'next/image';
@@ -179,7 +183,7 @@ export default function HomePage() {
       <Box as="section" aria-labelledby="heading" py="vGutter">
         <VisuallyHidden>Recommendations</VisuallyHidden>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6">
-          {chunk(allTestimonials, 2).map((testimonials, index) => (
+          {chunk(allFeaturedTestimonials, 2).map((testimonials, index) => (
             <Stack key={index} spacing="6">
               {testimonials.map((data) => (
                 <TestimonialCard key={data.name} data={data} />
@@ -196,7 +200,7 @@ export default function HomePage() {
         </Heading>
         <Box marginTop="vGutter">
           <Stack spacing="20">
-            {allProjects.map((project) => (
+            {allFeaturedProjects.map((project) => (
               <ProjectCard key={project.title} data={project} />
             ))}
           </Stack>
@@ -211,12 +215,9 @@ export default function HomePage() {
         </Heading>
         <Box marginY="10">
           <Flex direction="column" gap="6">
-            {allTalks
-              .filter((talk) => talk.featured)
-              .sort(sortByPublishedDate)
-              .map((talk) => (
-                <TalkCard key={talk.title} data={talk} />
-              ))}
+            {allFeaturedTalks.sort(sortByPublishedDate).map((talk) => (
+              <TalkCard key={talk.title} data={talk} />
+            ))}
           </Flex>
         </Box>
 

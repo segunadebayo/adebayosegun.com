@@ -3,6 +3,7 @@ image: /static/images/majd.jpg
 name: Majd Al-Rawashdeh
 title: Principal Designer, Coursera
 source: linkedin
+featured: true
 ---
 
 I’ve worked with Segun at Tradeling to establish a foundation for the product design system. Segun is an outstanding design engineer partner, his design background played a crucial role in developing a framework that serve internal / external users and help the product to scale.
