@@ -11,8 +11,8 @@ export default function SnippetCard(props: SnippetCardProps) {
 
   return (
     <LinkBox bg="dustAlpha.darker" padding="6" rounded="lg">
-      <Box rounded="md" overflow="hidden" width="10">
-        <Image src={snippet.logo} alt="" />
+      <Box rounded="md" overflow="hidden" display="inline-flex">
+        <Image src={snippet.logo} alt="Snippet language" width="40" height="40" />
       </Box>
       <Heading size="md" as="h3" marginBottom="2" marginTop="3">
         <LinkOverlay href={`/snippets/${snippet.slug}`}>{snippet.title}</LinkOverlay>
