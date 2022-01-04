@@ -1,6 +1,8 @@
 import { allProjects } from '.contentlayer/data';
 import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 import Container from 'components/container';
+import Emoji from 'components/emoji';
+import MDXComponents from 'components/mdx-components';
 import ProjectCard from 'components/project-card';
 import SEO from 'components/seo';
 
@@ -13,9 +15,21 @@ export default function ProjectPage() {
           <Heading size="3xl" marginBottom="6">
             Selected Projects
           </Heading>
-          <Text fontSize="lg" maxW="560px">
-            I've been writing online since 2014, mostly about web development and tech careers.
-          </Text>
+          <Stack fontSize="lg" maxW="60ch" spacing="4">
+            <Text>
+              My primary focus these days is{' '}
+              <MDXComponents.a href="https://chakra-ui.com/" target="_blank" rel="noopener">
+                Chakra UI{' '}
+              </MDXComponents.a>{' '}
+              — a component libary that provides the building blocks needed to create an accessible
+              app fast <Emoji label="fast">⚡️</Emoji>.
+            </Text>
+            <Text>
+              I'm very passionate about <b>component systems</b> that help teams ship products
+              faster and bridges the gap between design and code.
+            </Text>
+            <Text>Here are some projects I've worked on that I think are worth mentioning.</Text>
+          </Stack>
         </Box>
 
         <Box marginTop="vGutter">

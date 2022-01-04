@@ -24,7 +24,8 @@ export default function Page() {
             Sage's Blog
           </Heading>
           <Text fontSize="lg" maxW="560px">
-            I've been writing online since 2014, mostly about web development and tech careers.
+            I write about topics and ideas that I'm currently thinking around the topics of design
+            systems, accessibility, state machine, software design, personal growth and lots more.
           </Text>
         </Box>
 
