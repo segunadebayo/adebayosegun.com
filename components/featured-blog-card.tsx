@@ -66,7 +66,7 @@ export default function FeaturedBlogCard(props: BlogCardProps) {
 
           <Link href={`/blog/${slug}`} passHref>
             <LinkOverlay>
-              <ViewMore>Read the article</ViewMore>
+              <ViewMore as="div">Read the article</ViewMore>
             </LinkOverlay>
           </Link>
         </Box>

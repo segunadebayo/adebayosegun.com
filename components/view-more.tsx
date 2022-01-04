@@ -1,10 +1,19 @@
 import { Box, HStack, Text, useToken } from '@chakra-ui/react';
+import React, { Ref } from 'react';
 import { ArrowRightIcon } from './social-icons';
 
-export default function ViewMore({ children, href = '#' }) {
+type ViewBoxProps = {
+  as?: React.ElementType;
+  children: React.ReactNode;
+};
+
+const ViewMore = React.forwardRef(function ViewBox(
+  { children, as = 'a' }: ViewBoxProps,
+  ref: Ref<any>,
+) {
   const sageBase = useToken('colors', 'sage.base');
   return (
-    <HStack as="a" display="inline-flex" data-group>
+    <HStack as={as} display="inline-flex" data-group ref={ref}>
       <Text fontWeight="bold" color="sage.base">
         {children}
       </Text>
@@ -13,4 +22,6 @@ export default function ViewMore({ children, href = '#' }) {
       </Box>
     </HStack>
   );
-}
+});
+
+export default ViewMore;
