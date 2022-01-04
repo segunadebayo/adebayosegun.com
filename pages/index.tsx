@@ -83,7 +83,7 @@ export default function HomePage() {
           >
             ui engineer
           </Box>
-          <Box as="span" color="sage.base" display="block">
+          <Box as="span" color="sage.base" display="block" whiteSpace={{ md: 'nowrap' }}>
             &amp; product designer
           </Box>
         </MainHeading>

@@ -1,6 +1,6 @@
 import { allBlogs } from '.contentlayer/data';
 import { Blog } from '.contentlayer/types';
-import { Box, Circle, Flex, Heading, HStack, Text, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Circle, Flex, Heading, HStack, Text } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
 import AuthorProfile from 'components/author-profile';
 import Container from 'components/container';
