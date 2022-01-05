@@ -21,11 +21,11 @@ export default function Page() {
       <Box py="vGutter">
         <Box>
           <Heading size="3xl" marginBottom="6">
-            Sage's Blog
+            Blog
           </Heading>
           <Text fontSize="lg" maxW="560px">
-            I write about topics and ideas that I'm currently thinking around the topics of design
-            systems, accessibility, state machine, software design, personal growth and lots more.
+            Here's a list of articles, thoughts and ideas around topics like design systems,
+            accessibility, state machines and lots more.
           </Text>
         </Box>
 

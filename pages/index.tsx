@@ -221,7 +221,7 @@ export default function HomePage() {
           </Flex>
         </Box>
 
-        <Link href="#" passHref>
+        <Link href="/talks" passHref>
           <ViewMore>View all Talks</ViewMore>
         </Link>
       </Box>

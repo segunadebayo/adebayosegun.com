@@ -13,7 +13,7 @@ export default function ProjectPage() {
       <Box py="vGutter">
         <Box>
           <Heading size="3xl" marginBottom="6">
-            Selected Projects
+            Projects
           </Heading>
           <Stack fontSize="lg" maxW="60ch" spacing="4">
             <Text>
@@ -25,7 +25,7 @@ export default function ProjectPage() {
               app fast <Emoji label="fast">⚡️</Emoji>.
             </Text>
             <Text>
-              I'm very passionate about <b>component systems</b> that help teams ship products
+              I'm passionate about building <b>component systems</b> that help teams ship products
               faster and bridges the gap between design and code.
             </Text>
             <Text>Here are some projects I've worked on that I think are worth mentioning.</Text>
