@@ -12,14 +12,15 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
-    "rss": "NODE_OPTIONS='--experimental-json-modules' node scripts/generate-rss.ts",
-    "sitemap": " NODE_OPTIONS='--experimental-json-modules' node scripts/generate-sitemap.ts"
+    "rss": "NODE_OPTIONS='--experimental-json-modules' node scripts/rss.ts",
+    "sitemap": " NODE_OPTIONS='--experimental-json-modules' node scripts/sitemap.ts"
   },
   "dependencies": {
     "@chakra-ui/cli": "^1.6.0",
     "@chakra-ui/react": "^1.7.3",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
+    "@sendgrid/mail": "^7.6.0",
     "contentlayer": "^0.0.33",
     "framer-motion": "4",
     "match-sorter": "^6.3.1",
