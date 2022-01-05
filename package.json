@@ -8,6 +8,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "postbuild": "yarn rss && yarn sitemap",
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
