@@ -1,5 +1,6 @@
 import { Testimonial } from '.contentlayer/types';
-import { Avatar, Box, HStack, Text } from '@chakra-ui/react';
+import { Box, Circle, HStack, Text } from '@chakra-ui/react';
+import Image from 'next/image';
 import { FullLinkedInLogo, LinkedInIcon } from './social-icons';
 
 type TestimonialCardProps = {
@@ -14,7 +15,9 @@ export default function TestimonialCard(props: TestimonialCardProps) {
 
       <Box>
         <HStack spacing="5">
-          <Avatar name={testimonial.name} src={testimonial.image} />
+          <Circle overflow="hidden">
+            <Image alt={testimonial.name} width="40" height="40" src={testimonial.image} />
+          </Circle>
           <Box>
             <Text fontWeight="bold">{testimonial.name}</Text>
             <Text opacity={0.8} fontSize="sm">
