@@ -31,7 +31,7 @@ function Feedback({ state, message, count }) {
 
   return (
     <Text mt="5" color="gray.400">
-      {count} subscribers
+      {count === 0 ? 'Be the first subscriber' : `${count} subscribers`}
     </Text>
   );
 }
