@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "postbuild": "yarn rss && yarn sitemap && yarn og",
+    "postbuild": "yarn rss && yarn sitemap && npx playwright install && yarn og",
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",

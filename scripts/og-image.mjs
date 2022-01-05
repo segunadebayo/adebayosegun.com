@@ -47,26 +47,30 @@ async function generate() {
   for (let i = 0; i < allBlogs.length; i++) {
     const blog = allBlogs[i];
 
-    const browser = await playwright.launchChromium({ headless: true });
-    const page = await browser.newPage();
-    await page.setViewportSize({ width: 1200, height: 630 });
+    try {
+      const browser = await playwright.launchChromium({ headless: true });
+      const page = await browser.newPage();
+      await page.setViewportSize({ width: 1200, height: 630 });
 
-    const url = getUrl(basePath, {
-      title: blog.title,
-      tags: blog.tags,
-      readingTime: blog.readingTime.text,
-      publishedAt: new Date(blog.publishedAt).toDateString(),
-    });
+      const url = getUrl(basePath, {
+        title: blog.title,
+        tags: blog.tags,
+        readingTime: blog.readingTime.text,
+        publishedAt: new Date(blog.publishedAt).toDateString(),
+      });
 
-    await page.goto(url, { waitUntil: 'networkidle' });
+      await page.goto(url, { waitUntil: 'networkidle' });
 
-    const fileName = toFileName(blog.title);
-    const imagePath = path.join('public', 'static', 'images', 'og', `${fileName}.png`);
+      const fileName = toFileName(blog.title);
+      const imagePath = path.join('public', 'static', 'images', 'og', `${fileName}.png`);
 
-    await page.screenshot({ type: 'png', path: imagePath });
-    console.log('✓ Generated open-graph image', `\`${imagePath}\``);
+      await page.screenshot({ type: 'png', path: imagePath });
+      console.log('✓ Generated open-graph image', `\`${imagePath}\``);
 
-    await browser.close();
+      await browser.close();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
