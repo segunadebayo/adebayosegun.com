@@ -56,7 +56,7 @@ const Blog = defineDocumentType(() => ({
       type: 'string',
       resolve: (doc) => {
         const base =
-          process.env.NODE_ENV !== 'development'
+          process.env.NODE_ENV !== 'production'
             ? 'http://localhost:3000'
             : 'https://adebayosegun.com';
         return `${base}/static/images/og/${toKebabCase(doc.title)}`;
