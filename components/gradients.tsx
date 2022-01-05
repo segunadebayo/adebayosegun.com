@@ -1,6 +1,6 @@
-import { Box } from '@chakra-ui/react';
+import { Box, BoxProps } from '@chakra-ui/react';
 
-export function AboveTheFoldGradient() {
+export function AboveTheFoldGradient(props: BoxProps) {
   return (
     <Box
       zIndex={0}
@@ -10,12 +10,13 @@ export function AboveTheFoldGradient() {
       top="0"
       left="0"
       pointerEvents="none"
+      {...props}
       bg="radial-gradient(53.09% 53.09% at 50% 37.57%, rgba(255, 129, 60, 0.4) 0%, rgba(18, 19, 24, 0) 100%);"
     />
   );
 }
 
-export function SpanGradient() {
+export function SpanGradient(props: BoxProps) {
   return (
     <Box
       zIndex={0}
@@ -25,12 +26,13 @@ export function SpanGradient() {
       left="0"
       top="700px"
       pointerEvents="none"
+      {...props}
       bg="linear-gradient(180deg, rgba(33, 33, 33, 0) 0%, rgba(214, 94, 28, 0.3) 45.31%, rgba(19, 19, 19, 0) 100%)"
     />
   );
 }
 
-export function StartSideGradient() {
+export function StartSideGradient(props: BoxProps) {
   return (
     <Box
       zIndex={0}
@@ -40,13 +42,14 @@ export function StartSideGradient() {
       pointerEvents="none"
       right="-400px"
       top="-300px"
-      bg="radial-gradient(50% 50% at 50% 50%, #FF7D35 0%, rgba(0, 0, 0, 0) 100%)"
       opacity="0.24"
+      {...props}
+      bg="radial-gradient(50% 50% at 50% 50%, #FF7D35 0%, rgba(0, 0, 0, 0) 100%)"
     />
   );
 }
 
-export function FooterGradient() {
+export function FooterGradient(props: BoxProps) {
   return (
     <Box
       zIndex={0}
@@ -56,8 +59,9 @@ export function FooterGradient() {
       height="680px"
       left="0px"
       bottom="0px"
-      bg="linear-gradient(180deg, rgba(56, 32, 19, 0) 0%, rgba(240, 108, 35, 0.4) 100%)"
       opacity={0.5}
+      {...props}
+      bg="linear-gradient(180deg, rgba(56, 32, 19, 0) 0%, rgba(240, 108, 35, 0.4) 100%)"
     />
   );
 }
