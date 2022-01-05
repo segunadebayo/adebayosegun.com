@@ -103,25 +103,19 @@ function MobileNavItemGroup(props: StackProps) {
 
 function Headshot() {
   return (
-    <Circle
-      rounded="9999px"
-      overflow="hidden"
-      outline="2px solid"
-      outlineColor="sage.base"
-      outlineOffset="4px"
-      width="8"
-      height="8"
-    >
-      <VisuallyHidden>Home</VisuallyHidden>
-      <Image
-        priority
-        alt="Segun Adebayo"
-        src="/static/images/segun-adebayo-headshot.jpg"
-        layout="fixed"
-        width="32"
-        height="32"
-        objectFit="cover"
-      />
+    <Circle size="10" rounded="full" borderWidth="2px" borderColor="sage.base">
+      <Circle rounded="full" overflow="hidden" width="8" height="8">
+        <VisuallyHidden>Home</VisuallyHidden>
+        <Image
+          priority
+          alt="Segun Adebayo"
+          src="/static/images/segun-adebayo-headshot.jpg"
+          layout="fixed"
+          width="32"
+          height="32"
+          objectFit="cover"
+        />
+      </Circle>
     </Circle>
   );
 }
