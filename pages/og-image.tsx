@@ -1,4 +1,4 @@
-import { Box, Circle, Flex, Heading, HStack, Stack, Text } from '@chakra-ui/react';
+import { Box, Circle, Heading, HStack, Stack, Text } from '@chakra-ui/react';
 import { AboveTheFoldGradient } from 'components/gradients';
 import HashTags from 'components/hash-tags';
 import { NextSeo } from 'next-seo';
@@ -9,13 +9,13 @@ export default function Page() {
   const router = useRouter();
 
   const searchParams = new URLSearchParams(router.asPath.split(/\?/)[1]);
-  const link = searchParams.get('url');
-  if (!link) return null;
 
   const title = searchParams.get('title');
+  const isLong = router.isReady && title?.length > 35;
+
   const date = searchParams.get('date');
-  const readTime = searchParams.get('readTime');
-  const tags = searchParams.get('tags').split(',');
+  const readingTime = searchParams.get('readingTime');
+  const tags = searchParams.get('tags')?.split(',') ?? [];
 
   return (
     <>
@@ -24,18 +24,28 @@ export default function Page() {
         <AboveTheFoldGradient inset="0" />
 
         <Stack spacing="2">
-          {date && readTime && (
-            <Text fontSize="3xl" fontWeight="bold" color="gray.400">
-              <span>{date}</span> — <span>{readTime}</span>
+          {date && readingTime && (
+            <Text fontSize="2xl" fontWeight="bold" color="gray.400">
+              <span>{date}</span> — <span>{readingTime}</span>
             </Text>
           )}
         </Stack>
 
-        <Stack spacing="8" mt="12">
-          <Heading color="sage.base" as="h1" size="4xl">
+        <Stack spacing="8" mt="10">
+          <Heading
+            color="sage.base"
+            as="h1"
+            size="4xl"
+            minHeight="10rem"
+            maxWidth={isLong ? undefined : '16ch'}
+          >
             {title}
           </Heading>
-          <HashTags spacing="5" data={tags} tagProps={{ fontSize: '4xl', fontWeight: 'bold' }} />
+          <HashTags
+            spacing="5"
+            data={tags}
+            tagProps={{ fontSize: '3xl', fontWeight: 'semibold' }}
+          />
         </Stack>
 
         <HStack spacing="14" paddingLeft="6" mt="16">
@@ -48,8 +58,8 @@ export default function Page() {
             <Image
               src="/static/images/segun-adebayo-headshot.jpg"
               alt="Segun Adebayo"
-              width="100"
-              height="100"
+              width="80"
+              height="80"
             />
           </Circle>
           <Text fontSize="3xl">
