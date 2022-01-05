@@ -56,7 +56,7 @@ const Blog = defineDocumentType(() => ({
       type: 'string',
       resolve: (doc) => {
         const base = 'https://adebayosegun.com';
-        return `${base}/static/images/og/${toKebabCase(doc.title)}`;
+        return `${base}/static/images/og/${toKebabCase(doc.title)}.png`;
       },
     },
   },
