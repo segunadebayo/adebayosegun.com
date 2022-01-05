@@ -4,9 +4,7 @@ import path from 'path';
 import playwright from 'playwright-aws-lambda';
 
 function getBasePath() {
-  const base =
-    process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://adebayosegun.com';
-  return path.join(base, 'og-image');
+  return path.join('https://adebayosegun.com', 'og-image');
 }
 
 function getUrl(basePath, data) {
