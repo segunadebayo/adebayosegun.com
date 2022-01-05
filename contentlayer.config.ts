@@ -1,4 +1,5 @@
 import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files';
+import { toKebabCase } from './lib/string-utils';
 import readingTime from 'reading-time';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeCodeTitles from 'rehype-code-titles';
@@ -49,7 +50,16 @@ const Blog = defineDocumentType(() => ({
     tags: { type: 'list', of: { type: 'string' } },
     categories: { type: 'list', of: { type: 'string' } },
   },
-  computedFields,
+  computedFields: {
+    ...computedFields,
+    ogImageUrl: {
+      type: 'string',
+      resolve: (doc) => {
+        const base = process.env.NODE_ENV ? 'http://localhost:3000' : 'https://adebayosegun.com';
+        return `${base}/static/images/og/${toKebabCase(doc.title)}`;
+      },
+    },
+  },
 }));
 
 const Talk = defineDocumentType(() => ({
