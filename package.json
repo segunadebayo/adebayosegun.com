@@ -12,8 +12,8 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
-    "rss": "NODE_OPTIONS='--experimental-json-modules' node scripts/rss.ts",
-    "sitemap": " NODE_OPTIONS='--experimental-json-modules' node scripts/sitemap.ts"
+    "rss": "NODE_OPTIONS='--experimental-json-modules' node scripts/rss.mjs",
+    "sitemap": " NODE_OPTIONS='--experimental-json-modules' node scripts/sitemap.mjs"
   },
   "dependencies": {
     "@chakra-ui/cli": "^1.6.0",
