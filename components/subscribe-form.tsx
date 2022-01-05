@@ -1,6 +1,43 @@
-import { Box, chakra, Flex, Heading, Text } from '@chakra-ui/react';
+import { Alert, Box, chakra, DarkMode, Flex, Heading, Spinner, Text } from '@chakra-ui/react';
+import { useSubscribeForm } from 'lib/use-subscribe-form';
+
+function Feedback({ state, message, count }) {
+  if (state === 'error') {
+    return (
+      <DarkMode>
+        <Alert role="status" status="error" rounded="md" variant="left-accent" color="white" mt="5">
+          {message}
+        </Alert>
+      </DarkMode>
+    );
+  }
+
+  if (state === 'success') {
+    return (
+      <DarkMode>
+        <Alert
+          role="status"
+          status="success"
+          rounded="md"
+          variant="left-accent"
+          color="white"
+          mt="5"
+        >
+          {message}
+        </Alert>
+      </DarkMode>
+    );
+  }
+
+  return (
+    <Text mt="5" color="gray.400">
+      {count} subscribers
+    </Text>
+  );
+}
 
 export default function SubscribeForm() {
+  const form = useSubscribeForm();
   return (
     <Box maxWidth="42rem" py="vGutter">
       <Heading marginBottom="4" size="2xl" letterSpacing="tight">
@@ -12,14 +49,18 @@ export default function SubscribeForm() {
       </Text>
 
       <form
-        onSubmit={(event) => {
+        onSubmit={async (event) => {
           event.preventDefault();
+          await form.submit();
         }}
       >
         <Flex gap="4" marginTop="8" direction={{ base: 'column', md: 'row' }}>
           <chakra.input
+            required
+            ref={form.inputRef}
             flex="1"
             paddingX="6"
+            autoComplete="email"
             paddingY="5"
             name="email"
             aria-label="Enter your email address"
@@ -29,6 +70,7 @@ export default function SubscribeForm() {
             _placeholder={{ color: 'whiteAlpha.400' }}
           />
           <chakra.button
+            minW="10.8rem"
             type="submit"
             aria-label="Enter your email address"
             fontWeight="bold"
@@ -46,10 +88,11 @@ export default function SubscribeForm() {
             _hover={{ bg: 'sage.dark' }}
             _active={{ bg: 'sage.darker' }}
           >
-            Sign me up
+            {form.state === 'loading' ? <Spinner size="md" /> : 'Subscribe'}
           </chakra.button>
         </Flex>
       </form>
+      <Feedback state={form.state} message={form.message} count={form.data?.count ?? 0} />
     </Box>
   );
 }
