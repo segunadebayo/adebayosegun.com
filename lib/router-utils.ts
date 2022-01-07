@@ -17,8 +17,7 @@ export function removeQuery(router: NextRouter, key: string) {
 }
 
 export function getAbsoluteURL(path: string) {
-  const baseURL = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000';
+  const baseURL =
+    process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://adebayosegun.com';
   return baseURL + path;
 }
