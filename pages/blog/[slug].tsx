@@ -28,7 +28,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
         description={blog.description}
         post={{ date: date.iso, tags: blog.tags }}
       />
-      <Box maxWidth="2xl" marginX="auto" paddingTop="12" paddingBottom="8rem">
+      <Box maxWidth="3xl" marginX="auto" paddingTop="12" paddingBottom="8rem">
         <article>
           <Box marginBottom="6">
             <Heading size="2xl" as="h1" marginBottom="3">
@@ -66,7 +66,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
 
           <Box
             position="relative"
-            height="320px"
+            height="400px"
             rounded="lg"
             overflow="hidden"
             marginTop="10"
@@ -78,7 +78,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
           <Box
             sx={{
               color: 'gray.300',
-              lineHeight: '1.75',
+              lineHeight: '1.9',
               'p + p': {
                 marginTop: '2',
               },
