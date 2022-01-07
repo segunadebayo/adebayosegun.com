@@ -12,7 +12,6 @@ export default function Page() {
 
   const title = searchParams.get('title');
   const isLong = router.isReady && title?.length > 35;
-
   const date = searchParams.get('date');
   const readingTime = searchParams.get('readingTime');
   const tags = searchParams.get('tags')?.split(',') ?? [];

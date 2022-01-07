@@ -11,18 +11,19 @@ import { BlogIcon } from 'components/nav-icons';
 import SEO from 'components/seo';
 import { TwitterIcon } from 'components/social-icons';
 import formatDate from 'lib/format-date';
+import { getAbsoluteURL } from 'lib/router-utils';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Image from 'next/image';
 
-export default function BlogPage({ blog }: { blog: Blog }) {
+export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl: string }) {
   const Component = useMDXComponent(blog.body.code);
   const date = formatDate(blog.publishedAt);
 
   return (
     <Container>
       <SEO
-        image={blog.ogImageUrl}
+        image={ogImageUrl}
         title={blog.title}
         description={blog.description}
         post={{ date: date.iso, tags: blog.tags }}
@@ -113,5 +114,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const blog = allBlogs.find((blog) => blog.slug === params.slug);
-  return { props: { blog } };
+
+  const searchParams = new URLSearchParams();
+  searchParams.set('title', blog.title);
+  searchParams.set('tags', blog.tags.join(','));
+  searchParams.set('date', formatDate(blog.publishedAt).pretty);
+  searchParams.set('readingTime', blog.readingTime.text);
+  const ogImageUrl = getAbsoluteURL(`/api/open-graph-image?${searchParams.toString()}`);
+
+  return { props: { blog, ogImageUrl } };
 };
