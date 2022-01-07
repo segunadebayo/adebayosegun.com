@@ -26,7 +26,7 @@ const computedFields: ComputedFields = {
     resolve: (doc) => {
       const slug = doc._raw.sourceFileName.replace(/\.mdx$/, '');
       return `https://twitter.com/intent/tweet?${new URLSearchParams({
-        url: `https://adebayosegun.com/${slug}`,
+        url: `https://adebayosegun.com/${doc.type.toLowerCase()}/${slug}`,
         text: `I just read "${doc.title}" by @thesegunadebayo\n\n`,
       })}`;
     },
