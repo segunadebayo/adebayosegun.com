@@ -1,12 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import chromium from 'chrome-aws-lambda';
-import { chromium as playwrightChromium } from 'playwright-core';
-import { getAbsoluteURL } from 'lib/router-utils';
+import playwright from 'playwright-core';
+import { getAbsoluteURL } from '../lib/router-utils';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const browser = await playwrightChromium.launch({
-    args: chromium.args,
-    headless: true,
+  const browser = await playwright.chromium.launch({
+    executablePath:
+      process.env.NODE_ENV !== 'development' ? await chromium.executablePath : undefined,
+    args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
+    headless: process.env.NODE_ENV !== 'development' ? chromium.headless : true,
   });
 
   const page = await browser.newPage({

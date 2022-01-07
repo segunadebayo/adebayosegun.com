@@ -10,6 +10,7 @@
     "build": "next build",
     "postbuild": "yarn rss && yarn sitemap",
     "dev": "next dev",
+    "dev:local": "npx playwright install && vercel dev",
     "start": "next start",
     "lint": "next lint",
     "rss": "NODE_OPTIONS='--experimental-json-modules' node scripts/rss.mjs",

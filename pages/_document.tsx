@@ -15,7 +15,7 @@ export default function Document() {
           <link
             key={font}
             rel="preload"
-            href={`/fonts/${font}.ttf`}
+            href={`/fonts/${font}.woff2`}
             as="font"
             type="font/woff2"
             crossOrigin=""
