@@ -47,18 +47,22 @@ export default function Page() {
           />
         </Stack>
 
-        <HStack spacing="14" paddingLeft="6" mt="16">
+        <HStack spacing="10" paddingLeft="6" mt="16">
           <Circle
+            size="5rem"
+            rounded="full"
+            borderWidth="5px"
+            borderColor="sage.base"
             overflow="hidden"
-            outline="8px solid"
-            outlineColor="sage.base"
-            outlineOffset="12px"
           >
             <Image
-              src="/static/images/segun-adebayo-headshot.jpg"
+              priority
               alt="Segun Adebayo"
+              src="/static/images/segun-adebayo-headshot.jpg"
+              layout="fixed"
               width="80"
               height="80"
+              objectFit="contain"
             />
           </Circle>
           <Text fontSize="3xl">
