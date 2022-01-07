@@ -19,7 +19,7 @@ export default function SEO(props: SEOProps) {
       title={title}
       description={description}
       openGraph={{
-        images: image ? [{ url: image }] : undefined,
+        images: image ? [{ url: image, width: 1200, height: 630, alt: title }] : undefined,
         title,
         description,
         article: post ? { publishedTime: post.date, tags: post.tags } : undefined,

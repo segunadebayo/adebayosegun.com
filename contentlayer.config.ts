@@ -54,10 +54,7 @@ const Blog = defineDocumentType(() => ({
     ...computedFields,
     ogImageUrl: {
       type: 'string',
-      resolve: (doc) => {
-        const base = 'https://adebayosegun.com';
-        return `${base}/static/images/og/${toKebabCase(doc.title)}.png`;
-      },
+      resolve: (doc) => `https://adebayosegun.com/static/images/og/${toKebabCase(doc.title)}.png`,
     },
   },
 }));
