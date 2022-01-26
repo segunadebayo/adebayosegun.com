@@ -42,7 +42,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
     return <chakra.ul paddingStart="4" marginY="5" {...props} />;
   },
   li(props) {
-    return <chakra.li marginY="1em" sx={{ '&::marker': { color: 'sage.base' } }} {...props} />;
+    return <chakra.li marginY="2" sx={{ '&::marker': { color: 'sage.base' } }} {...props} />;
   },
   h2(props) {
     return (

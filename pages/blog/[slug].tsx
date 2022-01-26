@@ -80,7 +80,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
               color: 'gray.300',
               lineHeight: '1.9',
               'p + p': {
-                marginTop: '2',
+                marginTop: '6',
               },
             }}
           >
