@@ -77,10 +77,10 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
 
           <Box
             sx={{
-              color: 'gray.300',
-              lineHeight: '1.9',
+              color: 'gray.400',
+              lineHeight: 'taller',
               'p + p': {
-                marginTop: '6',
+                marginY: '1.25em',
               },
             }}
           >

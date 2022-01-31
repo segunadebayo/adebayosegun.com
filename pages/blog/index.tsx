@@ -1,4 +1,3 @@
-import { allBlogs } from '.contentlayer/data';
 import { Box, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import { BlogCard } from 'components/blog-card';
 import Container from 'components/container';
@@ -6,6 +5,7 @@ import FeaturedBlogCard from 'components/featured-blog-card';
 import SearchInput from 'components/search-input';
 import SEO from 'components/seo';
 import TagCheckboxGroup from 'components/tag-checkbox-group';
+import { allFeaturedBlogs } from 'lib/contentlayer-utils';
 import useBlogSearch from 'lib/use-blog-search';
 import { useRouter } from 'next/router';
 
@@ -50,7 +50,9 @@ export default function Page() {
         />
 
         <Box marginTop="6rem">
-          {search.hasFilter || search.hasQuery ? null : <FeaturedBlogCard data={allBlogs[0]} />}
+          {search.hasFilter || search.hasQuery ? null : (
+            <FeaturedBlogCard data={allFeaturedBlogs[0]} />
+          )}
           <SimpleGrid columns={{ base: 1, md: 3 }} mt="4rem" spacing="10">
             {search.results.map((blog) => (
               <BlogCard key={blog.title} data={blog} />

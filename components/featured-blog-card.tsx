@@ -9,12 +9,15 @@ export type BlogCardProps = {
   data: Pick<
     Blog,
     'publishedAt' | 'readingTime' | 'categories' | 'description' | 'title' | 'image' | 'slug'
-  >;
+  > | null;
 };
 
 export default function FeaturedBlogCard(props: BlogCardProps) {
   const { data } = props;
-  const { title, description, publishedAt, image, categories, readingTime, slug } = data;
+
+  if (!data) return null;
+
+  const { title, description, publishedAt, image, readingTime, slug } = data;
   const date = formatDate(publishedAt);
 
   return (
@@ -35,7 +38,7 @@ export default function FeaturedBlogCard(props: BlogCardProps) {
         overflow="hidden"
         position="relative"
       >
-        <Image src={image} alt={title} layout="fill" priority objectFit="cover" />
+        <Image src={image} alt={title} width="320px" height="210px" priority objectFit="cover" />
       </Box>
 
       <Box flex="1">

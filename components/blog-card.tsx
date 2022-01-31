@@ -19,7 +19,7 @@ export function BlogCard(props: BlogCardProps) {
   return (
     <LinkBox>
       <Box height="210px" rounded="lg" overflow="hidden" position="relative">
-        <Image src={image} alt={title} layout="fill" objectFit="cover" />
+        <Image src={image} alt={title} width="340" height="210" objectFit="cover" />
       </Box>
 
       <Box flex="1" mt="5">

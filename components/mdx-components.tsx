@@ -51,7 +51,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
         fontFamily="heading"
         fontWeight="semibold"
         marginTop="8"
-        color="white"
+        color="gray.300"
         marginBottom="4"
         {...props}
       />
@@ -64,7 +64,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
         fontFamily="heading"
         fontWeight="semibold"
         marginTop="8"
-        color="white"
+        color="gray.300"
         marginBottom="4"
         {...props}
       />
@@ -98,6 +98,37 @@ const MDXComponents: Record<string, React.FC<any>> = {
   },
   strong(props) {
     return <chakra.strong fontWeight="semibold" color="white" {...props} />;
+  },
+  table(props) {
+    return (
+      <chakra.table
+        marginY="10"
+        width="full"
+        sx={{
+          borderCollapse: 'collapse',
+          thead: {
+            borderBottomWidth: '1px',
+            borderBottomColor: 'gray.700',
+            th: {
+              textAlign: 'start',
+              padding: '2',
+              verticalAlign: 'bottom',
+              color: 'gray.200',
+            },
+          },
+          tbody: {
+            tr: {
+              borderBottomWidth: '1px',
+              borderBottomColor: 'gray.800',
+            },
+            td: {
+              padding: '2',
+            },
+          },
+        }}
+        {...props}
+      />
+    );
   },
 };
 
