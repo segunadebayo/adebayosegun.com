@@ -47,6 +47,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
   h2(props) {
     return (
       <chakra.h2
+        lineHeight="1.5em"
         fontSize="2xl"
         fontFamily="heading"
         fontWeight="semibold"
@@ -60,6 +61,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
   h3(props) {
     return (
       <chakra.h3
+        lineHeight="1.5em"
         fontSize="xl"
         fontFamily="heading"
         fontWeight="semibold"
