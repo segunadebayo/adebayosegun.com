@@ -13,6 +13,7 @@ module.exports = withContentlayer()({
       'images.unsplash.com',
       'og-image-react-egghead.vercel.app',
       'images.ctfassets.net',
+      'secure.meetupstatic.com',
       'cdn.changelog.com',
       'speakeasyjs.com',
     ],
