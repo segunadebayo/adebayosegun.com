@@ -1,7 +1,7 @@
 import { allBlogs, allProjects, allSnippets, allTalks, allTestimonials } from '.contentlayer/data';
 
-export function getBlogCategories(data = allBlogs) {
-  const values = data.flatMap((blog) => blog.categories);
+export function getBlogTags(data = allBlogs) {
+  const values = data.flatMap((blog) => blog.tags);
   return Array.from(new Set(values));
 }
 

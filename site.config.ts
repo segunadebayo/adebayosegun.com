@@ -1,3 +1,24 @@
+export const tags = [
+  'finance',
+  'hiring',
+  'career',
+  'software',
+  'design',
+  'interview',
+  'speaking',
+  'design-system',
+  'accessibility',
+  'state-machine',
+  'react',
+  'jest',
+  'testing',
+  'component',
+  'open-source',
+  'tips',
+  'github-actions',
+  'ci',
+];
+
 const shared = {
   name: 'Segun Adebayo',
   repo: 'https://github.com/segunadebayo/adebayosegun.com',

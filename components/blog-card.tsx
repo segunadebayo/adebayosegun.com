@@ -4,11 +4,10 @@ import formatDate from 'lib/format-date';
 import Image from 'next/image';
 import Link from 'next/link';
 
+type Field = 'publishedAt' | 'readingTime' | 'description' | 'title' | 'image' | 'slug';
+
 type BlogCardProps = {
-  data: Pick<
-    Blog,
-    'publishedAt' | 'readingTime' | 'categories' | 'description' | 'title' | 'image' | 'slug'
-  >;
+  data: Pick<Blog, Field>;
 };
 
 export function BlogCard(props: BlogCardProps) {

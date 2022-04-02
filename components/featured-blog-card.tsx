@@ -5,11 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ViewMore from './view-more';
 
+type Field = 'publishedAt' | 'readingTime' | 'description' | 'title' | 'image' | 'slug';
+
 export type BlogCardProps = {
-  data: Pick<
-    Blog,
-    'publishedAt' | 'readingTime' | 'categories' | 'description' | 'title' | 'image' | 'slug'
-  > | null;
+  data: Pick<Blog, Field> | null;
 };
 
 export default function FeaturedBlogCard(props: BlogCardProps) {

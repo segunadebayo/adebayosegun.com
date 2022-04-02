@@ -41,11 +41,11 @@ export default function Page() {
 
         <TagCheckboxGroup
           marginTop="5"
-          data={search.allCategories}
+          data={search.tags}
           isChecked={(item) => search.filters.includes(item)}
           onChange={({ checked, value }) => {
-            if (checked) search.addCategory(value);
-            else search.removeCategory(value);
+            if (checked) search.addTag(value);
+            else search.removeTag(value);
           }}
         />
 

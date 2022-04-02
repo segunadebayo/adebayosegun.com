@@ -1,0 +1,76 @@
+---
+title: How to fix react testing library createEvent error
+description: 'How to fix a common react testing library error'
+publishedAt: 2022-03-28
+image: https://images.unsplash.com/photo-1483817101829-339b08e8d83f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fGNvZGluZyUyMHRlcm1pbmFsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60
+tags: ['testing', 'react', 'jest']
+---
+
+In Chakra UI, we've had to deal a weird testing issue in CI. When we run `yarn test` locally, all tests passed without issues.
+
+After a while, we noticed tested started to fail randomly. The errors we from `react-testing-library` and looks like
+
+```bash
+TypeError: Cannot read property 'createEvent' of null
+```
+
+After several attempts and almost giving up 😆, I found out the isse was related to the subtle difference between `findbyTestId` and `getByTestId`.
+
+The `findBy*` queries requires return a promise, not the element itself. Hence the test to be async and you'd have to `await` the promise before carrying out assertions on the element.
+
+Here's a preview of the failure point
+
+```jsx
+test('should not be interactive when disabled', () => {
+  render(
+    <Editable defaultValue="editable" isDisabled>
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
+    </Editable>,
+  );
+
+  userEvent.click(screen.getByText(/editable/));
+  // ❌ Error: Cannot read property 'createEvent' of null
+  // Reason: `findByTestId` returns a promise, not the element itself.
+  expect(screen.findByTestId('input')).not.toBeVisible();
+});
+```
+
+We can fix this by:
+
+- Converting the test to an `async` function
+- Using `await` to wait for the promise returned by `findByTestId`
+
+```jsx
+test('should not be interactive when disabled', async () => {
+  render(
+    <Editable defaultValue="editable" isDisabled>
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
+    </Editable>,
+  );
+
+  userEvent.click(screen.getByText(/editable/));
+  // ✅ Success: Found the element
+  expect(await screen.findByTestId('input')).not.toBeVisible();
+});
+```
+
+Another way to resolve this is to use `getByTestId` instead of `findByTestId`.
+
+```jsx
+test('should not be interactive when disabled', () => {
+  render(
+    <Editable defaultValue="editable" isDisabled>
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
+    </Editable>,
+  );
+
+  userEvent.click(screen.getByText(/editable/));
+  // ✅ Success: Found the element
+  expect(screen.getByTestId('input')).not.toBeVisible();
+});
+```
+
+and that's it!
