@@ -18,15 +18,15 @@ export default function Page({ snippet }: { snippet: Snippet }) {
   return (
     <Container>
       <SEO title={snippet.title} description={snippet.description} />
-      <Box maxWidth="2xl" marginX="auto" paddingTop="12" paddingBottom="8rem">
+      <Box maxWidth="4xl" marginX="auto" paddingTop="12" paddingBottom="8rem">
         <article>
           <Box marginBottom="6">
             <Flex justify="space-between" align="flex-start">
               <Box marginBottom="4">
-                <Heading size="2xl" as="h1" marginBottom="3">
+                <Heading size="2xl" as="h1" marginBottom="3" color="white">
                   {snippet.title}
                 </Heading>
-                <Text maxWidth="40ch">{snippet.description}</Text>
+                <Text>{snippet.description}</Text>
               </Box>
               <Flex rounded="md" overflow="hidden" mt="3">
                 <Image width="40px" height="40px" src={snippet.logo} alt="" />
