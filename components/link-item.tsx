@@ -9,7 +9,7 @@ type LinkItemProps = {
 };
 
 export default function LinkItem(props: LinkItemProps) {
-  const { icon, children, href, iconColor = 'sage.base' } = props;
+  const { icon, children, href, iconColor = 'brown.600' } = props;
   return (
     <HStack as="a" href={href} rel="noopener" target="_blank" spacing="3">
       <Icon aria-hidden as={icon} fontSize="xl" color={iconColor} />

@@ -2,33 +2,28 @@ import { extendTheme } from '@chakra-ui/react';
 
 const colors = {
   gray: {
-    50: '#F7FAFC',
-    100: '#EDF2F7',
-    200: '#E2E8F0',
-    300: '#CBD5E0',
-    400: '#A0AEC0',
-    500: '#718096',
-    600: '#4A5568',
-    700: '#2D3748',
-    800: '#1A202C',
-    900: '#171923',
+    50: '#fafaf9',
+    100: '#f5f5f4',
+    200: '#e7e5e4',
+    300: '#d6d3d1',
+    400: '#a8a29e',
+    500: '#78716c',
+    600: '#57534e',
+    700: '#44403c',
+    800: '#292524',
+    900: '#1c1917',
   },
-  sage: {
-    base: '#FEB48C',
-    dark: '#E99465',
-    darker: '#D37B4A',
-  },
-  dust: {
-    light: '#74503D',
-    base: '#483327',
-    dark: '#36261D',
-    darker: '#1B1512',
-  },
-  dustAlpha: {
-    light: 'rgba(254, 180, 140, 0.45)',
-    base: 'rgba(254, 180, 140, 0.28)',
-    dark: 'rgba(254, 180, 140, 0.21)',
-    darker: 'rgba(254, 180, 140, 0.11)',
+  brown: {
+    50: 'hsl(30, 50.0%, 97.6%)',
+    100: 'hsl(30, 52.5%, 94.6%)',
+    200: 'hsl(30, 53.0%, 91.2%)',
+    300: 'hsl(29, 52.9%, 86.8%)',
+    400: 'hsl(29, 52.5%, 80.9%)',
+    500: 'hsl(29, 51.5%, 72.8%)',
+    600: 'hsl(28, 50.0%, 63.1%)',
+    700: 'hsl(28, 34.0%, 51.0%)',
+    800: 'hsl(27, 31.8%, 47.6%)',
+    900: 'hsl(25, 30.0%, 41.0%)',
   },
 };
 
@@ -44,17 +39,21 @@ const theme = {
   space: {
     vGutter: '6.25rem',
   },
+  shadows: {
+    highlight: 'inset 0 2px 0 0 rgb(255 255 255 / 5%)',
+  },
   styles: {
     global: {
       'html, body': {
-        bg: 'black',
-        color: 'white',
+        bg: 'gray.900',
+        color: 'gray.300',
         minH: '100vh',
         overflowX: 'hidden',
+        colorScheme: 'dark',
       },
       '*:focus, *[data-focus]': {
         outline: '2px solid',
-        outlineColor: 'sage.base',
+        outlineColor: 'brown.400',
         outlineOffset: '3px',
       },
       'h2,h3,h4': {
@@ -73,7 +72,7 @@ const theme = {
         marginX: '3',
         '&:before': {
           content: `"#"`,
-          color: 'sage.base',
+          color: 'brown.600',
         },
         '&:focus': {
           opacity: 1,

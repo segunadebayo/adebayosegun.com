@@ -31,7 +31,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
       <Box maxWidth="3xl" marginX="auto" paddingTop="12" paddingBottom="8rem">
         <article>
           <Box marginBottom="6">
-            <Heading size="2xl" as="h1" marginBottom="3">
+            <Heading size="2xl" as="h1" marginBottom="8" color="white">
               {blog.title}
             </Heading>
 
@@ -56,7 +56,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
                 <Text fontWeight="medium">Segun Adebayo</Text>
               </HStack>
 
-              <HStack color="sage.base">
+              <HStack color="brown.600">
                 <chakra.span>{blog.readingTime.text}</chakra.span>
                 <span aria-hidden>•</span>
                 <time dateTime={date.iso}>{date.pretty}</time>
@@ -77,7 +77,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
 
           <Box
             sx={{
-              color: 'gray.400',
+              color: 'gray.300',
               lineHeight: 'taller',
               'p + p': {
                 marginY: '1.25em',

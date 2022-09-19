@@ -8,11 +8,11 @@ const ChakraLink = React.forwardRef<HTMLAnchorElement, any>(function ChakraLink(
     <chakra.a
       ref={ref}
       color="white"
-      fontWeight={'semibold'}
+      fontWeight="semibold"
       textDecor="underline"
-      textUnderlineOffset={'2px'}
-      textDecorationColor={'sage.dark'}
-      _hover={{ bg: 'dust.base' }}
+      textUnderlineOffset="6px"
+      textDecorationColor="brown.700"
+      _hover={{ bg: 'gray.700' }}
       {...props}
     />
   );
@@ -42,7 +42,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
     return <chakra.ul paddingStart="4" marginY="5" {...props} />;
   },
   li(props) {
-    return <chakra.li marginY="2" sx={{ '&::marker': { color: 'sage.base' } }} {...props} />;
+    return <chakra.li marginY="2" sx={{ '&::marker': { color: 'brown.600' } }} {...props} />;
   },
   h2(props) {
     return (
@@ -52,7 +52,6 @@ const MDXComponents: Record<string, React.FC<any>> = {
         fontFamily="heading"
         fontWeight="semibold"
         marginTop="8"
-        color="gray.300"
         marginBottom="4"
         {...props}
       />
@@ -66,7 +65,6 @@ const MDXComponents: Record<string, React.FC<any>> = {
         fontFamily="heading"
         fontWeight="semibold"
         marginTop="8"
-        color="gray.300"
         marginBottom="4"
         {...props}
       />
@@ -79,9 +77,9 @@ const MDXComponents: Record<string, React.FC<any>> = {
         marginY="8"
         paddingX="6"
         paddingY="4"
-        rounded="lg"
-        bg="dust.dark"
-        sx={{ borderLeft: '2px solid', borderColor: 'sage.base' }}
+        marginX="-6"
+        bg="gray.800"
+        sx={{ borderLeft: '4px solid', borderColor: 'brown.600' }}
         {...props}
       />
     );
@@ -94,7 +92,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
   },
   code(props) {
     if (typeof props.children === 'string') {
-      return <chakra.code color="sage.base" rounded="sm">{`\`${props.children}\``}</chakra.code>;
+      return <chakra.code color="brown.600" rounded="sm">{`\`${props.children}\``}</chakra.code>;
     }
     return <code {...props} />;
   },

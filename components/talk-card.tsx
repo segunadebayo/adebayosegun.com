@@ -1,47 +1,62 @@
 import { Talk } from '.contentlayer/types';
 import {
-  AbsoluteCenter,
   Badge,
   Box,
   DarkMode,
   Heading,
   HStack,
-  Icon,
   LinkBox,
   LinkOverlay,
   Stack,
   Text,
-  useToken,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SVGProps } from 'react';
 
 type TalkCardProps = {
   data: Talk;
 };
+
+function HoverEffect() {
+  return (
+    <Box
+      zIndex={0}
+      as="span"
+      bg="gray.800"
+      position="absolute"
+      borderRadius={{ md: '2xl' }}
+      insetX="-1.5rem"
+      insetY="-1.5rem"
+      transform="auto"
+      scale="0.9"
+      opacity="0"
+      transition="0.15s cubic-bezier(.4,0,.2,1)"
+      _groupHover={{
+        opacity: 1,
+        scale: '1',
+      }}
+    />
+  );
+}
 
 export default function TalkCard(props: TalkCardProps) {
   const { data: talk } = props;
 
   return (
     <LinkBox
+      position="relative"
       display="flex"
       data-group
       gap="2rem"
       flexDirection={{ base: 'column', md: 'row' }}
-      _hover={{ bg: 'rgba(254, 180, 140, 0.11)' }}
-      rounded="2xl"
-      width={{ md: 'calc(100% + 2rem)' }}
-      marginLeft={{ md: '-2rem' }}
-      padding="2rem"
-      transition="background 0.2s ease-in-out"
+      transition="background 0.1s ease-in-out"
     >
+      <HoverEffect />
       <Box>
         <TalkCoverImage src={talk.image} alt={talk.title} />
       </Box>
 
-      <Stack spacing="4" marginTop="2">
+      <Stack spacing="4" marginTop="2" zIndex="1">
         <Heading as="h3" size="lg">
           <Link passHref href={talk.url}>
             <LinkOverlay isExternal>{talk.title}</LinkOverlay>
@@ -52,31 +67,19 @@ export default function TalkCard(props: TalkCardProps) {
 
         <HStack spacing="10">
           <Text casing="uppercase" fontWeight="bold" fontSize="sm" letterSpacing="wider">
-            <Box as="span" color="sage.base" marginRight="2">
+            <Box as="span" color="brown.600" marginRight="2">
               Host:
             </Box>
             {talk.host}
           </Text>
           <DarkMode>
-            <Badge color="sage.base" colorScheme="orange">
+            <Badge color="brown.600" colorScheme="orange">
               {talk.type}
             </Badge>
           </DarkMode>
         </HStack>
       </Stack>
     </LinkBox>
-  );
-}
-
-function PlayIcon(props: SVGProps<SVGSVGElement>) {
-  const sageBase = useToken('colors', 'sage.base');
-  return (
-    <svg width="75" height="75" viewBox="0 0 75 75" {...props}>
-      <path
-        d="M37.5 0C16.8219 0 0 16.8219 0 37.5C0 58.1781 16.8219 75 37.5 75C58.1781 75 75 58.1781 75 37.5C75 16.8219 58.1781 0 37.5 0ZM28.125 53.125V21.875L53.125 37.5L28.125 53.125Z"
-        fill={sageBase}
-      />
-    </svg>
   );
 }
 
@@ -88,13 +91,8 @@ type TalkCoverImageProps = {
 function TalkCoverImage(props: TalkCoverImageProps) {
   const { src, alt } = props;
   return (
-    <Box position="relative">
-      <Box position="relative" rounded="lg" overflow="hidden" width="18.75rem" height="10.5rem">
-        <Image alt={alt} src={src} objectFit="cover" layout="fill" priority />
-      </Box>
-      <AbsoluteCenter display="none" _groupHover={{ display: 'block' }}>
-        <Icon as={PlayIcon} aria-hidden fontSize="6xl" />
-      </AbsoluteCenter>
+    <Box position="relative" rounded="lg" overflow="hidden" width="18.75rem" height="10.5rem">
+      <Image alt={alt} src={src} objectFit="cover" layout="fill" priority />
     </Box>
   );
 }

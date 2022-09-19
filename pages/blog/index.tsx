@@ -20,7 +20,7 @@ export default function Page() {
       <SEO title="Blog" />
       <Box py="vGutter">
         <Box>
-          <Heading size="3xl" marginBottom="6">
+          <Heading size="3xl" marginBottom="6" as="h1" color="white">
             Blog
           </Heading>
           <Text fontSize="lg" maxW="560px">

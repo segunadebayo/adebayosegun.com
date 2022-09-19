@@ -17,7 +17,6 @@ import ChakraLogo from 'components/chakra-logo';
 import Container from 'components/container';
 import Emoji from 'components/emoji';
 import GithubStarIcon from 'components/github-star';
-import { SpanGradient, StartSideGradient } from 'components/gradients';
 import LinkItem from 'components/link-item';
 import ProjectCard from 'components/project-card';
 import { EmailIcon, FileIcon, LinkedInIcon, TwitterIcon } from 'components/social-icons';
@@ -53,13 +52,13 @@ function MainHeading(props: HeadingProps) {
     <Heading
       as="h1"
       width="full"
-      maxWidth={{ md: '70vw' }}
       fontFamily="heading"
-      fontSize={{ base: '3.5rem', md: 'max(8vw, 4rem)' }}
+      fontSize={{ base: '4rem', md: '7rem' }}
       letterSpacing="tight"
       lineHeight="1"
-      marginBottom="14"
       userSelect="none"
+      color="white"
+      marginBottom="4"
       {...props}
     />
   );
@@ -67,34 +66,24 @@ function MainHeading(props: HeadingProps) {
 
 export default function HomePage() {
   return (
-    <Container gradient={<SpanGradient />}>
+    <Container>
       {/* Segun Adebayo - ui engineer & product designer  */}
-      <Flex
-        direction="column"
-        align="center"
-        position="relative"
-        paddingBottom="24"
-        paddingTop="12"
-      >
-        <MainHeading>
-          <span>Segun Adebayo</span>
-          <Box
-            as="span"
-            color="sage.base"
-            display="block"
-            textAlign={{ md: 'end' }}
-            _before={{ content: `"— "` }}
-          >
-            ui engineer
-          </Box>
-          <Box as="span" color="sage.base" display="block" whiteSpace={{ md: 'nowrap' }}>
-            &amp; product designer
-          </Box>
-        </MainHeading>
+      <Flex direction="column" paddingY="24">
+        <MainHeading>Segun Adebayo</MainHeading>
+        <Text
+          color="brown.600"
+          display="block"
+          fontSize="5xl"
+          fontFamily="heading"
+          fontWeight="bold"
+          lineHeight="1.2"
+        >
+          UI engineer &amp; product designer
+        </Text>
 
         {/* I'm passionate about... */}
         <Text
-          align={{ base: 'start', md: 'center' }}
+          marginTop="14"
           fontFamily="body"
           maxWidth="40rem"
           fontSize={{ base: 'lg', md: '2xl' }}
@@ -107,11 +96,7 @@ export default function HomePage() {
 
         {/* Github star and Chakra brag */}
         <Box marginTop={{ base: '8', md: '14' }} width="full">
-          <Flex
-            direction={{ base: 'column', md: 'row' }}
-            justify={{ base: 'flex-start', md: 'center' }}
-            gap={{ base: '5', md: '10' }}
-          >
+          <Flex direction={{ base: 'column', md: 'row' }} gap={{ base: '5', md: '10' }}>
             <AchievementItem icon={GithubStarIcon}>Github Star</AchievementItem>
             <AchievementItem icon={ChakraLogo}>Creator, Chakra UI</AchievementItem>
           </Flex>
@@ -145,11 +130,11 @@ export default function HomePage() {
 
           <Heading
             lineHeight="1"
-            fontSize={{ base: '3.125rem', md: '5rem', lg: '6.25rem' }}
+            fontSize={{ base: '3rem', md: '5rem', lg: '6.25rem' }}
             letterSpacing="tight"
           >
             I design{' '}
-            <Box as="span" color="sage.base">
+            <Box as="span" color="brown.600">
               component systems
             </Box>
           </Heading>
@@ -158,7 +143,7 @@ export default function HomePage() {
         <Box maxWidth={{ lg: '27.5rem' }} marginTop="4">
           <Text fontSize={{ base: 'lg', md: '2xl' }}>
             An engineer with a strong design background, specializing in design systems,
-            accessibility and interface design for digital products since 2016
+            accessibility and interface design for digital products
           </Text>
 
           {/* Profile links */}
@@ -209,12 +194,11 @@ export default function HomePage() {
 
       {/* Featured Talks */}
       <Box as="section" py="vGutter" position="relative">
-        <StartSideGradient />
         <Heading size="3xl" letterSpacing="tight" position="relative">
           Featured Talks
         </Heading>
-        <Box marginY="10">
-          <Flex direction="column" gap="6">
+        <Box marginTop="20" marginBottom="10">
+          <Flex direction="column" gap="20">
             {allFeaturedTalks.sort(sortByPublishedDate).map((talk) => (
               <TalkCard key={talk.title} data={talk} />
             ))}
@@ -241,7 +225,7 @@ export default function HomePage() {
         {/* ToolList */}
         <Wrap spacing="10">
           {tools.map((tool) => (
-            <WrapItem fontFamily="heading" fontSize="3xl" color="sage.base" key={tool}>
+            <WrapItem fontFamily="heading" fontSize="3xl" color="brown.600" key={tool}>
               {tool}
             </WrapItem>
           ))}

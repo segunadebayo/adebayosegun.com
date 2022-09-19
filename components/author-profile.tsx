@@ -15,7 +15,7 @@ export default function AuthorProfile() {
       </Circle>
       <Box>
         <Heading size="md">Written by Segun Adebayo (Sage)</Heading>
-        <Text mt="4" color="gray.400" lineHeight="taller">
+        <Text mt="4" lineHeight="taller">
           Sage is a Github Star <Emoji label="Github star">🌟</Emoji> and JavaScript UI Engineer{' '}
           <Emoji label="Software developer">👨🏽‍💻</Emoji>. He is passionate about helping people build
           an accessible web faster. Sage is the author of Chakra UI, a React UI library for building

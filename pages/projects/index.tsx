@@ -12,7 +12,7 @@ export default function ProjectPage() {
       <SEO title="Projects" />
       <Box py="vGutter">
         <Box>
-          <Heading size="3xl" marginBottom="6">
+          <Heading as="h1" size="3xl" marginBottom="6" color="white">
             Projects
           </Heading>
           <Stack fontSize="lg" maxW="60ch" spacing="4">

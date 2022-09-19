@@ -23,7 +23,7 @@ export function BlogCard(props: BlogCardProps) {
 
       <Box flex="1" mt="5">
         <HStack spacing="5" fontSize="sm">
-          <HStack spacing="2" color="sage.base">
+          <HStack spacing="2" color="brown.600">
             <Box as="time" dateTime={date.iso}>
               {date.pretty}
             </Box>

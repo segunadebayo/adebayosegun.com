@@ -12,7 +12,7 @@ export function DescriptionList({ data }: { data: DescriptionItem[] }) {
         <Box as="dl" key={item.title}>
           <Box
             as="dt"
-            color="sage.base"
+            color="brown.600"
             fontSize="sm"
             fontWeight="semibold"
             textTransform="uppercase"

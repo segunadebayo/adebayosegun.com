@@ -19,7 +19,7 @@ export default function Page() {
       <SEO title="Talks" />
       <Box py="vGutter">
         <Box>
-          <Heading size="3xl" marginBottom="6">
+          <Heading size="3xl" marginBottom="6" as="h1" color="white">
             Talks
           </Heading>
           <Text fontSize="lg" maxW="560px">
@@ -60,7 +60,7 @@ export default function Page() {
           {search.isEmptyResult ? (
             <EmptyState />
           ) : (
-            <Flex direction="column" gap="10">
+            <Flex direction="column" gap="20">
               {search.results.map((talk) => (
                 <TalkCard key={talk.title} data={talk} />
               ))}

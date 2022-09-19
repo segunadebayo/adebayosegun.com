@@ -55,7 +55,7 @@ export default function SearchInput(props: SearchInputProps) {
         ref={useMergeRefs(setInputRef, ref)}
         id="query"
         name="q"
-        bg="whiteAlpha.200"
+        bg="gray.800"
         flex="1"
         rounded="lg"
         height="48px"
@@ -64,7 +64,7 @@ export default function SearchInput(props: SearchInputProps) {
         fontSize="lg"
         fontFamily="heading"
         _placeholder={{
-          color: 'whiteAlpha.500',
+          color: 'gray.500',
         }}
       />
       <AbsoluteCenter axis="vertical" right="16">
@@ -98,7 +98,7 @@ export default function SearchInput(props: SearchInputProps) {
           <Icon as={CloseIcon} fontSize="lg" />
         </chakra.button>
       </AbsoluteCenter>
-      <AbsoluteCenter axis="vertical" pointerEvents="none" right="5" color="sage.base">
+      <AbsoluteCenter axis="vertical" pointerEvents="none" right="5" color="gray.500">
         <SearchIcon />
       </AbsoluteCenter>
     </Flex>

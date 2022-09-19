@@ -12,7 +12,7 @@ export default function HashTags(props: HashTagsProps) {
     <Wrap spacing={spacing}>
       {data.map((item) => (
         <WrapItem key={item} opacity={0.8} userSelect="none" {...tagProps}>
-          <Box as="span" color="sage.base">
+          <Box as="span" color="brown.600">
             #
           </Box>
           <span>{item}</span>

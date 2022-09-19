@@ -18,7 +18,7 @@ export default function ProjectCard(props: ProjectCardProps) {
     <Flex gap="20" direction={{ base: 'column', md: 'row' }}>
       <Box maxWidth={{ md: '27.5rem' }} flex="1">
         <Stack spacing="6">
-          <Heading as="h3" color="sage.dark" letterSpacing="tight">
+          <Heading as="h3" color="brown.600" letterSpacing="tight">
             {project.title}
           </Heading>
           {(project.github || project.website) && (

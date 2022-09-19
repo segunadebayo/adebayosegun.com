@@ -1,7 +1,6 @@
 import { Box, Flex, GridItem, Heading, HStack, SimpleGrid, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import siteConfig from 'site.config';
-import { FooterGradient } from './gradients';
 import LinkItem from './link-item';
 import { EmailIcon, GithubIcon, LinkedInIcon } from './social-icons';
 
@@ -16,8 +15,6 @@ function FooterLink({ href, children }) {
 export default function Footer() {
   return (
     <Box as="footer" position="relative" paddingY="20">
-      <FooterGradient />
-
       <Box maxWidth="6xl" marginX="auto" paddingX="6">
         <SimpleGrid columns={{ base: 4, md: 12 }} spacing="16">
           <GridItem colSpan={6}>

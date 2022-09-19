@@ -26,9 +26,7 @@ export default function Page({ snippet }: { snippet: Snippet }) {
                 <Heading size="2xl" as="h1" marginBottom="3">
                   {snippet.title}
                 </Heading>
-                <Text color="gray.300" maxWidth="40ch">
-                  {snippet.description}
-                </Text>
+                <Text maxWidth="40ch">{snippet.description}</Text>
               </Box>
               <Flex rounded="md" overflow="hidden" mt="3">
                 <Image width="40px" height="40px" src={snippet.logo} alt="" />
@@ -40,7 +38,7 @@ export default function Page({ snippet }: { snippet: Snippet }) {
 
           <Box
             sx={{
-              color: 'gray.400',
+              color: 'gray.500',
               lineHeight: '1.75',
               'p + p': {
                 marginTop: '2',

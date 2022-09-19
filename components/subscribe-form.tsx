@@ -30,7 +30,7 @@ function Feedback({ state, message, count }) {
   }
 
   return (
-    <Text mt="5" color="gray.400">
+    <Text mt="5">
       {count === 0
         ? 'Be the first subscriber'
         : `${count} ${count === 1 ? 'subscriber' : 'subscribers'}`}
@@ -66,7 +66,7 @@ export default function SubscribeForm() {
             paddingY="5"
             name="email"
             aria-label="Enter your email address"
-            bg="dust.darker"
+            bg="gray.800"
             rounded="lg"
             placeholder="sage@apple.com"
             _placeholder={{ color: 'whiteAlpha.400' }}
@@ -86,9 +86,9 @@ export default function SubscribeForm() {
             paddingY="5"
             rounded="lg"
             transition="background 0.2s ease-in-out"
-            bg="sage.base"
-            _hover={{ bg: 'sage.dark' }}
-            _active={{ bg: 'sage.darker' }}
+            bg="brown.600"
+            _hover={{ bg: 'brown.700' }}
+            _active={{ bg: 'brown.800' }}
           >
             {form.state === 'loading' ? <Spinner size="md" /> : 'Subscribe'}
           </chakra.button>

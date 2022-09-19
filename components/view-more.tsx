@@ -11,10 +11,10 @@ const ViewMore = React.forwardRef(function ViewBox(
   { children, as = 'a', ...rest }: ViewBoxProps,
   ref: Ref<any>,
 ) {
-  const sageBase = useToken('colors', 'sage.base');
+  const sageBase = useToken('colors', 'brown.600');
   return (
     <HStack as={as} display="inline-flex" data-group ref={ref} {...rest}>
-      <Text fontWeight="bold" color="sage.base">
+      <Text fontWeight="bold" color="brown.600">
         {children}
       </Text>
       <Box transform="auto" transition="transform 0.2s" _groupHover={{ translateX: '3px' }}>

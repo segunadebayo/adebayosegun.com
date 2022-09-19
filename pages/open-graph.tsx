@@ -1,5 +1,4 @@
 import { Box, Circle, Heading, HStack, Stack, Text } from '@chakra-ui/react';
-import { AboveTheFoldGradient } from 'components/gradients';
 import HashTags from 'components/hash-tags';
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
@@ -20,11 +19,9 @@ export default function Page() {
     <>
       <NextSeo noindex nofollow disableGooglebot />
       <Box position="relative" padding="20" color="gray.100" style={{ width: 1200, height: 630 }}>
-        <AboveTheFoldGradient inset="0" />
-
         <Stack spacing="2">
           {date && readingTime && (
-            <Text fontSize="2xl" fontWeight="bold" color="gray.400">
+            <Text fontSize="2xl" fontWeight="bold">
               <span>{date}</span> — <span>{readingTime}</span>
             </Text>
           )}
@@ -32,7 +29,7 @@ export default function Page() {
 
         <Stack spacing="8" mt="10">
           <Heading
-            color="sage.base"
+            color="brown.600"
             as="h1"
             size="4xl"
             minHeight="10rem"
@@ -52,7 +49,7 @@ export default function Page() {
             size="5rem"
             rounded="full"
             borderWidth="5px"
-            borderColor="sage.base"
+            borderColor="brown.600"
             overflow="hidden"
           >
             <Image
@@ -78,7 +75,7 @@ export default function Page() {
           roundedTopLeft="2xl"
           fontWeight="semibold"
           fontSize="3xl"
-          bg="sage.base"
+          bg="brown.600"
           px="6"
           py="2"
         >
