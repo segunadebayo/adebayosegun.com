@@ -17,7 +17,7 @@ export default function Page() {
 
   return (
     <>
-      <NextSeo noindex nofollow disableGooglebot />
+      <NextSeo noindex nofollow />
       <Box position="relative" padding="20" color="gray.100" style={{ width: 1200, height: 630 }}>
         <Stack spacing="2">
           {date && readingTime && (
@@ -56,10 +56,9 @@ export default function Page() {
               priority
               alt="Segun Adebayo"
               src="/static/images/segun-adebayo-headshot.jpg"
-              layout="fixed"
-              width="80"
-              height="80"
-              objectFit="contain"
+              width={80}
+              height={80}
+              style={{ objectFit: 'contain' }}
             />
           </Circle>
           <Text fontSize="3xl">

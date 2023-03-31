@@ -40,21 +40,20 @@ type NavItemProps = {
 function NavItem(props: NavItemProps) {
   const { children, icon, active, href, large } = props;
   return (
-    <Link href={href} passHref>
-      <HStack
-        as="a"
-        spacing="2"
-        paddingX="3"
-        paddingY={large ? '5' : '2.5'}
-        rounded="lg"
-        aria-current={active ? 'page' : undefined}
-        _hover={{ color: 'brown.600' }}
-        _activeLink={{ bg: 'gray.800', shadow: 'highlight' }}
-      >
-        <Icon as={icon} color="brown.600" fontSize="lg" />
-        <Text fontFamily="heading">{children}</Text>
-      </HStack>
-    </Link>
+    <HStack
+      as={Link}
+      href={href}
+      spacing="2"
+      paddingX="3"
+      paddingY={large ? '5' : '2.5'}
+      rounded="lg"
+      aria-current={active ? 'page' : undefined}
+      _hover={{ color: 'brown.600' }}
+      _activeLink={{ bg: 'gray.800', shadow: 'highlight' }}
+    >
+      <Icon as={icon} color="brown.600" fontSize="lg" />
+      <Text fontFamily="heading">{children}</Text>
+    </HStack>
   );
 }
 
@@ -104,16 +103,15 @@ function MobileNavItemGroup(props: StackProps) {
 function Headshot() {
   return (
     <Circle size="10" rounded="full" borderWidth="2px" borderColor="brown.600">
-      <Circle rounded="full" overflow="hidden" width="8" height="8">
+      <Circle rounded="full" overflow="hidden" size="8">
         <VisuallyHidden>Home</VisuallyHidden>
         <Image
           priority
           alt="Segun Adebayo"
           src="/static/images/segun-adebayo-headshot.jpg"
-          layout="fixed"
-          width="32"
-          height="32"
-          objectFit="cover"
+          width={32}
+          height={32}
+          style={{ objectFit: 'cover' }}
         />
       </Circle>
     </Circle>
@@ -161,10 +159,8 @@ export default function Navbar() {
   return (
     <Box as="header" paddingY="6" maxWidth="6xl" marginX="auto" paddingX="6">
       <Flex justify="space-between" align="center">
-        <Link href="/" passHref>
-          <a>
-            <Headshot />
-          </a>
+        <Link href="/">
+          <Headshot />
         </Link>
         <DesktopNavItemGroup display={{ base: 'none', md: 'flex' }} />
         <MobileNavMenu />

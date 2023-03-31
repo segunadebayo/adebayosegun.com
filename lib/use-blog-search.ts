@@ -1,4 +1,4 @@
-import { allBlogs } from '.contentlayer/data';
+import { allBlogs } from 'contentlayer/generated';
 import { useMemo } from 'react';
 import { getBlogTags } from './contentlayer-utils';
 import search from './match-sorter';

@@ -1,5 +1,5 @@
-import { allSnippets } from '.contentlayer/data';
-import { Snippet } from '.contentlayer/types';
+import { allSnippets } from 'contentlayer/generated';
+import { Snippet } from 'contentlayer/generated';
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import Container from 'components/container';
 import HashTags from 'components/hash-tags';
@@ -29,7 +29,7 @@ export default function Page({ snippet }: { snippet: Snippet }) {
                 <Text>{snippet.description}</Text>
               </Box>
               <Flex rounded="md" overflow="hidden" mt="3">
-                <Image width="40px" height="40px" src={snippet.logo} alt="" />
+                <Image width={40} height={40} src={snippet.logo} alt="" />
               </Flex>
             </Flex>
 

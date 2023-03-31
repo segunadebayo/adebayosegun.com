@@ -1,4 +1,4 @@
-import { allTalks } from '.contentlayer/data';
+import { allTalks } from 'contentlayer/generated';
 import { useMemo } from 'react';
 import { getTalkTags } from './contentlayer-utils';
 import search from './match-sorter';

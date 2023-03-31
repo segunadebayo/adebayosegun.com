@@ -123,8 +123,8 @@ export default function HomePage() {
             <Image
               alt="Segun adebayo"
               src="/static/images/segun-adebayo-headshot.jpg"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: 'cover' }}
             />
           </Circle>
 
@@ -205,9 +205,9 @@ export default function HomePage() {
           </Flex>
         </Box>
 
-        <Link href="/talks" passHref>
-          <ViewMore>View all Talks</ViewMore>
-        </Link>
+        <ViewMore as={Link} href="/talks">
+          View all Talks
+        </ViewMore>
       </Box>
 
       {/* Tools & Softwares */}

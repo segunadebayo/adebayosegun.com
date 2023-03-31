@@ -1,4 +1,10 @@
-import { allBlogs, allProjects, allSnippets, allTalks, allTestimonials } from '.contentlayer/data';
+import {
+  allBlogs,
+  allProjects,
+  allSnippets,
+  allTalks,
+  allTestimonials,
+} from 'contentlayer/generated';
 
 export function getBlogTags(data = allBlogs) {
   const values = data.flatMap((blog) => blog.tags);

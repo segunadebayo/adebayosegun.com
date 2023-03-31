@@ -1,4 +1,4 @@
-import { allProjects } from '.contentlayer/data';
+import { allProjects } from 'contentlayer/generated';
 import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 import Container from 'components/container';
 import Emoji from 'components/emoji';

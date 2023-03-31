@@ -1,4 +1,4 @@
-import { Talk } from '.contentlayer/types';
+import { Talk } from 'contentlayer/generated';
 import {
   Badge,
   Box,
@@ -58,9 +58,9 @@ export default function TalkCard(props: TalkCardProps) {
 
       <Stack spacing="4" marginTop="2" zIndex="1">
         <Heading as="h3" size="lg">
-          <Link passHref href={talk.url}>
-            <LinkOverlay isExternal>{talk.title}</LinkOverlay>
-          </Link>
+          <LinkOverlay as={Link} href={talk.url} isExternal>
+            {talk.title}
+          </LinkOverlay>
         </Heading>
 
         <Text maxWidth={{ md: '37.5rem' }}>{talk.description}</Text>
@@ -92,7 +92,7 @@ function TalkCoverImage(props: TalkCoverImageProps) {
   const { src, alt } = props;
   return (
     <Box position="relative" rounded="lg" overflow="hidden" width="18.75rem" height="10.5rem">
-      <Image alt={alt} src={src} objectFit="cover" layout="fill" priority />
+      <Image alt={alt} src={src} fill style={{ objectFit: 'cover' }} priority />
     </Box>
   );
 }

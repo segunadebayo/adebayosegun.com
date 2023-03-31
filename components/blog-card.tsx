@@ -1,4 +1,4 @@
-import { Blog } from '.contentlayer/types';
+import { Blog } from 'contentlayer/generated';
 import { Box, Heading, HStack, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import formatDate from 'lib/format-date';
 import Image from 'next/image';
@@ -33,9 +33,9 @@ export function BlogCard(props: BlogCardProps) {
         </HStack>
 
         <Heading size="lg" fontWeight="semibold" marginY="4">
-          <Link href={`/blog/${slug}`} passHref>
-            <LinkOverlay>{title}</LinkOverlay>
-          </Link>
+          <LinkOverlay as={Link} href={`/blog/${slug}`}>
+            {title}
+          </LinkOverlay>
         </Heading>
       </Box>
     </LinkBox>

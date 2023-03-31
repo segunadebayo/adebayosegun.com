@@ -1,4 +1,4 @@
-import { Project } from '.contentlayer/types';
+import { type Project } from 'contentlayer/generated';
 import { Box, Flex, Heading, HStack, Stack } from '@chakra-ui/react';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import Image from 'next/image';
@@ -84,13 +84,7 @@ function ProjectImageCard(props: ProjectImageCardProps) {
           },
         }}
       >
-        <Image
-          alt={alt}
-          src={src}
-          layout="fill"
-          objectPosition={objectPosition}
-          objectFit="cover"
-        />
+        <Image alt={alt} src={src} fill style={{ objectFit: 'cover', objectPosition }} />
       </Box>
     </Box>
   );

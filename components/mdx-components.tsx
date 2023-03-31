@@ -21,15 +21,9 @@ const ChakraLink = React.forwardRef<HTMLAnchorElement, any>(function ChakraLink(
 const CustomLink = (props) => {
   const href = props.href;
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
-
   if (isInternalLink) {
-    return (
-      <Link href={href} passHref>
-        <ChakraLink {...props} />
-      </Link>
-    );
+    return <ChakraLink as={Link} href={href} {...props} />;
   }
-
   return <ChakraLink target="_blank" rel="noopener noreferrer" {...props} />;
 };
 

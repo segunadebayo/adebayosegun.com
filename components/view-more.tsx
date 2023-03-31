@@ -4,11 +4,12 @@ import { ArrowRightIcon } from './social-icons';
 
 type ViewBoxProps = {
   as?: React.ElementType;
+  href?: string;
   children: React.ReactNode;
 };
 
 const ViewMore = React.forwardRef(function ViewBox(
-  { children, as = 'a', ...rest }: ViewBoxProps,
+  { children, as = 'a', href, ...rest }: ViewBoxProps,
   ref: Ref<any>,
 ) {
   const sageBase = useToken('colors', 'brown.600');

@@ -1,4 +1,4 @@
-import { Testimonial } from '.contentlayer/types';
+import { Testimonial } from 'contentlayer/generated';
 import { Box, Circle, HStack, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FullLinkedInLogo, LinkedInIcon } from './social-icons';

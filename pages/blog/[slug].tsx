@@ -1,7 +1,4 @@
-import { allBlogs } from '.contentlayer/data';
-import { Blog } from '.contentlayer/types';
-import { Box, Circle, Flex, Heading, HStack, Text } from '@chakra-ui/react';
-import { chakra } from '@chakra-ui/system';
+import { Box, Circle, Flex, HStack, Heading, Text, chakra } from '@chakra-ui/react';
 import AuthorProfile from 'components/author-profile';
 import Container from 'components/container';
 import HashTags from 'components/hash-tags';
@@ -10,6 +7,7 @@ import MDXComponents from 'components/mdx-components';
 import { BlogIcon } from 'components/nav-icons';
 import SEO from 'components/seo';
 import { TwitterIcon } from 'components/social-icons';
+import { Blog, allBlogs } from 'contentlayer/generated';
 import formatDate from 'lib/format-date';
 import { getAbsoluteURL } from 'lib/router-utils';
 import type { GetStaticPaths, GetStaticProps } from 'next';
@@ -48,9 +46,8 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
                   <Image
                     alt="Segun Adebayo"
                     src="https://vercel.com/api/www/avatar/6ad338204b00eabaea90981779d3835976b53833?s=64"
-                    layout="fixed"
-                    width="32px"
-                    height="32px"
+                    width={32}
+                    height={32}
                   />
                 </Circle>
                 <Text fontWeight="medium">Segun Adebayo</Text>
@@ -72,7 +69,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
             marginTop="10"
             marginBottom="16"
           >
-            <Image src={blog.image} alt={blog.title} layout="fill" objectFit="cover" priority />
+            <Image src={blog.image} alt={blog.title} fill style={{ objectFit: 'cover' }} priority />
           </Box>
 
           <Box

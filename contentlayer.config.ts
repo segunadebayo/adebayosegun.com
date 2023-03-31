@@ -40,7 +40,7 @@ const computedFields: ComputedFields = {
 const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: 'blog/**/*.mdx',
-  bodyType: 'mdx',
+  contentType: 'mdx',
   fields: {
     featured: { type: 'boolean' },
     title: { type: 'string', required: true },
@@ -61,7 +61,7 @@ const Blog = defineDocumentType(() => ({
 const Talk = defineDocumentType(() => ({
   name: 'Talk',
   filePathPattern: 'talk/*.mdx',
-  bodyType: 'mdx',
+  contentType: 'mdx',
   fields: {
     featured: { type: 'boolean' },
     format: { type: 'string' },
@@ -79,7 +79,7 @@ const Talk = defineDocumentType(() => ({
 const Newsletter = defineDocumentType(() => ({
   name: 'Newsletter',
   filePathPattern: 'newsletter/*.mdx',
-  bodyType: 'mdx',
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
@@ -92,7 +92,7 @@ const Newsletter = defineDocumentType(() => ({
 const Snippet = defineDocumentType(() => ({
   name: 'Snippet',
   filePathPattern: 'snippet/**/*.mdx',
-  bodyType: 'mdx',
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     description: { type: 'string', required: true },
@@ -105,7 +105,7 @@ const Snippet = defineDocumentType(() => ({
 const Project = defineDocumentType(() => ({
   name: 'Project',
   filePathPattern: 'project/*.mdx',
-  bodyType: 'mdx',
+  contentType: 'mdx',
   fields: {
     featured: { type: 'boolean' },
     title: { type: 'string', required: true },
@@ -121,7 +121,7 @@ const Project = defineDocumentType(() => ({
 const Testimonial = defineDocumentType(() => ({
   name: 'Testimonial',
   filePathPattern: 'testimonial/*.md',
-  bodyType: 'markdown',
+  contentType: 'markdown',
   fields: {
     featured: { type: 'boolean' },
     image: { type: 'string', required: true },

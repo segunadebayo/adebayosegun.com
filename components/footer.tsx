@@ -6,9 +6,9 @@ import { EmailIcon, GithubIcon, LinkedInIcon } from './social-icons';
 
 function FooterLink({ href, children }) {
   return (
-    <Link href={href} passHref>
-      <Box as="a">{children}</Box>
-    </Link>
+    <Box as={Link} href={href}>
+      {children}
+    </Box>
   );
 }
 
