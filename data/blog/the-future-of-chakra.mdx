@@ -1,0 +1,266 @@
+---
+featured: true
+title: The future of Chakra UI
+description: Shaping the future of design systems with Chakra UI
+publishedAt: 2023-03-27
+image: 'https://images.unsplash.com/photo-1546188994-07c34f6e5e1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80'
+tags: ['chakra', 'design-system', 'react', 'css-in-js', 'components']
+---
+
+I've been working on Chakra UI for the past 5 years and I'm very proud about what we've achieved collectively. With our growing team, we've achieve over **1.9M downloads per month**, **2M unique website visits** per month, over **31k Github stars**, this has been one of my most rewarding projects till date.
+
+<Image
+  src="/static/images/stats-mar-2023.png"
+  alt="Chakra UI stats for 2023"
+  fill
+  ratio={{ base: 3, md: 4.2 }}
+/>
+
+For a project that started with a single maintainer to become a multi-framework team, this has been a nerve-cracking, and exciting ride. Growing and managing the core Chakra team has been a great ride and I'll do it all over again.
+
+<Image
+  src="/static/images/chakra-team.png"
+  alt="The Chakra UI team pictures for 2022 meetup"
+  fill
+  ratio={{ base: 3, md: 4.2 }}
+/>
+
+That said, let's take a look at what's next for Chakra UI. I'm so excited to share it with you.
+
+## Quick recap
+
+At the inception of Chakra UI, my goal was to create bits of accessible UI components that can be composed together to build complex UIs. I wanted to create a component system that can be used by anyone, regardless of their React skill level.
+
+During this time, Styled System, Styled Components, and Emotion were the most popular tools for styling in design systems. I was inspired by the work of Brent Jackson and the team at Styled System, and leveraged a lot of ideas from their work to build the styling foundations of Chakra UI.
+
+```jsx
+// Here's a box
+<Box>I'm a box</Box>
+
+// if you want to its background red, you pass `background=red`. Feels intuitive!
+<Box background="red">I'm a red box</Box>
+```
+
+The super-intuitive, flexible styling system in Chakra UI is one of the most loved features of the library. Every time I use it, it makes me happy that a tool like Chakra exists (yes, even though I built it).
+
+With the recent trends in the ecosystem around headless components, design tokens, and, server components, there's a shift in the expectations for component libraries and the landscape is changing.
+
+I've been thinking about how to evolve Chakra UI and one of the most dominant thoughts is to transition it to become a "Design System Infrastructure". Let's get into it.
+
+## The Challenge
+
+The major technical disadvantage Chakra UI has today has to be the runtime CSS-in-JS. This isn't unique to Chakra but the same is true of other popular libraries like Material UI, Mantine, and Theme UI.
+
+Getting rid of the runtime CSS-in-JS is one of the most common requests we get from users, as it enables them achieve better performance, reduces the initial JS payload, and, allows them to use React Server Components.
+
+> So yeah, the first request: **"Can you get rid of the runtime CSS-in-JS?"**
+
+Another common request we get is to add more complex components, like a date picker, custom select, nested menus, etc. Designing an API for these components that is easy to maintain, extend and feels intuitive is very challenging.
+
+Today, we have a lot React hooks that can be leveraged but we've found that the complexity or cognitive overhead with understand the logic of a component works increases significantly with new features or patches.
+
+> Despite this, we still get a lot of requests for new components. **"Can you add a date picker?"**
+
+When working with larger teams with more senior engineering and talent, the need for a more robust theming and design token system is also a common request. The current theming system in Chakra UI is very simple and works well for most use cases. However, it's not flexible enough to support more complex use cases.
+
+> It goes like this: **"Can you create an option for advanced, semantic token system?"**
+
+## The Requirements
+
+Thinking about the challenges, it's very easy to say "Sure, I can work on that" and dedicate loads of hours to build a React-specific solution that works. Bearing in mind that Chakra UI is now a multi-framework library, it means the same effort has to be duplicated in the Vue.js team. We've tried this in the past and it's not a viable option as it leads to burnout and inconsistent DX
+
+I've found that the best way to tackle these challenges is to break them down into smaller, more manageable pieces. In the spirit of engineering, defining the requirements is the crucial first step to solving a problem.
+
+Here are some of the requirements I've identified:
+
+- **Framework agnostic**: Chakra UI is a multi-framework library. It's used in React, Vue, Angular, Svelte, and, Solid. This means that any solution we build has to be framework agnostic.
+
+- **Design Tokens**: The theming system in Chakra UI is very simple and works well for most use cases. However, it's not flexible enough to support more complex use cases. We need a more robust theming system that can support more complex use cases.
+
+- **Style Props**: The style props in Chakra UI are very intuitive and easy to use. We need to keep this experience while also removing the runtime with CSS-in-JS.
+
+- **Reduce Maintanance Workload**: If architected correctly, we can reduce the maintenance burden of the library by splitting the concerns into smaller, more manageable pieces.
+
+> Phewwww! That's a lot of requirements. Let's see how we're currently approaching them.
+
+## The Approach
+
+In mid 2022, I picked an interest in State machines and XState because they deliver a compelling promise. You can model any complex system once and re-use it everywhere. They also provide a great way to visualize the debug the statecharts.
+
+This led me down the "curiosity hole" and I came back with a working on a new library called Zag.js, which is a low-level state machine for building UI components.
+
+I made a video with Lee Robinson where we talked about the future of Chakra and what we're planning to do next. You can watch it here: https://www.youtube.com/watch?v=I5xEc9t-HZg
+
+<a href="https://www.youtube.com/watch?v=I5xEc9t-HZg">
+  <Image
+    marginY="10"
+    src="/static/images/lee-interview.png"
+    alt="The future of Chakra UI interview between Lee and Sage"
+    width={500}
+    height={300}
+  />
+</a>
+
+At this point, I had no idea how we were going to achieve that but it became clearer when I built a proof of concept for some of the components in Chakra UI using XState.
+
+### Breaking the monolith
+
+Currently, I consider Chakra UI a big monolith of different concerns. We've got all these interdependent pieces that are tightly coupled together:
+
+- React Hooks for handling component logic
+- Components for putting together a UI or consuming the hook logic
+- Theming system for managing tokens and component themes
+- Styled System for resolving style properties and converting them to classNames at runtime.
+- Typescipt Polymorphic types and the `as` prop shenanigans
+
+Over the years, I've noticed that this led to pretty high cognitive load when trying to understand or contribute to Chakra UI. The surface area, at any point, is pretty large and it takes a considerable time to fully understand how/where each part fits together. Triaging issues and reviewing PRs tend to take longer than necessary because there's a lot of moving parts.
+
+> **Quick Praise:** While there are areas I would love to improve, I'm very grateful for where we are right now and I'm proud of the community's support and contributions.
+
+We plan to break these down into smaller, manageable and independent pieces. Here's a quick overview:
+
+[Diagram of all the pieces of Chakra UI]
+
+- Styling system (Zero runtime CSS-in-JS)
+- Design token authoring & automation
+- State machines
+- Headless UI components
+
+### Zero runtime CSS-in-JS [Panda]
+
+This is the most common request we get from users. It's also the most challenging to achieve. The runtime CSS-in-JS and style props are very powerful features that allow developers build components that are composable, predictable, and, easy to use. However, it comes at a cost of performance and JS runtime.
+
+With the release of React Server Components, providing the ability to write Chakra UI components on the server has become quite crucial. This is a huge win for performance, developer and user experience.
+
+We're building a new styling solution that will be framework agnostic, keeps most of the great features of Chakra's styling system, and use modern CSS features (like CSS variables, cascade layers, and modern selectors) to achieve this.
+
+### State machines for Components [Zag.js]
+
+Every interative component in Chakra UI will be modelled as a state machine. This means that every component has a finite number of states and transitions between them. This is a powerful concept that allows us to build components that are predictable and composable.
+
+<Image
+  marginY="10"
+  src="/static/images/popover-machine.png"
+  fill
+  ratio={2.2}
+  alt="A example of a popover logic modelled with State machine"
+/>
+
+Zag.js will be the low-level state machine library that will be used to build all the components in Chakra UI. At the moment, it consists of 20+ components, but we're aiming to build a library of 100+ components that cover all the common UI use-cases.
+
+To learn more about Zag.js, check out the docs here: https://zagjs.com, or you can watch my demo on the Learn with Jason show here: https://www.youtube.com/watch?v=l8HJoE_ktDc
+
+<a href="https://www.youtube.com/watch?v=l8HJoE_ktDc">
+  <Image
+    marginY="10"
+    src="/static/images/jason-interview.png"
+    alt="An interview about Zag.js with Jason Lengstorf and Sage"
+    width={500}
+    height={300}
+  />
+</a>
+
+Here's a quick example of how we can build a number input component using Zag.js using React:
+
+```jsx
+// 1. Import the state machine
+import * as numberInput from '@zag-js/number-input';
+
+// 2. Import the React bindings
+import { useMachine, normalizeProps } from '@zag-js/react';
+
+export function NumberInput() {
+  // 3. Consume the machine
+  const [state, send] = useMachine(numberInput.machine({ id: '1', max: 50, min: -50 }));
+
+  // 4. Convert machine to a user friendly API
+  const api = numberInput.connect(state, send, normalizeProps);
+
+  // 5. Render the component
+  return (
+    <div {...api.rootProps}>
+      <label {...api.labelProps}>Enter number:</label>
+      <div>
+        <button {...api.decrementButtonProps}>DEC</button>
+        <input {...api.inputProps} />
+        <button {...api.incrementButtonProps}>INC</button>
+      </div>
+    </div>
+  );
+}
+```
+
+### Moving to a headless component system [Ark]
+
+Building UI components with State machine sounds exciting but can sometimes sound complex or scary. It sometimes gives the impression that you need to know, or at least learn, about state machines before you can use it. That's not the case (at all).
+
+We're wrapping these component logic to a headless component set to allow you build your applications and design systems without knowing anything about state machines.
+
+```jsx
+import { NumberInput } from '@ark-ui/react';
+
+export function Demo() {
+  return (
+    <NumberInput min={-50} max={50}>
+      <NumberInput.Label>Label</NumberInput.Label>
+      <NumberInput.Field />
+      <NumberInput.Control>
+        <NumberInput.DecrementTrigger>
+          <button>-1</button>
+        </NumberInput.DecrementTrigger>
+        <NumberInput.IncrementTrigger>
+          <button>+1</button>
+        </NumberInput.IncrementTrigger>
+      </NumberInput.Control>
+    </NumberInput>
+  );
+}
+```
+
+We created a new library called Ark that will be the headless component foundation for Chakra UI. It will be a collection of components that are built with Zag.js and can be used to build your own UI components.
+
+It's open source and you can check it out here: https://github.com/chakra-ui/ark
+
+### How does this fit in Chakra UI?
+
+- Zag.js: low-level state machine for UI components
+- Ark: Headless components based on Zag.js (Most for improved DX)
+- Chakra: Ark + runtime CSS-in-JS
+  - Alternative: Ark + Zero runtime CSS-in-JS
+
+### Design token platform (SaaS) - Ultra
+
+Design tokens are quickly becoming the standard for managing design decision in a product or website today. They're a powerful concept that allows you to build a design system that is flexible, scalable and maintainable.
+
+Chakra UI today supports a theming system that allows you to customize design tokens and components at any level of granularity. We also added basic support for semantic tokens to allow developers build automatic light and dark mode into their applications. Most enterprise applications tend to require more than just light and dark mode
+
+The theming solution isn't as flexible as it should be. It is currently based on System UI theme specification which doesn't cover all the design decision areas, leaving us with a lot of custom theme properties that are not standardized.
+
+Beyond authoring design tokens, transforming and distributing tokens to different platforms and projects is a huge pain point for most design systems.
+
+We're building a platform that will allow you to automate this process. Ultra will be a SaaS platform that will allow you to:
+
+- Create core and semantic design tokens in a visual manner (without it feeling like grunt work)
+- Define best practices, shared layer and text styles across your project
+- Provides automatic documentation for your tokens with a GPT interface for searching and filtering
+- Distribute design tokens to different platforms and projects
+
+> If you're interested in learning more, investing or sponsoring this project, please reach out to me on Twitter or email me at [segun@chakra-ui.com]
+
+### What should I use in my project?
+
+- If you're building a design system and want control over the API design, styling and bundle size, use Zag.js
+
+- If you're building a design system and want to focus on the design and UX, use Ark.
+
+- If you're building an application and want pre-made UI components with good default styling you can enhance over time, use Chakra.
+
+- If you're okay with runtime CSS-in-JS, use Chakra UI (It comes with Ark and our current CSS-in-JS solution)
+
+- If you're not okay with runtime CSS-in-JS, use Ark and Panda
+
+### What's the focus?
+
+We have a lot of work in progress and we're excited to share them with you. Our ultimate vision is to build a design system infrastructure for product teams.
+
+> If you're interested in learning more, investing or sponsoring Chakra, please reach out to me on Twitter or email me at [segun@chakra-ui.com]

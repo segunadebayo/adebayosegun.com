@@ -1,4 +1,4 @@
-import { chakra } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, chakra } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -19,7 +19,7 @@ const ChakraLink = React.forwardRef<HTMLAnchorElement, any>(function ChakraLink(
 });
 
 const CustomLink = (props) => {
-  const href = props.href;
+  const { href } = props;
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
   if (isInternalLink) {
     return <ChakraLink as={Link} href={href} {...props} />;
@@ -45,7 +45,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
         fontSize="2xl"
         fontFamily="heading"
         fontWeight="semibold"
-        marginTop="8"
+        marginTop="16"
         marginBottom="4"
         {...props}
       />
@@ -58,7 +58,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
         fontSize="xl"
         fontFamily="heading"
         fontWeight="semibold"
-        marginTop="8"
+        marginTop="12"
         marginBottom="4"
         {...props}
       />
@@ -78,8 +78,19 @@ const MDXComponents: Record<string, React.FC<any>> = {
       />
     );
   },
-  Image(props) {
-    return <Image alt={props.alt} className="img" {...props} />;
+  Image({ ratio, alt, marginY = '6em', ...rest }) {
+    if (ratio) {
+      return (
+        <AspectRatio marginY={marginY} ratio={ratio} position="relative">
+          <Image alt={alt} className="img" style={{ overflow: 'visible' }} {...rest} />
+        </AspectRatio>
+      );
+    }
+    return (
+      <Box marginY={marginY}>
+        <Image alt={alt} className="img" {...rest} />
+      </Box>
+    );
   },
   hr(props) {
     return <chakra.hr borderColor="whiteAlpha.100" marginY="3em" {...props} />;
