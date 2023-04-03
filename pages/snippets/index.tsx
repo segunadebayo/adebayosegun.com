@@ -36,7 +36,7 @@ export default function Page() {
         />
 
         <Box marginTop="4rem">
-          <SimpleGrid columns={{ base: 1, md: 2 }} direction="column" spacing="6">
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6">
             {search.results.map((snippet) => (
               <SnippetCard key={snippet.title} data={snippet} />
             ))}

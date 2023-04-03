@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Center, chakra } from '@chakra-ui/react';
+import { AspectRatio, Stack, chakra } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -78,18 +78,35 @@ const MDXComponents: Record<string, React.FC<any>> = {
       />
     );
   },
-  Image({ ratio, alt, marginY = '6em', ...rest }) {
+  Image({ ratio, alt, marginY = '6em', fit, caption, ...rest }) {
     if (ratio) {
       return (
-        <AspectRatio marginY={marginY} ratio={ratio} position="relative">
-          <Image alt={alt} className="img" style={{ overflow: 'visible' }} {...rest} />
-        </AspectRatio>
+        <Stack as="figure" marginY={marginY} spacing="5">
+          <AspectRatio ratio={ratio} position="relative">
+            <Image
+              alt={alt}
+              className="img"
+              style={{ overflow: 'visible', objectFit: fit }}
+              {...rest}
+            />
+          </AspectRatio>
+          {caption && (
+            <chakra.figcaption fontSize="small" textAlign="center" color="gray.400">
+              {alt}
+            </chakra.figcaption>
+          )}
+        </Stack>
       );
     }
     return (
-      <Box marginY={marginY}>
-        <Image alt={alt} className="img" {...rest} />
-      </Box>
+      <Stack as="figure" marginY={marginY}>
+        <Image alt={alt} className="img" style={{ objectFit: fit }} {...rest} />
+        {caption && (
+          <chakra.figcaption fontSize="small" textAlign="center" color="gray.400">
+            {alt}
+          </chakra.figcaption>
+        )}
+      </Stack>
     );
   },
   hr(props) {

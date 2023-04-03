@@ -1,7 +1,7 @@
-import { Wrap, WrapProps } from '@chakra-ui/react';
+import { Flex, FlexProps } from '@chakra-ui/react';
 import TagCheckbox from './tag-checkbox';
 
-type TagCheckboxGroupProps<T> = Omit<WrapProps, 'onChange'> & {
+type TagCheckboxGroupProps<T> = Omit<FlexProps, 'onChange'> & {
   data: T[];
   isChecked(value: string): boolean;
   onChange(details: { checked: boolean; value: T }): void;
@@ -10,7 +10,7 @@ type TagCheckboxGroupProps<T> = Omit<WrapProps, 'onChange'> & {
 export default function TagCheckboxGroup<T extends string>(props: TagCheckboxGroupProps<T>) {
   const { data, isChecked, onChange, ...rest } = props;
   return (
-    <Wrap spacing="3" {...rest}>
+    <Flex gap="3" wrap="wrap" {...rest}>
       {data.map((item) => (
         <TagCheckbox
           key={item}
@@ -23,6 +23,6 @@ export default function TagCheckboxGroup<T extends string>(props: TagCheckboxGro
           {item}
         </TagCheckbox>
       ))}
-    </Wrap>
+    </Flex>
   );
 }
