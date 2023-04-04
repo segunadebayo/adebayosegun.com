@@ -1,4 +1,4 @@
-import { allBlogs } from 'contentlayer/generated';
+import { Blog, allBlogs } from 'contentlayer/generated';
 import { useMemo } from 'react';
 import { getBlogTags } from './contentlayer-utils';
 import search from './match-sorter';
@@ -18,7 +18,7 @@ export default function useBlogSearch() {
 
   return {
     isEmptyResult: results.length === 0,
-    results: resultsByTags,
+    results: resultsByTags.sort(byDate),
     setParams,
     addTag: addFilter,
     removeTag: removeFilter,
@@ -29,4 +29,8 @@ export default function useBlogSearch() {
     hasFilter: filters.length > 0,
     hasQuery: searchString !== '',
   };
+}
+
+function byDate(a: Blog, b: Blog) {
+  return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
 }
