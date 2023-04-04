@@ -205,9 +205,9 @@ export default function HomePage() {
           </Flex>
         </Box>
 
-        <ViewMore as={Link} href="/talks">
-          View all Talks
-        </ViewMore>
+        <Link href="/talks">
+          <ViewMore as="div">View all Talks</ViewMore>
+        </Link>
       </Box>
 
       {/* Tools & Softwares */}
