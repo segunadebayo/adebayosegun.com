@@ -16,8 +16,12 @@ export function removeQuery(router: NextRouter, key: string) {
   router.replace({ pathname, query: newQuery }, undefined, { scroll: false });
 }
 
+export function getBaseUrl() {
+  return process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3001'
+    : 'https://adebayosegun.com';
+}
+
 export function getAbsoluteURL(path: string) {
-  const baseURL =
-    process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://adebayosegun.com';
-  return baseURL + path;
+  return getBaseUrl() + path;
 }
