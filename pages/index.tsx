@@ -81,7 +81,7 @@ export default function HomePage() {
           UI engineer &amp; product designer
         </Text>
 
-        {/* I'm passionate about... */}
+        {/* I'm passionate about.... */}
         <Text
           marginTop="14"
           fontFamily="body"
