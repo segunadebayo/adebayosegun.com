@@ -31,6 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { title, date, readingTime, tags } = req.query;
   const computedTags = isString(tags) ? tags.split(',') : [];
   const hasTags = computedTags.length > 0;
+  const isLong = title?.length > 35;
 
   const inter = await fetch('https://api.fontsource.org/v1/fonts/inter/latin-600-normal.ttf').then(
     (res) => res.arrayBuffer(),
@@ -52,6 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             color: theme.colors.brown[600],
             fontSize: hasTags ? '80px' : '90px',
             minHeight: '160px',
+            maxWidth: isLong ? undefined : '640px',
           }}
         >
           {title}
