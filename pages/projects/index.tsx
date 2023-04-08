@@ -26,7 +26,7 @@ export default function ProjectPage() {
             </Text>
             <Text>
               I'm passionate about building <b>component systems</b> that help teams ship products
-              faster and bridges the gap between design and code.
+              faster by bridging the gap between design and code.
             </Text>
             <Text>Here are some projects I've worked on that I think are worth mentioning.</Text>
           </Stack>

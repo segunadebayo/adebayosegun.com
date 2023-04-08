@@ -23,7 +23,7 @@ export default function Footer() {
                 Segun Adebayo
               </Heading>
               <Text fontSize="lg">
-                Passionate UI engineer looking bridge the gap between design and code
+                Passionate UI engineer looking to bridge the gap between design and code
               </Text>
             </Box>
 
