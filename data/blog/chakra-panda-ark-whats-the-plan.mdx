@@ -1,0 +1,215 @@
+---
+featured: true
+title: Chakra, Panda and Ark - What's the plan?
+description: With the recent release of Panda and Ark UI, what's the plan for Chakra UI?
+publishedAt: 2023-08-26
+image: https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80
+tags: ['chakra', 'design-system', 'roadmap']
+---
+
+The Chakra community has been huge and supportive over the years. For everyone following our growth and journey, I've got one word for you, **THANK YOU!**
+
+Over the past months years, we've been working hard to execute on the ideas described in [the future of Chakra UI](http://localhost:3000/blog/the-future-of-chakra-ui). Here's a quick overview of our architecture:
+
+- **Static styling engine:** We launched [Panda CSS](https://panda-css.com/) in July 2023
+- **State machine powered components:** We launched [Zag.js](https://zagjs.com/) in Sep 2022
+- **Headless UI components:** We're current working on [Ark UI](https://ark-ui.com/)
+
+<Image
+  src="/static/images/chakra-ark-panda.png"
+  alt="Chakra, Ark and Panda"
+  fill
+  ratio={{ base: 3, md: 4.2 }}
+/>
+
+I want to give a big shoutout to the dedicated Chakra folks who work relentlessly on these projects. Building such valuable projects require a great level of technical and collaboration.
+
+> If you're reading this and you've contributed or maintained any of our projects, **THANK YOU!**
+
+I'm dedicating this article to answer common questions or concerns related to the future of Chakra and the next major release.
+
+## Will Panda be used in Chakra UI?
+
+The short answer, not yet.
+
+The styling engine in Chakra is built on top of Emotion which is a runtime CSS-in-JS solution, allowing several combinations of dynamic styling.
+
+In Panda, we've built a styling engine that delivers a superior styling DX to Chakra but is constrained to styles that can be statically analyzed.
+
+We would like to reduce the amount of breaking changes we'll introduce in Chakra v3. It's a huge step going from dynamic styles to static, which is largely favored in the new server-first paradigm and we'd like to strategically manage that transition.
+
+## Can I replace Chakra with Panda?
+
+Chakra UI has two core areas:
+
+- Styling System and Theming (Box, Stack)
+- Logic Components (Popover, Dialog)
+
+Panda can be considered the next generation of Chakra's styling system.
+
+To fully replace Chakra, you need to pair Panda with a headless UI library like Ark UI or similar. Unless you have a performance sensitive application or want to avoid runtime CSS-in-JS, you might be better of sticking with Chakra and the v3 version we're working on.
+
+## Will Chakra UI ever work in React Server Components?
+
+Right now, you can get Chakra UI working by marking the specific files with the `use client` directive. We recently added this directive internally to avoid the need to mark client components.
+
+> We're working to fix a bug with the internal `use client` directive related to our usage of `export *` in the src/index.ts.
+
+After this fix, all Chakra UI components will be compatible with React Server Components and SSR'd correctly without needed to use the `CacheProvider` or client directive.
+
+## What should we expect in Chakra v3?
+
+### Improved Next.js Support
+
+Support for modularized imports for all components to prevents compilation of unused components or hooks
+
+```js:next.config.js
+module.exports = {
+  modularizeImports: {
+    '@chakra-ui/react': {
+      transform: '@chakra-ui/react/dist/{{member}}',
+    },
+  },
+};
+```
+
+Out of the box RSC support ensuring correct `use client` boundaries
+
+```jsx:app/page.tsx
+import { Button } from '@chakra-ui/react';
+
+export default async function Home() {
+  return <Button>Click me</Button>;
+}
+```
+
+### Addition of New Components
+
+More components have been one of the top requests from the community. We're going to add 10+ new components such as:
+
+- **Pickers**: ColorPicker, DatePicker, FilePicker and more.
+
+- **Select Menus**: Custom Select, Combobox, Nested Menu, Context Menu and more.
+
+> These components already exist in [Ark UI](https://ark-ui.com/) and we're integrating them to Chakra
+
+### Styling API alignment with [Panda](https://panda-css.com/)
+
+- Chakra UI v3 will continue to use Emotion as it's runtime engine but we intend to align all the styling APIs with that of [Panda](https://panda-css.com/), easing any future migration. <br/>
+
+- **Support for Variants API:**
+  The theming API in Chakra only supports `variants` and `sizes` which can be quite limiting. We're opening up the API to match [Panda's recipe API](https://panda-css.com/docs/concepts/recipes).
+
+  ```jsx
+  // current API
+  const buttonTheme = {
+    baseStyle: {},
+    variants: {},
+    sizes: {},
+    defaultProps: {},
+  };
+
+  // new API
+  const buttonTheme = {
+    base: {},
+    variants: {
+      variant: {},
+      size: {},
+      defaultVariants: {},
+      compoundVariants: [],
+    },
+  };
+  ```
+
+  > This API will be supported by the `chakra` factory as well as the theme context.
+
+- Improved TypeScript intellisense for style props and style objects.
+
+- Semantic tokens: We intend to ship semantic tokens out of the box to allow for easier color mode aware styling.
+
+  ```jsx
+  // current API
+  function Demo() {
+    return (
+      <Box color="red.500" _dark={{ color: 'red.300' }}>
+        Hello
+      </Box>
+    );
+  }
+
+  // Alternative API (with semantic tokens)
+  function Demo() {
+    // accent => { _light: 'red.500', _dark: 'red.300'}
+    return <Box color="red.accent">Hello</Box>;
+  }
+  ```
+
+### Moving from `as` prop to `asChild`
+
+The `as` prop is a known complexity in the ecosystem when it comes to getting the types working correctly. Kudos to the Radix UI team for pioneering this idea.
+
+```jsx
+// current API
+function Demo() {
+  return (
+    <Button as="a" href="https://google.com">
+      Click me
+    </Button>
+  );
+}
+
+// new API
+function Demo() {
+  return (
+    <Button asChild>
+      <a href="https://google.com">Click me</a>
+    </Button>
+  );
+}
+```
+
+### Ark UI Integration
+
+We're integrating Ark UI into Chakra by default to streamline our developement process. Here's a contrived example of what the integration looks like:
+
+```jsx:src/components/dialog.tsx
+import { Dialog as ArkDialog } from '@ark-ui/react';
+import { createStyleContext } from '../style-context';
+import { dialogTheme } from '../theme/dialog';
+
+const { withProvider, withContext } = createStyleContext(dialogTheme);
+
+const Root = withProvider(ArkDialog, 'root');
+const Content = withContext(ArkDialog.Content, 'content');
+const Overlay = withContext(ArkDialog.Header, 'overlay');
+
+export const Dialog = Object.assign(Root, {
+  Content,
+  Overlay,
+});
+```
+
+This will **massively** simplify the codebase and allow Chakra to focus on theming of the components while Ark UI focuses on the logic. Chakra UI will largely be a styled version of Ark UI.
+
+### Redesigned components
+
+- We intend to redesign the look and feel of all components, providing more variants and sizes out of the box.
+- Ship a new Figma UI kit that leverages the new Figma Variables
+
+### When can we expect Chakra v3?
+
+We're working hard to get Chakra v3 out as soon as possible. Our aim is to get it out by Q4 2023.
+
+> If you would like to contribute to the development of Chakra UI v3, kindly send me an [email](mailto:segun@chakra-ui.com), describing the area you want to help with.
+
+## Recommendations
+
+In the Chakra ecosystem (or the chakraverse), you have these options for your projects:
+
+- **Chakra UI**: Runtime CSS-in-JS + accessible components styled out of the box
+- **Panda + Ark UI**: Static CSS-in-JS + accessible components
+- **Panda + Zag.js**: Static CSS-in-JS + state machines for lower level control of your design system APIs
+
+Thanks for taking the time to read through. I hope you're excited by the future of Chakra as much as I am. When I started the project, I never imagined this level of growth and success would come, and I remained honored and motivated by them.
+
+Unto the next release 🚀

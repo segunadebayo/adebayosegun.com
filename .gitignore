@@ -9,3 +9,4 @@ public/feed.xml
 
 # Contentlayer
 .contentlayer
+.env*.local
