@@ -53,7 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             color: theme.colors.brown[600],
             fontSize: hasTags ? '80px' : '90px',
             minHeight: '160px',
-            maxWidth: isLong ? undefined : '640px',
+            maxWidth: isLong ? '100%' : '640px',
           }}
         >
           {title}
