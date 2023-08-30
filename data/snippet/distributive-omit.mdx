@@ -1,0 +1,12 @@
+---
+title: DistributiveOmit
+description: Custom omit type that omits a property from all members, preserving union types.
+logo: /static/logos/typescript.png
+categories: ['typescript']
+---
+
+```ts:distributive-omit.ts
+export type DistributiveOmit<T, U> = T extends any
+  ? Pick<T, Exclude<keyof T, U>>
+  : never
+```
