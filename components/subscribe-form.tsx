@@ -1,7 +1,7 @@
 import { Alert, Box, chakra, DarkMode, Flex, Heading, Spinner, Text } from '@chakra-ui/react';
 import { useSubscribeForm } from 'lib/use-subscribe-form';
 
-function Feedback({ state, message, count }) {
+function Feedback({ state, message }) {
   if (state === 'error') {
     return (
       <DarkMode>
@@ -29,13 +29,7 @@ function Feedback({ state, message, count }) {
     );
   }
 
-  return (
-    <Text mt="5">
-      {count === 0
-        ? 'Be the first subscriber'
-        : `${count} ${count === 1 ? 'subscriber' : 'subscribers'}`}
-    </Text>
-  );
+  return null;
 }
 
 export default function SubscribeForm() {
@@ -68,7 +62,7 @@ export default function SubscribeForm() {
             aria-label="Enter your email address"
             bg="gray.800"
             rounded="lg"
-            placeholder="sage@apple.com"
+            placeholder="you@email.com"
             _placeholder={{ color: 'whiteAlpha.400' }}
           />
           <chakra.button
@@ -94,7 +88,7 @@ export default function SubscribeForm() {
           </chakra.button>
         </Flex>
       </form>
-      <Feedback state={form.state} message={form.message} count={form.data?.count ?? 0} />
+      <Feedback state={form.state} message={form.message} />
     </Box>
   );
 }

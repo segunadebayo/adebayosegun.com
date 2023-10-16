@@ -22,7 +22,7 @@ import ProjectCard from 'components/project-card';
 import { EmailIcon, FileIcon, LinkedInIcon, TwitterIcon } from 'components/social-icons';
 import SubscribeForm from 'components/subscribe-form';
 import TalkCard from 'components/talk-card';
-import TestimonialCard from 'components/testimonial.card';
+import TestimonialCard from 'components/testimonial-card';
 import ViewMore from 'components/view-more';
 import chunk from 'lib/chunk';
 import {

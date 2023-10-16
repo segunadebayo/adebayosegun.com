@@ -23,26 +23,25 @@ import { ElementType, ReactNode, useEffect } from 'react';
 import {
   BlogIcon,
   CloseIcon,
+  CoachingIcon,
   HamburgerMenuIcon,
   ProjectIcon,
-  SnippetIcon,
   TalksIcon,
 } from './nav-icons';
 
 type NavItemProps = {
-  children: ReactNode;
+  data: NavItemData;
   active?: boolean;
-  icon: ElementType;
-  href?: string;
+  children: ReactNode;
   large?: boolean;
 };
 
 function NavItem(props: NavItemProps) {
-  const { children, icon, active, href, large } = props;
+  const { children, data, active, large } = props;
   return (
     <HStack
       as={Link}
-      href={href}
+      href={data.href}
       spacing="2"
       paddingX="3"
       paddingY={large ? '5' : '2.5'}
@@ -51,17 +50,29 @@ function NavItem(props: NavItemProps) {
       _hover={{ color: 'brown.600' }}
       _activeLink={{ bg: 'gray.800', shadow: 'highlight' }}
     >
-      <Icon as={icon} color="brown.600" fontSize="lg" />
+      <Icon as={data.icon} color="brown.600" fontSize="lg" />
       <Text fontFamily="heading">{children}</Text>
     </HStack>
   );
 }
 
-const items = [
+interface NavItemData {
+  label: string;
+  href: string;
+  icon: ElementType;
+  primary?: boolean;
+}
+
+const items: NavItemData[] = [
   { label: 'Talks', href: '/talks', icon: TalksIcon },
   { label: 'Blog', href: '/blog', icon: BlogIcon },
   { label: 'Projects', href: '/projects', icon: ProjectIcon },
-  { label: 'Snippets', href: '/snippets', icon: SnippetIcon },
+  {
+    label: 'Coaching',
+    href: 'https://calendly.com/sage_chakra/private-consulting-with-sage-60m',
+    icon: CoachingIcon,
+    primary: true,
+  },
 ];
 
 function DesktopNavItemGroup(props: StackProps) {
@@ -69,12 +80,7 @@ function DesktopNavItemGroup(props: StackProps) {
   return (
     <HStack as="nav" aria-label="Main navigation" spacing="8" {...props}>
       {items.map((item) => (
-        <NavItem
-          key={item.label}
-          href={item.href}
-          icon={item.icon}
-          active={asPath.startsWith(item.href)}
-        >
+        <NavItem key={item.label} data={item} active={asPath.startsWith(item.href)}>
           {item.label}
         </NavItem>
       ))}
@@ -92,7 +98,7 @@ function MobileNavItemGroup(props: StackProps) {
       {...props}
     >
       {items.map((item) => (
-        <NavItem key={item.label} href={item.href} icon={item.icon} large>
+        <NavItem key={item.label} data={item} large>
           {item.label}
         </NavItem>
       ))}
