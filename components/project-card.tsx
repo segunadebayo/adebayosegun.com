@@ -45,7 +45,11 @@ export default function ProjectCard(props: ProjectCardProps) {
         </Box>
       </Box>
 
-      <ProjectImageCard src={project.image} alt={project.title} />
+      <ProjectImageCard
+        src={project.image}
+        alt={project.title}
+        objectPosition={project.objectPosition}
+      />
     </Flex>
   );
 }

@@ -114,6 +114,7 @@ const Project = defineDocumentType(() => ({
     website: { type: 'string' },
     metadata: { type: 'json' },
     image: { type: 'string' },
+    objectPosition: { type: 'string' },
   },
   computedFields,
 }));
