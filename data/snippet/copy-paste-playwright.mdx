@@ -18,6 +18,10 @@ test('on paste should autofill', async ({ page, context }) => {
   // copy text to clipboard
   await page.evaluate(() => navigator.clipboard.writeText('123'));
 
+  // Get clipboard content
+  const handle = await page.evaluateHandle(() => navigator.clipboard.readText());
+  const clipboardContent = await handle.jsonValue();
+
   // paste text from clipboard
   await page.locator(first).press('Meta+v');
 
