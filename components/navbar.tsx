@@ -26,6 +26,7 @@ import {
   CoachingIcon,
   HamburgerMenuIcon,
   ProjectIcon,
+  SnippetIcon,
   TalksIcon,
 } from './nav-icons';
 
@@ -67,9 +68,10 @@ const items: NavItemData[] = [
   { label: 'Talks', href: '/talks', icon: TalksIcon },
   { label: 'Blog', href: '/blog', icon: BlogIcon },
   { label: 'Projects', href: '/projects', icon: ProjectIcon },
+  { label: 'Snippets', href: '/snippets', icon: SnippetIcon },
   {
     label: 'Coaching',
-    href: 'https://calendly.com/sage_chakra/private-consulting-with-sage-60m',
+    href: 'https://calendly.com/chakra-ui/technical-consulting-60m',
     icon: CoachingIcon,
     primary: true,
   },
