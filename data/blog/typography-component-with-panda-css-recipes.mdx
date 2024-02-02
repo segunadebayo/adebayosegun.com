@@ -1,0 +1,262 @@
+---
+title: Building a Typography component with Recipes in Panda CSS
+description: Leveraging text styles and atomic recipes to build a Typography component
+publishedAt: 2024-02-02
+image: 'https://images.unsplash.com/photo-1511548774318-563182fe8d03?q=80&w=3538&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+tags: ['panda']
+---
+
+[Panda CSS](https://panda-css.com/) offers a rich set of features to build your design systems. In this article, I'll show you how to design a `Typography` component using text styles and recipes in Panda CSS. If you use design tools like Figma or Sketch, text styles should sound pretty familiar.
+
+> If you want to watch the video version of this tutorial, you can find it on my YouTube channel.
+
+<a href="https://www.youtube.com/watch?v=4aFVkMeXvgQ&list=PLLh_woCGjyGpGSQ4qrvbRo2ff5o-la6Yv&index=2">
+  <Image
+    marginY="10"
+    src="/static/images/panda-typography-recipe.png"
+    alt="Building a Typography component with Recipes in Panda CSS"
+    width={500}
+    height={300}
+  />
+</a>
+
+## Defining text styles
+
+Text styles are a way to avoid repetition when declaring text-related css properties. Think of it like a "css template" for your text that youc an reuse across your app for better consistency.
+
+In the `panda.config.ts` file, let's define text styles for `headline1` and `headline2`
+
+```ts
+// panda.config.ts
+
+import { defineConfig } from '@pandacss/dev';
+
+export default defineConfig({
+  // ...
+  theme: {
+    extend: {
+      textStyles: {
+        headline1: {
+          description:
+            'In the type scale, headlines span from a range of 1 through 6. Headlines are the largest text on the screen, reserved for short, important text or numerals.',
+          value: {
+            fontWeight: '300',
+            // yes! you can change the font size based on the writing mode
+            fontSize: { _ltr: '5.5625rem', _rtl: '5.8125rem' },
+            lineHeight: '7rem',
+            letterSpacing: '-0.015em',
+          },
+        },
+        headline2: {
+          description: 'Oversized headlines in website.',
+          value: {
+            fontWeight: '300',
+            fontSize: '3.625rem',
+            lineHeight: '4.5rem',
+            letterSpacing: '-0.005em',
+          },
+        },
+      },
+    },
+  },
+});
+```
+
+## Creating a typography recipe
+
+Recipes are a way to define a set of style variations for a component. In this case, we'll define a `typography` recipe that can be used to apply different text styles to a component.
+
+> The `cva` function is a generated function by panda
+
+We'll define a `typography` recipe that has a `level` variant which can be either `h1` or `h2`.
+
+```ts
+// recipes/typography.ts
+
+import { cva } from 'styled-system/css';
+
+export const typographyRecipe = cva({
+  base: {
+    color: 'gray.800',
+  },
+  variants: {
+    level: {
+      h1: {
+        textStyle: 'headline1',
+      },
+      h2: {
+        textStyle: 'headline2',
+      },
+    },
+  },
+});
+```
+
+To infer the variant properties of the recipe, we can use the `RecipeVariantProps` type.
+
+```ts {1,7}
+import { cva, type RecipeVariantProps } from 'styled-system/css';
+
+export const typographyRecipe = cva({
+  //...
+});
+
+export type TypographyVariantProps = RecipeVariantProps<typeof typography>;
+```
+
+## Building the Typography component
+
+Now that we have the `typography` recipe, we can use it to build out a `Typography` component in React.
+
+```tsx
+// components/typography.tsx
+
+import { cx } from 'styled-system/css';
+import { typographyRecipe, type TypographyVariantProps } from '../recipes/typography';
+
+type TypographyHTMLProps = React.HTMLAttributes<HTMLElement>;
+
+type TypographyElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+
+export type TypographyProps = TypographyVariantProps &
+  TypographyHTMLProps & { as?: TypographyElement };
+
+export function Typography(props: TypographyProps) {
+  const [variantProps, localProps] = typographyRecipe.splitVariantProps(props);
+  const { as: Component = 'p', className, ...restProps } = localProps;
+  return <p className={cx(typographyRecipe(variantProps), className)} {...restProps} />;
+}
+```
+
+Let's unpack what's happening here
+
+```tsx
+const [variantProps, localProps] = typographyRecipe.splitVariantProps(props);
+```
+
+This line uses the `splitVariantProps` function on the recipe to separate the typography recipe from other react props passed to the component.
+
+```tsx
+const { as: Component = 'p', className, ...restProps } = localProps;
+```
+
+This line is used to allows the component to accept an `as` prop which can be used to change the underlying HTML element. It is set to render a `p` tag by default.
+
+```tsx
+return <p className={cx(typographyRecipe(variantProps), className)} {...restProps} />;
+```
+
+This line applies the typography recipe className based on the variant properties passed to the `Typography` component. It also concatenates any additional `className` passed.
+
+## Using the Typography component
+
+Let's use the `Typography` component in our app.
+
+```tsx
+// src/App.tsx
+
+import { Typography } from './components/typography';
+
+function App() {
+  return (
+    <div dir="ltr">
+      <Typography level="h1">This text should have headline1 text style</Typography>
+      <Typography level="h2">This text should have headline2 text style</Typography>
+    </div>
+  );
+}
+
+export default App;
+```
+
+## Adding bold, italic and underline variants
+
+Let's extend the `typography` recipe to include `bold`, `italic` and `underline` variants for quick text formatting.
+
+We'll model them as **boolean variants** which means they can either be `true` or `false`.
+
+```tsx {12-26}
+// recipes/typography.ts
+
+export const typographyRecipe = cva({
+  base: {
+    color: 'gray.800',
+  },
+  variants: {
+    level: {
+      h1: { textStyle: 'headline1' },
+      h2: { textStyle: 'headline2' },
+    },
+    bold: {
+      true: {
+        fontWeight: 'bold',
+      },
+    },
+    italic: {
+      true: {
+        fontStyle: 'italic',
+      },
+    },
+    underline: {
+      true: {
+        textDecoration: 'underline',
+      },
+    },
+  },
+});
+
+// ...
+```
+
+Now we can use the `bold`, `italic` and `underline` variants in the `Typography` component.
+
+```tsx
+// src/App.tsx
+
+import { Typography } from './components/typography';
+
+function App() {
+  return (
+    <div dir="ltr">
+      <Typography level="h1" bold>
+        This text should have headline1 text style and bold
+      </Typography>
+      <Typography level="h2" italic>
+        This text should have headline2 text style and italic
+      </Typography>
+      <Typography level="h2" underline>
+        This text should have headline2 text style and underline
+      </Typography>
+    </div>
+  );
+}
+```
+
+## Swapping the underlying HTML element
+
+By default, the typography component renders a paragraph tag. Using the `as` prop, the underlying HTML element of the `Typography` component can be changed.
+
+```tsx
+// src/App.tsx
+
+import { Typography } from './components/typography';
+
+function App() {
+  return (
+    <div dir="ltr">
+      <Typography level="h1" as="h1" bold>
+        This text should have headline1 text style and be rendered as h1
+      </Typography>
+      <Typography level="h2" as="h2" italic>
+        This text should have headline2 text style and be rendered as h2
+      </Typography>
+    </div>
+  );
+}
+```
+
+## Conclusion
+
+In this article, we've learned how to use text styles and recipes to build a `Typography` component in Panda CSS. We also learned how to use boolean variants to add bold, italic and underline text formatting to the `Typography` component.
+
+Learn more about recipes in Panda CSS by visiting the [official documentation](https://panda-css.com/docs/concepts/recipes).
