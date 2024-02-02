@@ -1,0 +1,14 @@
+---
+title: {{title}}
+description: {{description}}
+publishedAt: {{publishedAt}}
+image: ''
+tags: [
+  {{#each tags}}
+  '{{this}}'{{#unless @last}},{{/unless}}
+  {{/each}}
+]
+---
+
+Some content here
+
