@@ -124,7 +124,7 @@ export type TypographyProps = TypographyVariantProps &
 export function Typography(props: TypographyProps) {
   const [variantProps, localProps] = typographyRecipe.splitVariantProps(props);
   const { as: Component = 'p', className, ...restProps } = localProps;
-  return <p className={cx(typographyRecipe(variantProps), className)} {...restProps} />;
+  return <Component className={cx(typographyRecipe(variantProps), className)} {...restProps} />;
 }
 ```
 
@@ -143,7 +143,7 @@ const { as: Component = 'p', className, ...restProps } = localProps;
 This line is used to allows the component to accept an `as` prop which can be used to change the underlying HTML element. It is set to render a `p` tag by default.
 
 ```tsx
-return <p className={cx(typographyRecipe(variantProps), className)} {...restProps} />;
+return <Component className={cx(typographyRecipe(variantProps), className)} {...restProps} />;
 ```
 
 This line applies the typography recipe className based on the variant properties passed to the `Typography` component. It also concatenates any additional `className` passed.
