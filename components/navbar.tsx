@@ -70,7 +70,7 @@ const items: NavItemData[] = [
   { label: 'Projects', href: '/projects', icon: ProjectIcon },
   { label: 'Snippets', href: '/snippets', icon: SnippetIcon },
   {
-    label: 'Coaching',
+    label: 'Consulting',
     href: 'https://calendly.com/chakra-ui/technical-consulting-60m',
     icon: CoachingIcon,
     primary: true,

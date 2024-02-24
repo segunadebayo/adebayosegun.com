@@ -1,20 +1,22 @@
 const uniq = (arr) => Array.from(new Set(arr));
 
 const tags = uniq([
-  'thoughts',
-  'chakra',
-  'design-system',
-  'roadmap',
-  'finance',
-  'hiring',
-  'stock',
-  'testing',
-  'react',
+  'ark',
   'career',
+  'chakra',
+  'ci',
+  'design-system',
+  'finance',
+  'github-actions',
+  'hiring',
   'interview',
   'panda',
-  'github-actions',
-  'ci',
+  'react',
+  'roadmap',
+  'stock',
+  'testing',
+  'thoughts',
+  'zag',
 ]);
 
 /**

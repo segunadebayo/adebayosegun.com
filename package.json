@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "env:pull": "vercel env pull",
-    "create:blog": "plop blog:create",
+    "gen": "plop blog:create",
     "build": "next build",
     "postbuild": "yarn rss && yarn sitemap",
     "dev": "next dev",
