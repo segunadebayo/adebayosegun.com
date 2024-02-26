@@ -1,0 +1,18 @@
+---
+title: Literal Union
+description: Loosen and strictify a literal union type.
+logo: /static/logos/typescript.png
+categories: ['typescript']
+---
+
+```ts
+type Loose<T> = T | (string & {});
+
+type Strictify<T extends string> = T extends `${infer _}` ? T : never;
+
+type DemoA = Loose<'red' | 'blue' | 'green'>;
+// 'red' | 'blue' | 'green' | (string & {})
+
+type DemoB = Strictify<DemoA>;
+// 'red' | 'blue' | 'green'
+```
