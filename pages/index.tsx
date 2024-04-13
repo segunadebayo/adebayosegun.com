@@ -78,7 +78,7 @@ export default function HomePage() {
           fontWeight="bold"
           lineHeight="1.2"
         >
-          UI engineer &amp; product designer
+          Design Engineer &amp; Product Designer
         </Text>
 
         {/* I'm passionate about... */}
