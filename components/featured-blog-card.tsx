@@ -44,7 +44,7 @@ export default function FeaturedBlogCard(props: BlogCardProps) {
           width={320}
           height={210}
           priority
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', height: '100%' }}
         />
       </Box>
 

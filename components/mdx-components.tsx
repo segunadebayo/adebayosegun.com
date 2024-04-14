@@ -1,4 +1,4 @@
-import { AspectRatio, Stack, chakra } from '@chakra-ui/react';
+import { AspectRatio, Box, Stack, chakra } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -78,11 +78,11 @@ const MDXComponents: Record<string, React.FC<any>> = {
       />
     );
   },
-  Image({ ratio, alt, marginY = '6em', fit, caption, ...rest }) {
+  Image({ ratio, alt, marginY = '4rem', fit, caption, maxWidth, ...rest }) {
     if (ratio) {
       return (
         <Stack as="figure" marginY={marginY} spacing="5">
-          <AspectRatio ratio={ratio} position="relative">
+          <AspectRatio ratio={ratio} position="relative" maxWidth={maxWidth}>
             <Image
               alt={alt}
               className="img"
@@ -99,7 +99,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
       );
     }
     return (
-      <Stack as="figure" marginY={marginY}>
+      <Stack as="figure" marginY={marginY} maxWidth={maxWidth}>
         <Image alt={alt} className="img" style={{ objectFit: fit }} {...rest} />
         {caption && (
           <chakra.figcaption fontSize="small" textAlign="center" color="gray.400">
@@ -150,6 +150,29 @@ const MDXComponents: Record<string, React.FC<any>> = {
         }}
         {...props}
       />
+    );
+  },
+  LinkCover(props) {
+    const { href, title, ...rest } = props;
+    return (
+      <chakra.a display="block" pos="relative" href={href} target="_blank" {...rest}>
+        {props.children}
+        {title && (
+          <Box
+            as="span"
+            px="1.5"
+            rounded="md"
+            fontSize="sm"
+            bg="rgba(0,0,0,0.5)"
+            color="white"
+            pos="absolute"
+            bottom="4"
+            left="4"
+          >
+            {title}
+          </Box>
+        )}
+      </chakra.a>
     );
   },
 };

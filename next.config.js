@@ -16,6 +16,7 @@ module.exports = withContentlayer({
       'secure.meetupstatic.com',
       'cdn.changelog.com',
       'speakeasyjs.com',
+      'opengraph.githubassets.com',
     ],
   },
 });
