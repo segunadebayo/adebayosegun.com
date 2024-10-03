@@ -23,7 +23,6 @@ import { ElementType, ReactNode, useEffect } from 'react';
 import {
   BlogIcon,
   CloseIcon,
-  CoachingIcon,
   HamburgerMenuIcon,
   ProjectIcon,
   SnippetIcon,
@@ -69,12 +68,6 @@ const items: NavItemData[] = [
   { label: 'Blog', href: '/blog', icon: BlogIcon },
   { label: 'Projects', href: '/projects', icon: ProjectIcon },
   { label: 'Snippets', href: '/snippets', icon: SnippetIcon },
-  {
-    label: 'Consulting',
-    href: 'https://calendly.com/chakra-ui/technical-consulting-60m',
-    icon: CoachingIcon,
-    primary: true,
-  },
 ];
 
 function DesktopNavItemGroup(props: StackProps) {

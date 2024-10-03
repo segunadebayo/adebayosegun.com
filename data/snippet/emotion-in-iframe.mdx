@@ -1,0 +1,67 @@
+---
+title: Use Emotion in an iframe
+description: How to set up Emotion to work within an iframe
+logo: /static/logos/react.png
+categories: ['react']
+---
+
+Emotion attaches the default style to the current document's head which doesn't work for iframes,
+since the document instance is difference.
+
+To fix this, use the `CacheProvider` from Emotion to specify the target container element.
+
+## Required Packages
+
+- `@emotion/react`: The core package for using Emotion with React
+- `@emotion/cache`: A style cache provider that holds the custom container
+- `react-frame-component`: A React component that wraps an iframe
+
+## Basic Setup
+
+Here's what the setup looks like for a custom container in emotion
+
+```tsx
+import { ThemeProvider } from 'ui-lib';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  container: document.getElementById('my-iframe'),
+});
+
+export default ({ children }) => {
+  return (
+    <CacheProvider value={cache}>
+      <ThemeProvider>{children}</ThemeProvider>
+    </CacheProvider>
+  );
+};
+```
+
+## Iframe Setup
+
+Within an iframe, you can use the `FrameContextConsumer` from `react-frame-component` to get the document instance of the iframe.
+
+```tsx
+import { ThemeProvider } from 'ui-lib';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+import Iframe, { FrameContextConsumer } from 'react-frame-component';
+
+export default ({ children }) => {
+  return (
+    <Iframe>
+      <FrameContextConsumer>
+        {(frame) => {
+          const cache = createCache({ container: frame.document.head });
+          return (
+            <CacheProvider value={cache}>
+              <ThemeProvider>{children}</ThemeProvider>
+            </CacheProvider>
+          );
+        }}
+      </FrameContextConsumer>
+    </Iframe>
+  );
+};
+```
