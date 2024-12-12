@@ -21,21 +21,21 @@ To fix this, use the `CacheProvider` from Emotion to specify the target containe
 Here's what the setup looks like for a custom container in emotion
 
 ```tsx
-import { ThemeProvider } from 'ui-lib';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+import { ThemeProvider } from 'ui-lib'
+import { CacheProvider } from '@emotion/react'
+import createCache from '@emotion/cache'
 
 const cache = createCache({
   container: document.getElementById('my-iframe'),
-});
+})
 
 export default ({ children }) => {
   return (
     <CacheProvider value={cache}>
       <ThemeProvider>{children}</ThemeProvider>
     </CacheProvider>
-  );
-};
+  )
+}
 ```
 
 ## Iframe Setup
@@ -43,25 +43,25 @@ export default ({ children }) => {
 Within an iframe, you can use the `FrameContextConsumer` from `react-frame-component` to get the document instance of the iframe.
 
 ```tsx
-import { ThemeProvider } from 'ui-lib';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-import Iframe, { FrameContextConsumer } from 'react-frame-component';
+import { ThemeProvider } from 'ui-lib'
+import { CacheProvider } from '@emotion/react'
+import createCache from '@emotion/cache'
+import Iframe, { FrameContextConsumer } from 'react-frame-component'
 
 export default ({ children }) => {
   return (
     <Iframe>
       <FrameContextConsumer>
         {(frame) => {
-          const cache = createCache({ container: frame.document.head });
+          const cache = createCache({ container: frame.document.head })
           return (
             <CacheProvider value={cache}>
               <ThemeProvider>{children}</ThemeProvider>
             </CacheProvider>
-          );
+          )
         }}
       </FrameContextConsumer>
     </Iframe>
-  );
-};
+  )
+}
 ```

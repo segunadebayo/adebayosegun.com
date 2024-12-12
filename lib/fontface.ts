@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from '@emotion/react'
 
 const fontFace = css`
   @font-face {
@@ -22,6 +22,6 @@ const fontFace = css`
     font-display: optional;
     src: url(/fonts/Inter.woff2) format('woff2');
   }
-`;
+`
 
-export default fontFace;
+export default fontFace

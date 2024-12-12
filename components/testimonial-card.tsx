@@ -1,26 +1,26 @@
-import { Testimonial } from 'contentlayer/generated';
-import { Box, Circle, HStack, Text } from '@chakra-ui/react';
-import Image from 'next/image';
-import { FullLinkedInLogo, LinkedInIcon } from './social-icons';
+import { Testimonial } from 'contentlayer/generated'
+import { Box, Circle, HStack, Text } from '@chakra-ui/react'
+import Image from 'next/image'
+import { FullLinkedInLogo, LinkedInIcon } from './social-icons'
 
 type TestimonialCardProps = {
-  data: Testimonial;
-};
+  data: Testimonial
+}
 
 export default function TestimonialCard(props: TestimonialCardProps) {
-  const { data: testimonial } = props;
+  const { data: testimonial } = props
   return (
-    <Box bg="gray.800" rounded="2xl" position="relative" padding="6" shadow="highlight">
+    <Box bg='gray.800' rounded='2xl' position='relative' padding='6' shadow='highlight'>
       <LinkedInBadge />
 
       <Box>
-        <HStack gap="5">
-          <Circle overflow="hidden">
-            <Image alt={testimonial.name} width="40" height="40" src={testimonial.image} />
+        <HStack gap='5'>
+          <Circle overflow='hidden'>
+            <Image alt={testimonial.name} width='40' height='40' src={testimonial.image} />
           </Circle>
           <Box>
-            <Text fontWeight="bold">{testimonial.name}</Text>
-            <Text opacity={0.8} fontSize="sm">
+            <Text fontWeight='bold'>{testimonial.name}</Text>
+            <Text opacity={0.8} fontSize='sm'>
               {testimonial.title}
             </Text>
           </Box>
@@ -28,10 +28,10 @@ export default function TestimonialCard(props: TestimonialCardProps) {
       </Box>
 
       <Box
-        marginTop="6"
-        fontSize="sm"
-        lineHeight="tall"
-        as="blockquote"
+        marginTop='6'
+        fontSize='sm'
+        lineHeight='tall'
+        as='blockquote'
         dangerouslySetInnerHTML={{ __html: testimonial.body.html }}
         css={{
           '& p + p': {
@@ -40,18 +40,18 @@ export default function TestimonialCard(props: TestimonialCardProps) {
         }}
       />
     </Box>
-  );
+  )
 }
 
 function LinkedInBadge() {
   return (
     <>
-      <Box position="absolute" right="6" display={{ base: 'none', md: 'block' }} color="brown.600">
+      <Box position='absolute' right='6' display={{ base: 'none', md: 'block' }} color='brown.600'>
         <FullLinkedInLogo />
       </Box>
-      <Box position="absolute" right="6" display={{ md: 'none' }} color="brown.600">
+      <Box position='absolute' right='6' display={{ md: 'none' }} color='brown.600'>
         <LinkedInIcon />
       </Box>
     </>
-  );
+  )
 }

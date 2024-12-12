@@ -17,10 +17,10 @@ Creating a CSS framework that delivers a similar DX to Chakra UI, can be statica
 
 In June 2020, I published the first Request For Comments (RFC) for static extraction in the [Chakra UI](https://github.com/chakra-ui/chakra-ui) repo following the community request to improve the performance of Chakra UI components.
 
-<LinkCover href="https://github.com/chakra-ui/chakra-ui/issues/859" title="github.com">
+<LinkCover href='https://github.com/chakra-ui/chakra-ui/issues/859' title='github.com'>
   <Image
-    src="https://opengraph.githubassets.com/7fc506d1f5b6559ffcb6d04f64937823b0389da49954f89ebb6c2ac7350bad84/chakra-ui/chakra-ui/issues/859"
-    alt="Chakra UI RFC 859"
+    src='https://opengraph.githubassets.com/7fc506d1f5b6559ffcb6d04f64937823b0389da49954f89ebb6c2ac7350bad84/chakra-ui/chakra-ui/issues/859'
+    alt='Chakra UI RFC 859'
     fill
     ratio={2}
   />
@@ -40,11 +40,11 @@ Going from dynamic to static requires a mindset shift that most Chakra UI users 
 I read this article by Kyle (creator of Emotion) on [Why he doesn't sell the idea of Static Extraction](https://medium.com/@tkh44/why-dont-i-sell-the-idea-of-static-extraction-with-css-in-js-df21f571503b).
 
 <LinkCover
-  href="https://medium.com/@tkh44/why-dont-i-sell-the-idea-of-static-extraction-with-css-in-js-df21f571503b"
-  title="Medium.com"
+  href='https://medium.com/@tkh44/why-dont-i-sell-the-idea-of-static-extraction-with-css-in-js-df21f571503b'
+  title='Medium.com'
 >
   <Image
-    src="/static/images/kyle-static-extraction-thoughts.png"
+    src='/static/images/kyle-static-extraction-thoughts.png'
     alt="Kyle's article on Static Extraction"
     fill
     ratio={3}
@@ -68,7 +68,7 @@ If we went with a Chakra-only solution, we needed to create bundler plugins for 
 Before deciding on the approach we were going to take, I explored existing solutions like [Linaria](https://linaria.dev/), [Vanilla Extract](https://vanilla-extract.style/), and [Atlassian's Compiled](https://compiledcssinjs.com/).
 
 <Image
-  src="/static/images/static-extraction-libs.png"
+  src='/static/images/static-extraction-libs.png'
   alt="Kyle's article on Static Extraction"
   fill
   ratio={4.33}
@@ -81,11 +81,11 @@ This approach felt similar to the initial design of Chakra's styling system, exc
 To get some initial insights, I contacted [Mark Dalgleish](https://twitter.com/markdalgleish) (creator of Vanilla Extract and CSS Modules).
 
 <Image
-  src="/static/images/dm-with-mark-dalgleish.png"
-  alt="DM with Mark Dalgleish"
+  src='/static/images/dm-with-mark-dalgleish.png'
+  alt='DM with Mark Dalgleish'
   fill
   ratio={1.48}
-  maxWidth="500px"
+  maxWidth='500px'
 />
 
 The intent of this meeting was to figure out how we could potentially use Vanilla Extract under the hood to build the first Proof-of-Concept (PoC) of the current Chakra UI styling engine.
@@ -99,9 +99,9 @@ I built a PoC using Vanilla Extract and got pretty comfortable with it, knowing 
 Here's a quick overview of the code I came up with.
 
 ```tsx
-import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles';
-import { responsiveProperties } from './responsiveProperties';
-import { fontSizePairings, lineHeights, fontWeights } from './typography';
+import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles'
+import { responsiveProperties } from './responsiveProperties'
+import { fontSizePairings, lineHeights, fontWeights } from './typography'
 
 const typographyProperties = defineProperties({
   ...responsiveProperties,
@@ -112,7 +112,7 @@ const typographyProperties = defineProperties({
     letterSpacing: letterSpacings,
     textAlign: ['left', 'right', 'center'],
   },
-});
+})
 
 const displayProperties = defineProperties({
   ...responsiveProperties,
@@ -134,10 +134,10 @@ const displayProperties = defineProperties({
       '12': 'repeat(var(--grid-repeat, 12), minmax(0, 1fr))',
     },
   },
-});
+})
 
 // create css function
-export const css = createSprinkles(typographyProperties, displayProperties);
+export const css = createSprinkles(typographyProperties, displayProperties)
 
 // css usage
 const className = css({
@@ -147,7 +147,7 @@ const className = css({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-});
+})
 ```
 
 After using the `css` and `recipe` functions to recreate some components in Chakra, I noticed areas that were quite challenging to replicate with Vanilla Extract, namely our component theming systems and automatic RTL support.
@@ -160,8 +160,8 @@ Ultimately, I set out to build a new project that merges ideas from Chakra UI wi
 
 The first working prototype of Panda was called `css-jsx`. I didn't overthink the name; I just wanted to get started.
 
-<LinkCover href="https://github.com/segunadebayo/css-jsx" title="css-jsx">
-  <Image src="/static/images/css-jsx-repo.png" alt="css-jsx repo" fill ratio={1.466} />
+<LinkCover href='https://github.com/segunadebayo/css-jsx' title='css-jsx'>
+  <Image src='/static/images/css-jsx-repo.png' alt='css-jsx repo' fill ratio={1.466} />
 </LinkCover>
 
 > Shout out to [Biola Oyeniyi](https://github.com/gbozee) for contributing to the initial version of `css-jsx`.
@@ -180,7 +180,7 @@ At some point, the [SWC project](https://swc.rs/) discouraged the use of JavaScr
 Here's the initial API for `css-jsx`:
 
 ```jsx
-import { css, globalCss, matchCss } from 'css-jsx';
+import { css, globalCss, matchCss } from 'css-jsx'
 
 // Define styles
 const baseStyle = css({
@@ -189,20 +189,20 @@ const baseStyle = css({
   '&:hover': {
     color: 'red.200',
   },
-});
+})
 
 // Match styles based on props
 const hoverStyles = matchCss(props.size, {
   sm: { color: 'red.400' },
   lg: { color: 'red.500' },
-});
+})
 
 // Global styles
 globalCss({
   body: {
     bg: 'gray.100',
   },
-});
+})
 ```
 
 Next, I created the first draft of the configuration file for the system. The goals where to allow:
@@ -222,7 +222,7 @@ export default {
     bg: {
       className: 'bg',
       toCss(value) {
-        return { backgroundColor: value };
+        return { backgroundColor: value }
       },
     },
   },
@@ -238,7 +238,7 @@ export default {
     fontSizes: {},
     fontWeights: {},
   },
-};
+}
 ```
 
 The configuration file is consumed and emits JS functions that can be used to author styles. The emitted file structure looked like this:
@@ -266,7 +266,7 @@ css-jsx cssgen --outfile=styles.css
 At the Chakra offsite in 2022, I demoed the first version of Panda CSS. The team was excited and fired up to see a working prototype we could build on.
 
 <Image
-  src="/static/images/panda-demo-chakra-team.png"
+  src='/static/images/panda-demo-chakra-team.png'
   alt="Kyle's article on Static Extraction"
   fill
   ratio={4.3}
@@ -296,7 +296,7 @@ export default {
       property: 'marginTop',
       values: 'spacing',
       transform(value) {
-        return { marginTop: value };
+        return { marginTop: value }
       },
     },
     bgColor: {
@@ -304,11 +304,11 @@ export default {
       property: 'backgroundColor',
       values: 'colors',
       transform(value) {
-        return { backgroundColor: value };
+        return { backgroundColor: value }
       },
     },
   },
-};
+}
 ```
 
 > Learn more about [utilities](https://panda-css.com/docs/customization/utilities) from the Panda CSS docs.
@@ -326,7 +326,7 @@ export default {
     active: '&:active',
     disabled: '&:disabled',
   },
-};
+}
 ```
 
 > Learn more about [conditional styles](https://panda-css.com/docs/concepts/conditional-styles) from the Panda CSS docs.
@@ -351,7 +351,7 @@ const buttonStyles = cva({
       },
     },
   },
-});
+})
 ```
 
 > Learn more about [Recipes](https://panda-css.com/docs/concepts/recipes) from the Panda CSS docs.
@@ -381,7 +381,7 @@ To ensure the sustainability and growth of the project, I knew I needed to build
 I stumbled on [Alexandre Stahmer](https://twitter.com/astahmer_dev)'s [tweet](https://twitter.com/astahmer_dev/status/1601244641772589056) about a project he was working on, [Box Extractor](https://github.com/astahmer/box-extractor).
 
 <Image
-  src="/static/images/alex-tweet-box-extractor.png"
+  src='/static/images/alex-tweet-box-extractor.png'
   alt="Alex's tweet about Box Extractor"
   fill
   ratio={3}
@@ -391,8 +391,8 @@ Box Extractor was designed to be an optimizing compiler for Vanilla Extract's Sp
 
 I experienced this issue while building the first PoC with Vanilla Extract. It felt a good match to reach out to Alex and see if we could collaborate on the compiler part of Panda.
 
-<LinkCover href="https://github.com/astahmer/box-extractor" title="Github - Box Extractor">
-  <Image src="/static/images/box-extractor-repo.jpeg" alt="Box Extractor" fill ratio={2} />
+<LinkCover href='https://github.com/astahmer/box-extractor' title='Github - Box Extractor'>
+  <Image src='/static/images/box-extractor-repo.jpeg' alt='Box Extractor' fill ratio={2} />
 </LinkCover>
 
 I looked at the source code and found that Alex used the same toolset and strategy for the compiler.
@@ -403,12 +403,12 @@ I looked at the source code and found that Alex used the same toolset and strate
 I reached out to Alex on Twitter to discuss the possibility of a collaboration.
 
 <Image
-  src="/static/images/dm-with-alex.png"
-  alt="DM with Alex"
+  src='/static/images/dm-with-alex.png'
+  alt='DM with Alex'
   fill
   ratio={0.92}
-  maxWidth="500px"
-  marginY="6"
+  maxWidth='500px'
+  marginY='6'
 />
 
 After a first call with Alex, he was convinced that Panda had a better API design overall and was excited to collaborate. The core logic of box-extractor was merged into Panda's codebase.
@@ -426,17 +426,17 @@ Chris challenged me to push the DX to the extreme by improving support for JSX S
 Shortly after, I added support for JSX Style Props to Panda, which allowed users to write styles directly in JSX.
 
 ```jsx
-import { Box, Stack } from 'styled-system/jsx';
+import { Box, Stack } from 'styled-system/jsx'
 
 function App() {
   return (
     <Stack>
-      <Box color="pink.500">Item 1</Box>
-      <Box bg="red.200" p="4">
+      <Box color='pink.500'>Item 1</Box>
+      <Box bg='red.200' p='4'>
         Hello World
       </Box>
     </Stack>
-  );
+  )
 }
 ```
 
@@ -445,8 +445,8 @@ We ended up with a concept of **"function-JSX"** duality. This meant that everyt
 Here's the function equivalent of the above JSX code:
 
 ```jsx
-import { css } from 'styled-system/css';
-import { stack } from 'styled-system/pattern';
+import { css } from 'styled-system/css'
+import { stack } from 'styled-system/pattern'
 
 function App() {
   return (
@@ -454,7 +454,7 @@ function App() {
       <div className={css({ color: 'pink.500' })}>Item 1</div>
       <div className={css({ bg: 'red.200', p: 4 })}>Hello World</div>
     </div>
-  );
+  )
 }
 ```
 
@@ -462,8 +462,8 @@ This feature was a game-changer for [Panda CSS](https://panda-css.com/) and open
 
 Chris started a new project, [Park UI](https://park-ui.com/), to showcase the power of [Panda CSS](https://panda-css.com/) when combined with our headless component library, [Ark UI](https://ark-ui.com/).
 
-<LinkCover href="https://park-ui.com/" title="Park UI">
-  <Image src="/static/images/park-ui.png" alt="Park" fill ratio={1.9} />
+<LinkCover href='https://park-ui.com/' title='Park UI'>
+  <Image src='/static/images/park-ui.png' alt='Park' fill ratio={1.9} />
 </LinkCover>
 
 ### Planning the Launch with Esther
@@ -474,10 +474,10 @@ As our Developer Advocate, Esther shares valuable content about Panda CSS, and c
 
 [Watch Esther's talk](https://www.youtube.com/live/dDUwsJQ_Nu4?si=lWM9ah74YSlfsC-F&t=12948) about Panda CSS at the CityJS London 2024.
 
-<a href="https://www.youtube.com/live/dDUwsJQ_Nu4?si=lWM9ah74YSlfsC-F&t=12948">
+<a href='https://www.youtube.com/live/dDUwsJQ_Nu4?si=lWM9ah74YSlfsC-F&t=12948'>
   <Image
-    marginY="10"
-    src="/static/images/esther-talk-panda-css.png"
+    marginY='10'
+    src='/static/images/esther-talk-panda-css.png'
     alt="Esther's talk about Panda CSS at CityJS London 2024"
     width={500}
     height={300}
@@ -496,8 +496,8 @@ Abraham understands the significance of post-release activities. He tweets about
 
 Lastly, Abraham also launched [EcoPanda](https://www.ecopanda.dev/), a website that showcases community projects built with Panda CSS.
 
-<LinkCover href="https://www.ecopanda.dev/" title="EcoPanda">
-  <Image src="/static/images/anubra-eco-panda.png" alt="EcoPanda" fill ratio={1.9} />
+<LinkCover href='https://www.ecopanda.dev/' title='EcoPanda'>
+  <Image src='/static/images/anubra-eco-panda.png' alt='EcoPanda' fill ratio={1.9} />
 </LinkCover>
 
 ### Honorable Mentions 🎖️
@@ -517,7 +517,7 @@ One night, I watched the popular **Kung Fu Panda** cartoon, which I absolutely e
 
 Following the name choice, I designed the logo and branding for the project.
 
-<Image src="/static/images/panda-css-branding.png" alt="Panda CSS Logo" fill ratio={1.8} />
+<Image src='/static/images/panda-css-branding.png' alt='Panda CSS Logo' fill ratio={1.8} />
 
 > Check out the [Panda CSS](https://panda-css.com/) and use it in your next project.
 

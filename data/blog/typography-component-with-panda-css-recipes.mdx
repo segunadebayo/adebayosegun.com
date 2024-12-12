@@ -10,11 +10,11 @@ tags: ['panda']
 
 > If you want to watch the video version of this tutorial, you can find it on my YouTube channel.
 
-<a href="https://www.youtube.com/watch?v=4aFVkMeXvgQ&list=PLLh_woCGjyGpGSQ4qrvbRo2ff5o-la6Yv&index=2">
+<a href='https://www.youtube.com/watch?v=4aFVkMeXvgQ&list=PLLh_woCGjyGpGSQ4qrvbRo2ff5o-la6Yv&index=2'>
   <Image
-    marginY="10"
-    src="/static/images/panda-typography-recipe.png"
-    alt="Building a Typography component with Recipes in Panda CSS"
+    marginY='10'
+    src='/static/images/panda-typography-recipe.png'
+    alt='Building a Typography component with Recipes in Panda CSS'
     width={500}
     height={300}
   />
@@ -29,7 +29,7 @@ In the `panda.config.ts` file, let's define text styles for `headline1` and `hea
 ```ts
 // panda.config.ts
 
-import { defineConfig } from '@pandacss/dev';
+import { defineConfig } from '@pandacss/dev'
 
 export default defineConfig({
   // ...
@@ -59,7 +59,7 @@ export default defineConfig({
       },
     },
   },
-});
+})
 ```
 
 ## Creating a typography recipe
@@ -73,7 +73,7 @@ We'll define a `typography` recipe that has a `level` variant which can be eithe
 ```ts
 // recipes/typography.ts
 
-import { cva } from 'styled-system/css';
+import { cva } from 'styled-system/css'
 
 export const typographyRecipe = cva({
   base: {
@@ -89,19 +89,19 @@ export const typographyRecipe = cva({
       },
     },
   },
-});
+})
 ```
 
 To infer the variant properties of the recipe, we can use the `RecipeVariantProps` type.
 
 ```ts {1,7}
-import { cva, type RecipeVariantProps } from 'styled-system/css';
+import { cva, type RecipeVariantProps } from 'styled-system/css'
 
 export const typographyRecipe = cva({
   //...
-});
+})
 
-export type TypographyVariantProps = RecipeVariantProps<typeof typography>;
+export type TypographyVariantProps = RecipeVariantProps<typeof typography>
 ```
 
 ## Building the Typography component
@@ -111,39 +111,39 @@ Now that we have the `typography` recipe, we can use it to build out a `Typograp
 ```tsx
 // components/typography.tsx
 
-import { cx } from 'styled-system/css';
-import { typographyRecipe, type TypographyVariantProps } from '../recipes/typography';
+import { cx } from 'styled-system/css'
+import { typographyRecipe, type TypographyVariantProps } from '../recipes/typography'
 
-type TypographyHTMLProps = React.HTMLAttributes<HTMLElement>;
+type TypographyHTMLProps = React.HTMLAttributes<HTMLElement>
 
-type TypographyElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+type TypographyElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
 
 export type TypographyProps = TypographyVariantProps &
-  TypographyHTMLProps & { as?: TypographyElement };
+  TypographyHTMLProps & { as?: TypographyElement }
 
 export function Typography(props: TypographyProps) {
-  const [variantProps, localProps] = typographyRecipe.splitVariantProps(props);
-  const { as: Component = 'p', className, ...restProps } = localProps;
-  return <Component className={cx(typographyRecipe(variantProps), className)} {...restProps} />;
+  const [variantProps, localProps] = typographyRecipe.splitVariantProps(props)
+  const { as: Component = 'p', className, ...restProps } = localProps
+  return <Component className={cx(typographyRecipe(variantProps), className)} {...restProps} />
 }
 ```
 
 Let's unpack what's happening here
 
 ```tsx
-const [variantProps, localProps] = typographyRecipe.splitVariantProps(props);
+const [variantProps, localProps] = typographyRecipe.splitVariantProps(props)
 ```
 
 This line uses the `splitVariantProps` function on the recipe to separate the typography recipe from other react props passed to the component.
 
 ```tsx
-const { as: Component = 'p', className, ...restProps } = localProps;
+const { as: Component = 'p', className, ...restProps } = localProps
 ```
 
 This line is used to allows the component to accept an `as` prop which can be used to change the underlying HTML element. It is set to render a `p` tag by default.
 
 ```tsx
-return <Component className={cx(typographyRecipe(variantProps), className)} {...restProps} />;
+return <Component className={cx(typographyRecipe(variantProps), className)} {...restProps} />
 ```
 
 This line applies the typography recipe className based on the variant properties passed to the `Typography` component. It also concatenates any additional `className` passed.
@@ -155,18 +155,18 @@ Let's use the `Typography` component in our app.
 ```tsx
 // src/App.tsx
 
-import { Typography } from './components/typography';
+import { Typography } from './components/typography'
 
 function App() {
   return (
-    <div dir="ltr">
-      <Typography level="h1">This text should have headline1 text style</Typography>
-      <Typography level="h2">This text should have headline2 text style</Typography>
+    <div dir='ltr'>
+      <Typography level='h1'>This text should have headline1 text style</Typography>
+      <Typography level='h2'>This text should have headline2 text style</Typography>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 ## Adding bold, italic and underline variants
@@ -203,7 +203,7 @@ export const typographyRecipe = cva({
       },
     },
   },
-});
+})
 
 // ...
 ```
@@ -213,22 +213,22 @@ Now we can use the `bold`, `italic` and `underline` variants in the `Typography`
 ```tsx
 // src/App.tsx
 
-import { Typography } from './components/typography';
+import { Typography } from './components/typography'
 
 function App() {
   return (
-    <div dir="ltr">
-      <Typography level="h1" bold>
+    <div dir='ltr'>
+      <Typography level='h1' bold>
         This text should have headline1 text style and bold
       </Typography>
-      <Typography level="h2" italic>
+      <Typography level='h2' italic>
         This text should have headline2 text style and italic
       </Typography>
-      <Typography level="h2" underline>
+      <Typography level='h2' underline>
         This text should have headline2 text style and underline
       </Typography>
     </div>
-  );
+  )
 }
 ```
 
@@ -239,19 +239,19 @@ By default, the typography component renders a paragraph tag. Using the `as` pro
 ```tsx
 // src/App.tsx
 
-import { Typography } from './components/typography';
+import { Typography } from './components/typography'
 
 function App() {
   return (
-    <div dir="ltr">
-      <Typography level="h1" as="h1" bold>
+    <div dir='ltr'>
+      <Typography level='h1' as='h1' bold>
         This text should have headline1 text style and be rendered as h1
       </Typography>
-      <Typography level="h2" as="h2" italic>
+      <Typography level='h2' as='h2' italic>
         This text should have headline2 text style and be rendered as h2
       </Typography>
     </div>
-  );
+  )
 }
 ```
 

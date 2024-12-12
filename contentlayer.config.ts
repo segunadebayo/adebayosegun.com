@@ -1,12 +1,12 @@
-import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files';
-import { toKebabCase } from './lib/string-utils';
-import readingTime from 'reading-time';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeCodeTitles from 'rehype-code-titles';
-import rehypePrism from 'rehype-prism-plus';
-import rehypeSlug from 'rehype-slug';
-import remarkGfm from 'remark-gfm';
-import siteConfig from './site.config';
+import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files'
+import { toKebabCase } from './lib/string-utils'
+import readingTime from 'reading-time'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypePrism from 'rehype-prism-plus'
+import rehypeSlug from 'rehype-slug'
+import remarkGfm from 'remark-gfm'
+import siteConfig from './site.config'
 
 const computedFields: ComputedFields = {
   readingTime: {
@@ -24,18 +24,18 @@ const computedFields: ComputedFields = {
   tweetUrl: {
     type: 'string',
     resolve: (doc) => {
-      const slug = doc._raw.sourceFileName.replace(/\.mdx$/, '');
+      const slug = doc._raw.sourceFileName.replace(/\.mdx$/, '')
       return `https://twitter.com/intent/tweet?${new URLSearchParams({
         url: `https://adebayosegun.com/${doc.type.toLowerCase()}/${slug}`,
         text: `I just read "${doc.title}" by @thesegunadebayo\n\n`,
-      })}`;
+      })}`
     },
   },
   params: {
     type: 'list',
     resolve: (doc) => doc._raw.flattenedPath.split('/'),
   },
-};
+}
 
 const Blog = defineDocumentType(() => ({
   name: 'Blog',
@@ -56,7 +56,7 @@ const Blog = defineDocumentType(() => ({
       resolve: (doc) => `https://adebayosegun.com/static/images/og/${toKebabCase(doc.title)}.png`,
     },
   },
-}));
+}))
 
 const Talk = defineDocumentType(() => ({
   name: 'Talk',
@@ -74,7 +74,7 @@ const Talk = defineDocumentType(() => ({
     tags: { type: 'list', required: true, of: { type: 'string' } },
   },
   computedFields,
-}));
+}))
 
 const Newsletter = defineDocumentType(() => ({
   name: 'Newsletter',
@@ -87,7 +87,7 @@ const Newsletter = defineDocumentType(() => ({
     image: { type: 'string', required: true },
   },
   computedFields,
-}));
+}))
 
 const Snippet = defineDocumentType(() => ({
   name: 'Snippet',
@@ -100,7 +100,7 @@ const Snippet = defineDocumentType(() => ({
     categories: { type: 'list', of: { type: 'string', required: true } },
   },
   computedFields,
-}));
+}))
 
 const Project = defineDocumentType(() => ({
   name: 'Project',
@@ -117,7 +117,7 @@ const Project = defineDocumentType(() => ({
     objectPosition: { type: 'string' },
   },
   computedFields,
-}));
+}))
 
 const Testimonial = defineDocumentType(() => ({
   name: 'Testimonial',
@@ -134,7 +134,7 @@ const Testimonial = defineDocumentType(() => ({
       required: true,
     },
   },
-}));
+}))
 
 const contentLayerConfig = makeSource({
   contentDirPath: 'data',
@@ -157,6 +157,6 @@ const contentLayerConfig = makeSource({
       ],
     ],
   },
-});
+})
 
-export default contentLayerConfig;
+export default contentLayerConfig

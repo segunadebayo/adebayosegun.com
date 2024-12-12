@@ -12,11 +12,11 @@ In this article, I'll show how to seamlessly style Ark UI's [Tabs](https://ark-u
 
 > If you want to watch the video version of this tutorial, you can find it on my YouTube channel.
 
-<a href="https://youtu.be/zjo-77I0unk?si=GkMpNlvoZgixFN22">
+<a href='https://youtu.be/zjo-77I0unk?si=GkMpNlvoZgixFN22'>
   <Image
-    marginY="10"
-    src="/static/images/styling-ark-tabs-panda.png"
-    alt="Styling Ark UI Tabs with Panda CSS"
+    marginY='10'
+    src='/static/images/styling-ark-tabs-panda.png'
+    alt='Styling Ark UI Tabs with Panda CSS'
     width={500}
     height={300}
   />
@@ -33,30 +33,30 @@ The component from Ark UI are compound components, which means they are made up 
 ```jsx
 // components/ui/Tabs.tsx
 
-import { Tabs } from '@ark-ui/react';
+import { Tabs } from '@ark-ui/react'
 
 export function CustomTabs() {
   return (
-    <Tabs.Root defaultValue="home">
+    <Tabs.Root defaultValue='home'>
       <Tabs.List>
-        <Tabs.Trigger value="home">Home</Tabs.Trigger>
-        <Tabs.Trigger value="about">About</Tabs.Trigger>
-        <Tabs.Trigger value="community">Community</Tabs.Trigger>
+        <Tabs.Trigger value='home'>Home</Tabs.Trigger>
+        <Tabs.Trigger value='about'>About</Tabs.Trigger>
+        <Tabs.Trigger value='community'>Community</Tabs.Trigger>
       </Tabs.List>
-      <Tabs.Content value="home">
+      <Tabs.Content value='home'>
         Write type-safe styles with ease using Panda. It's fun, fast, and easy to use. Styling
         library you'll enjoy using 🐼
       </Tabs.Content>
-      <Tabs.Content value="about">
+      <Tabs.Content value='about'>
         CSS-in-JS with build time generated styles, RSC compatible, multi-variant support, and
         best-in-class developer experience
       </Tabs.Content>
-      <Tabs.Content value="community">
+      <Tabs.Content value='community'>
         Join our community today. Get support, get involved and join our community of developers -
         Hop into our Discord
       </Tabs.Content>
     </Tabs.Root>
-  );
+  )
 }
 ```
 
@@ -79,7 +79,7 @@ const classes = {
   trigger: css({}),
   content: css({}),
   list: css({}),
-};
+}
 ```
 
 Next, we'll attach the styles to the corresponding part using the `className` prop.
@@ -89,23 +89,23 @@ Next, we'll attach the styles to the corresponding part using the `className` pr
 
 const classes = {
   // ...
-};
+}
 
 export function CustomTabs() {
   return (
-    <Tabs.Root className={classes.root} defaultValue="home">
+    <Tabs.Root className={classes.root} defaultValue='home'>
       <Tabs.List className={classes.list}>
-        <Tabs.Trigger className={classes.trigger} value="home">
+        <Tabs.Trigger className={classes.trigger} value='home'>
           Home
         </Tabs.Trigger>
         {/* ... */}
       </Tabs.List>
-      <Tabs.Content className={classes.content} value="home">
+      <Tabs.Content className={classes.content} value='home'>
         Write type-safe styles with ease using Panda...
       </Tabs.Content>
       {/* ... */}
     </Tabs.Root>
-  );
+  )
 }
 ```
 
@@ -144,7 +144,7 @@ const classes = {
     px: '3',
     py: '2',
   }),
-};
+}
 ```
 
 > `_selected` is a [conditional style](https://panda-css.com/docs/concepts/conditional-styles) in Panda that maps to a css selector `&[data-selected]`
@@ -160,7 +160,7 @@ First, we'll start by importing the `sva` function from `styled-system/css`. Thi
 ```tsx
 // components/ui/Tabs.tsx
 
-import { sva } from 'styled-system/css';
+import { sva } from 'styled-system/css'
 ```
 
 Then, we list the parts of the component we want to style using the `slots` property.
@@ -172,7 +172,7 @@ const tabsRecipe = sva({
   slots: ['root', 'trigger', 'content', 'list'],
   base: {},
   variants: {},
-});
+})
 ```
 
 Next, we'll attach the base or default styles using the previous styles we defined.
@@ -210,7 +210,7 @@ const tabsRecipe = sva({
       py: '2',
     },
   },
-});
+})
 ```
 
 Here's how to use the slot recipe in the component.
@@ -220,24 +220,24 @@ Here's how to use the slot recipe in the component.
 
 const tabsRecipe = sva({
   //...
-});
+})
 
 export function CustomTabs() {
-  const classes = tabsRecipe();
+  const classes = tabsRecipe()
   return (
-    <Tabs.Root className={classes.root} defaultValue="home">
+    <Tabs.Root className={classes.root} defaultValue='home'>
       <Tabs.List className={classes.list}>
-        <Tabs.Trigger className={classes.trigger} value="home">
+        <Tabs.Trigger className={classes.trigger} value='home'>
           Home
         </Tabs.Trigger>
         {/* ... */}
       </Tabs.List>
-      <Tabs.Content className={classes.content} value="home">
+      <Tabs.Content className={classes.content} value='home'>
         Write type-safe styles with ease using Panda...
       </Tabs.Content>
       {/* ... */}
     </Tabs.Root>
-  );
+  )
 }
 ```
 
@@ -269,7 +269,7 @@ const tabsRecipe = sva({
       },
     },
   },
-});
+})
 ```
 
 We can test the new size variants by passing the `size` prop to the `tabsRecipe` function.
@@ -279,24 +279,24 @@ We can test the new size variants by passing the `size` prop to the `tabsRecipe`
 
 const tabsRecipe = sva({
   //...
-});
+})
 
 export function CustomTabs() {
-  const classes = tabsRecipe({ size: 'medium' });
+  const classes = tabsRecipe({ size: 'medium' })
   return (
-    <Tabs.Root className={classes.root} defaultValue="home">
+    <Tabs.Root className={classes.root} defaultValue='home'>
       <Tabs.List className={classes.list}>
-        <Tabs.Trigger className={classes.trigger} value="home">
+        <Tabs.Trigger className={classes.trigger} value='home'>
           Home
         </Tabs.Trigger>
         {/* ... */}
       </Tabs.List>
-      <Tabs.Content className={classes.content} value="home">
+      <Tabs.Content className={classes.content} value='home'>
         Write type-safe styles with ease using Panda...
       </Tabs.Content>
       {/* ... */}
     </Tabs.Root>
-  );
+  )
 }
 ```
 

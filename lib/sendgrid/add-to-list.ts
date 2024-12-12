@@ -1,15 +1,15 @@
-import client from '@sendgrid/client';
+import client from '@sendgrid/client'
 
-client.setApiKey(process.env.SENDGRID_API_KEY);
+client.setApiKey(process.env.SENDGRID_API_KEY)
 
 type AddToListData = {
-  firstName?: string;
-  email: string;
-};
+  firstName?: string
+  email: string
+}
 
 export async function addToSendGridList(options: AddToListData) {
-  const { email, firstName } = options;
-  const listId = process.env.SENDGRID_LIST_ID;
+  const { email, firstName } = options
+  const listId = process.env.SENDGRID_LIST_ID
 
   const [response] = await client.request({
     method: 'PUT',
@@ -18,7 +18,7 @@ export async function addToSendGridList(options: AddToListData) {
       list_ids: [listId],
       contacts: [{ email, first_name: firstName }],
     },
-  });
+  })
 
-  return response.body;
+  return response.body
 }
