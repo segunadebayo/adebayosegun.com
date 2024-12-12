@@ -56,9 +56,9 @@ export default function FeaturedBlogCard(props: BlogCardProps) {
           fontSize="sm"
         >
           <Text fontWeight="semibold">🌟 Featured article</Text>
-          <HStack spacing="2" color="brown.600">
-            <Box as="time" dateTime={date.iso}>
-              {date.pretty}
+          <HStack gap="2" color="brown.600">
+            <Box asChild>
+              <time dateTime={date.iso}>{date.pretty}</time>
             </Box>
             <span>•</span>
             <Box>{readingTime.text}</Box>

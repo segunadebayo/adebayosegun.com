@@ -2,15 +2,13 @@ import {
   Box,
   Center,
   Circle,
-  Drawer,
-  DrawerContent,
-  DrawerOverlay,
+  DrawerContext,
   Flex,
   HStack,
   Icon,
   Stack,
-  StackDivider,
   StackProps,
+  StackSeparator,
   Text,
   useBreakpointValue,
   useDisclosure,
@@ -28,6 +26,7 @@ import {
   SnippetIcon,
   TalksIcon,
 } from './nav-icons';
+import { DrawerBackdrop, DrawerContent, DrawerRoot, DrawerTrigger } from './ui/drawer';
 
 type NavItemProps = {
   data: NavItemData;
@@ -38,20 +37,24 @@ type NavItemProps = {
 
 function NavItem(props: NavItemProps) {
   const { children, data, active, large } = props;
+  const IconEl = data.icon;
   return (
     <HStack
-      as={Link}
-      href={data.href}
-      spacing="2"
+      asChild
+      gap="2"
       paddingX="3"
       paddingY={large ? '5' : '2.5'}
       rounded="lg"
       aria-current={active ? 'page' : undefined}
       _hover={{ color: 'brown.600' }}
-      _activeLink={{ bg: 'gray.800', shadow: 'highlight' }}
+      _currentPage={{ bg: 'gray.800', shadow: 'highlight' }}
     >
-      <Icon as={data.icon} color="brown.600" fontSize="lg" />
-      <Text fontFamily="heading">{children}</Text>
+      <Link href={data.href}>
+        <Icon color="brown.600" fontSize="lg">
+          <IconEl />
+        </Icon>
+        <Text fontFamily="heading">{children}</Text>
+      </Link>
     </HStack>
   );
 }
@@ -73,7 +76,7 @@ const items: NavItemData[] = [
 function DesktopNavItemGroup(props: StackProps) {
   const { asPath } = useRouter();
   return (
-    <HStack as="nav" aria-label="Main navigation" spacing="8" {...props}>
+    <HStack as="nav" aria-label="Main navigation" gap="8" {...props}>
       {items.map((item) => (
         <NavItem key={item.label} data={item} active={asPath.startsWith(item.href)}>
           {item.label}
@@ -86,10 +89,10 @@ function DesktopNavItemGroup(props: StackProps) {
 function MobileNavItemGroup(props: StackProps) {
   return (
     <Stack
-      divider={<StackDivider borderColor="whiteAlpha.300" />}
+      separator={<StackSeparator borderColor="whiteAlpha.300" />}
       as="nav"
       aria-label="Main navigation"
-      spacing="0"
+      gap="0"
       {...props}
     >
       {items.map((item) => (
@@ -125,34 +128,25 @@ function MobileNavMenu() {
   const breakpoint = useBreakpointValue({ base: true, md: false });
 
   useEffect(() => {
-    if (menu.isOpen && !breakpoint) {
+    if (menu.open && !breakpoint) {
       menu.onClose();
     }
   }, [breakpoint, menu]);
 
   return (
-    <>
-      <Center
-        width="10"
-        height="10"
-        display={{ base: 'flex', md: 'none' }}
-        as="button"
-        aria-haspopup="true"
-        aria-expanded={menu.isOpen}
-        aria-controls="nav-menu"
-        id="nav-menu--trigger"
-        type="button"
-        onClick={menu.onOpen}
-      >
-        {menu.isOpen ? <CloseIcon /> : <HamburgerMenuIcon />}
-      </Center>
-      <Drawer isOpen={menu.isOpen} onClose={menu.onClose} placement="bottom">
-        <DrawerOverlay />
-        <DrawerContent id="nav-menu" bg="gray.800" padding="6">
-          <MobileNavItemGroup />
-        </DrawerContent>
-      </Drawer>
-    </>
+    <DrawerRoot placement="bottom">
+      <DrawerTrigger asChild>
+        <Center width="10" height="10" display={{ base: 'flex', md: 'none' }} as="button">
+          <DrawerContext>
+            {(drawer) => (drawer.open ? <CloseIcon /> : <HamburgerMenuIcon />)}
+          </DrawerContext>
+        </Center>
+      </DrawerTrigger>
+      <DrawerBackdrop />
+      <DrawerContent bg="gray.800" padding="6">
+        <MobileNavItemGroup />
+      </DrawerContent>
+    </DrawerRoot>
   );
 }
 

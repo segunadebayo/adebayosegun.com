@@ -1,22 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },

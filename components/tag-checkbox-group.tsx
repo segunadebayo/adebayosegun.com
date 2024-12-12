@@ -16,8 +16,8 @@ export default function TagCheckboxGroup<T extends string>(props: TagCheckboxGro
           key={item}
           checked={isChecked(item)}
           value={item}
-          onChange={(e) => {
-            onChange({ checked: e.target.checked, value: item });
+          onChange={(checked) => {
+            onChange({ checked, value: item });
           }}
         >
           {item}

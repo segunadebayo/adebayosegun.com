@@ -5,6 +5,7 @@
   "repository": "git@github.com:segunadebayo/adebayosegun.com.git",
   "author": "Segun Adebayo <joseshegs@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "private": true,
   "scripts": {
     "env:pull": "vercel env pull",
@@ -19,27 +20,27 @@
     "sitemap": " NODE_OPTIONS='--experimental-json-modules' node scripts/sitemap.mjs"
   },
   "dependencies": {
-    "@chakra-ui/cli": "^2.3.0",
-    "@chakra-ui/react": "^2.5.5",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
+    "@chakra-ui/cli": "3.2.3",
+    "@chakra-ui/react": "3.2.3",
+    "@emotion/react": "11.14.0",
     "@resvg/resvg-js": "^2.4.1",
     "@sendgrid/client": "^7.7.0",
     "@sendgrid/mail": "^7.7.0",
-    "contentlayer": "^0.3.1",
-    "framer-motion": "10.10.0",
+    "contentlayer": "0.3.4",
     "match-sorter": "^6.3.1",
-    "next": "^13.2.4",
-    "next-contentlayer": "^0.3.1",
+    "next": "^15.1.0",
+    "next-contentlayer": "0.3.4",
     "next-seo": "^5.15.0",
+    "next-themes": "0.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^5.4.0",
     "satori": "^0.4.4",
     "swr": "^2.1.1"
   },
   "devDependencies": {
     "@types/github-slugger": "^1.3.0",
-    "@types/react": "^18.0.31",
+    "@types/react": "^19.0.1",
     "eslint": "8.37.0",
     "eslint-config-next": "^13.2.4",
     "github-slugger": "^2.0.0",
@@ -54,7 +55,7 @@
     "rehype-slug": "5.1.0",
     "remark-gfm": "^3.0.1",
     "rss": "^1.2.2",
-    "typescript": "^5.0.3",
+    "typescript": "^5.7.2",
     "vercel": "^32.1.0"
   }
 }

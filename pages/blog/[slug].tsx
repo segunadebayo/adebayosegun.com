@@ -42,7 +42,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
               justify="space-between"
               marginTop={{ base: '4', md: '8' }}
             >
-              <HStack spacing="3">
+              <HStack gap="3">
                 <Circle overflow="hidden">
                   <Image
                     alt="Segun Adebayo"
@@ -74,10 +74,10 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
           </Box>
 
           <Box
-            sx={{
+            css={{
               color: 'gray.300',
               lineHeight: 'taller',
-              'p + p': {
+              '& p + p': {
                 marginY: '1.25em',
               },
             }}

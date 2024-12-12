@@ -37,12 +37,10 @@ export default function Page({ snippet }: { snippet: Snippet }) {
           </Box>
 
           <Box
-            sx={{
-              color: 'gray.300',
-              lineHeight: '1.75',
-              'p + p': {
-                marginTop: '2',
-              },
+            color="gray.300"
+            lineHeight="1.75"
+            css={{
+              '& p + p': { marginTop: '2' },
             }}
           >
             <Component components={MDXComponents} />
