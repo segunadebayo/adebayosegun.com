@@ -1,8 +1,8 @@
-import { useUpdateEffect } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useDebounce } from './debounce'
 import { addQuery, removeQuery } from './router-utils'
+import useUpdateEffect from './use-update-effect'
 
 export default function useSearchParams() {
   const router = useRouter()

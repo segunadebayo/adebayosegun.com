@@ -55,7 +55,7 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
               </HStack>
 
               <HStack color='brown.600'>
-                <chakra.span>{blog.readingTime.text}</chakra.span>
+                <span>{blog.readingTime.text}</span>
                 <span aria-hidden>•</span>
                 <time dateTime={date.iso}>{date.pretty}</time>
               </HStack>

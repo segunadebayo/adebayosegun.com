@@ -5,8 +5,7 @@ import search from './match-sorter'
 import useSearchParams from './use-search-params'
 
 export default function useTalkSearch() {
-  const { setParams, searchString, addFilter, removeFilter, filters, setFilters } =
-    useSearchParams()
+  const { setParams, searchString, addFilter, removeFilter, filters } = useSearchParams()
 
   const results = useMemo(() => {
     return search(allTalks, ['title', 'description', 'tags', 'host'], searchString)

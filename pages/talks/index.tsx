@@ -6,14 +6,9 @@ import SEO from 'components/seo'
 import TagCheckbox from 'components/tag-checkbox'
 import TalkCard from 'components/talk-card'
 import useTalkSearch from 'lib/use-talk-search'
-import { useRouter } from 'next/router'
 
 export default function Page() {
   const search = useTalkSearch()
-
-  const { isReady } = useRouter()
-  if (!isReady) return null
-
   return (
     <Container>
       <SEO title='Talks' />
@@ -45,8 +40,8 @@ export default function Page() {
                 key={tag}
                 value={tag}
                 checked={search.filters.includes(tag)}
-                onChange={(e) => {
-                  if (e.target.checked) search.addTag(tag)
+                onChange={(checked) => {
+                  if (checked) search.addTag(tag)
                   else search.removeTag(tag)
                 }}
               >

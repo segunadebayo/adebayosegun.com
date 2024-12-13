@@ -10,8 +10,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <DefaultSeo {...seo} />
+      <Global styles={fontFace} />
       <Provider>
-        <Global styles={fontFace} />
         <Component {...pageProps} />
       </Provider>
     </>

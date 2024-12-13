@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Resvg } from '@resvg/resvg-js'
 import { getAbsoluteURL } from 'lib/router-utils'
-import theme from 'lib/theme'
+import { system } from 'lib/theme'
 import { NextApiRequest, NextApiResponse } from 'next'
 import satori from 'satori'
 
@@ -23,7 +23,7 @@ const styles = {
     flexDirection: 'column',
     position: 'relative',
     padding: '72px',
-    color: theme.colors.gray['200'],
+    color: system.token('colors.gray.200'),
   }),
 }
 
@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     <div style={styles.container}>
       <div style={stack()}>
         {date && readingTime && (
-          <p style={{ fontSize: theme.fontSizes['2xl'], fontWeight: 'bold' }}>
+          <p style={{ fontSize: system.token('fontSizes.2xl'), fontWeight: 'bold' }}>
             {date} — {readingTime}
           </p>
         )}
@@ -50,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       <div style={stack({ gap: '32px', marginTop: '32px' })}>
         <h1
           style={{
-            color: theme.colors.brown[600],
+            color: system.token('colors.brown.600'),
             fontSize: hasTags ? '80px' : '90px',
             minHeight: '160px',
             maxWidth: isLong ? '100%' : '640px',
@@ -61,7 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
           {computedTags.map((tag) => (
             <div key={tag} style={{ opacity: 0.8, display: 'flex', fontSize: '20px' }}>
-              <span style={{ color: theme.colors.brown[600] }}>#</span>
+              <span style={{ color: system.token('colors.brown.600') }}>#</span>
               {tag}
             </div>
           ))}
@@ -86,7 +86,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             height: '70px',
             borderRadius: '50%',
             border: '4px solid',
-            borderColor: theme.colors.brown[600],
+            borderColor: system.token('colors.brown.600'),
             overflow: 'hidden',
           }}
         >
@@ -110,7 +110,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           borderTopLeftRadius: '20px',
           fontWeight: 'semibold',
           fontSize: '24px',
-          background: theme.colors.brown[600],
+          background: system.token('colors.brown.600'),
           padding: '8px 16px',
         }}
       >
@@ -132,7 +132,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   )
 
   const resvg = new Resvg(svg, {
-    background: theme.colors.gray['900'],
+    background: system.token('colors.gray.900'),
     fitTo: {
       mode: 'width',
       value: 2400,
