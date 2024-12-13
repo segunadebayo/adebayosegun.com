@@ -10,7 +10,7 @@
   "scripts": {
     "env:pull": "vercel env pull",
     "gen": "plop blog:create",
-    "build": "next build",
+    "build": "contentlayer build && next build",
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
