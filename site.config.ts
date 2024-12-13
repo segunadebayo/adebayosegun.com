@@ -17,7 +17,7 @@ export const tags = [
   'tips',
   'github-actions',
   'ci',
-]
+];
 
 const shared = {
   name: 'Segun Adebayo',
@@ -29,7 +29,7 @@ const shared = {
   description:
     'UI Engineer passionate about design systems, state machines, accessibility, DX and Rust.',
   image: 'https://adebayosegun.com/static/images/banner.png',
-}
+};
 
 const siteConfig = {
   name: shared.name,
@@ -70,6 +70,6 @@ const siteConfig = {
       },
     ],
   },
-}
+};
 
-export default siteConfig
+export default siteConfig;

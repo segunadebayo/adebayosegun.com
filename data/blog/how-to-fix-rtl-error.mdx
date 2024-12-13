@@ -23,17 +23,17 @@ Here's a preview of the failure point
 ```jsx
 test('should not be interactive when disabled', () => {
   render(
-    <Editable defaultValue='editable' isDisabled>
-      <EditablePreview data-testid='preview' />
-      <EditableInput data-testid='input' />
+    <Editable defaultValue="editable" isDisabled>
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
     </Editable>,
-  )
+  );
 
-  userEvent.click(screen.getByText(/editable/))
+  userEvent.click(screen.getByText(/editable/));
   // ❌ Error: Cannot read property 'createEvent' of null
   // Reason: `findByTestId` returns a promise, not the element itself.
-  expect(screen.findByTestId('input')).not.toBeVisible()
-})
+  expect(screen.findByTestId('input')).not.toBeVisible();
+});
 ```
 
 We can fix this by:
@@ -44,16 +44,16 @@ We can fix this by:
 ```jsx
 test('should not be interactive when disabled', async () => {
   render(
-    <Editable defaultValue='editable' isDisabled>
-      <EditablePreview data-testid='preview' />
-      <EditableInput data-testid='input' />
+    <Editable defaultValue="editable" isDisabled>
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
     </Editable>,
-  )
+  );
 
-  userEvent.click(screen.getByText(/editable/))
+  userEvent.click(screen.getByText(/editable/));
   // ✅ Success: Found the element
-  expect(await screen.findByTestId('input')).not.toBeVisible()
-})
+  expect(await screen.findByTestId('input')).not.toBeVisible();
+});
 ```
 
 Another way to resolve this is to use `getByTestId` instead of `findByTestId`.
@@ -61,16 +61,16 @@ Another way to resolve this is to use `getByTestId` instead of `findByTestId`.
 ```jsx
 test('should not be interactive when disabled', () => {
   render(
-    <Editable defaultValue='editable' isDisabled>
-      <EditablePreview data-testid='preview' />
-      <EditableInput data-testid='input' />
+    <Editable defaultValue="editable" isDisabled>
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
     </Editable>,
-  )
+  );
 
-  userEvent.click(screen.getByText(/editable/))
+  userEvent.click(screen.getByText(/editable/));
   // ✅ Success: Found the element
-  expect(screen.getByTestId('input')).not.toBeVisible()
-})
+  expect(screen.getByTestId('input')).not.toBeVisible();
+});
 ```
 
 and that's it!

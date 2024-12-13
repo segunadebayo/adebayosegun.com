@@ -9,8 +9,8 @@ tags: ['chakra', 'design-system', 'roadmap']
 I've been working on Chakra UI for the past five years, and I'm very proud of what we've achieved collectively. With our growing team, we've achieved over **1.9M downloads per month**, **2M unique website visits** per month, and over **31k Github stars**; this has been one of my most rewarding projects to date.
 
 <Image
-  src='/static/images/stats-mar-2023.png'
-  alt='Chakra UI stats for 2023'
+  src="/static/images/stats-mar-2023.png"
+  alt="Chakra UI stats for 2023"
   fill
   ratio={{ base: 3, md: 4.2 }}
 />
@@ -18,8 +18,8 @@ I've been working on Chakra UI for the past five years, and I'm very proud of wh
 For a project that started with a single maintainer to become a multi-framework team, this has been a nerve-cracking, and exciting ride. Growing and managing the core Chakra team has been a great ride, and I'll do it again.
 
 <Image
-  src='/static/images/chakra-team.png'
-  alt='The Chakra UI team pictures for 2022 meetup'
+  src="/static/images/chakra-team.png"
+  alt="The Chakra UI team pictures for 2022 meetup"
   fill
   ratio={{ base: 3, md: 4.2 }}
 />
@@ -95,11 +95,11 @@ This led me down the "curiosity hole" and I came back with a working on a new li
 
 I made a video with Lee Robinson where we talked about the future of Chakra and what we're planning to do next. You can watch it here: https://www.youtube.com/watch?v=I5xEc9t-HZg
 
-<a href='https://www.youtube.com/watch?v=I5xEc9t-HZg'>
+<a href="https://www.youtube.com/watch?v=I5xEc9t-HZg">
   <Image
-    marginY='10'
-    src='/static/images/lee-interview.png'
-    alt='The future of Chakra UI interview between Lee and Sage'
+    marginY="10"
+    src="/static/images/lee-interview.png"
+    alt="The future of Chakra UI interview between Lee and Sage"
     width={500}
     height={300}
   />
@@ -115,7 +115,7 @@ Over the years, this has raised the barrier to understand or contribute to the c
 
 To reduce the complexity, we're splitting up the big ideas in Chakra into smaller, manageable and independent projects. Here's a quick overview:
 
-<Image src='/static/images/chakra-focus-areas.png' alt='The future of Chakra UI' fill ratio={2} />
+<Image src="/static/images/chakra-focus-areas.png" alt="The future of Chakra UI" fill ratio={2} />
 
 - **Styling system:** Zero runtime CSS-in-JS system that supports style props.
 - **Design token:** One place to author, document and automate design tokens.
@@ -143,22 +143,22 @@ Every interactive component in Chakra UI will be modeled as a state machine. Our
 State machines allow us to carefully architect the states and transitions of the component logic. This approach will enable us to build easily debuggable, predictable, and maintainable components.
 
 <Image
-  src='/static/images/popover-machine.png'
+  src="/static/images/popover-machine.png"
   fill
   ratio={2.2}
   caption
-  alt='A example of a popover logic modelled with State machine'
+  alt="A example of a popover logic modelled with State machine"
 />
 
 Zag.js is our low-level state machine library used to build all the components in Chakra UI. We aim to develop a robust set of application and e-commerce components that works in most JS frameworks.
 
 > To learn more about Zag.js, check out the docs here: https://zagjs.com, or you can watch my demo on the Learn with Jason show here: https://www.youtube.com/watch?v=l8HJoE_ktDc
 
-<a href='https://www.youtube.com/watch?v=l8HJoE_ktDc'>
+<a href="https://www.youtube.com/watch?v=l8HJoE_ktDc">
   <Image
-    marginY='10'
-    src='/static/images/jason-interview.png'
-    alt='An interview about Zag.js with Jason Lengstorf and Sage'
+    marginY="10"
+    src="/static/images/jason-interview.png"
+    alt="An interview about Zag.js with Jason Lengstorf and Sage"
     width={500}
     height={300}
   />
@@ -168,17 +168,17 @@ Here's a quick example of how we can build a number input component using Zag.js
 
 ```jsx
 // 1. Import the state machine
-import * as numberInput from '@zag-js/number-input'
+import * as numberInput from '@zag-js/number-input';
 
 // 2. Import the React bindings
-import { useMachine, normalizeProps } from '@zag-js/react'
+import { useMachine, normalizeProps } from '@zag-js/react';
 
 export function NumberInput() {
   // 3. Consume the machine
-  const [state, send] = useMachine(numberInput.machine({ id: '1', max: 50, min: -50 }))
+  const [state, send] = useMachine(numberInput.machine({ id: '1', max: 50, min: -50 }));
 
   // 4. Convert machine to a user friendly API
-  const api = numberInput.connect(state, send, normalizeProps)
+  const api = numberInput.connect(state, send, normalizeProps);
 
   // 5. Render the component
   return (
@@ -190,7 +190,7 @@ export function NumberInput() {
         <button {...api.incrementButtonProps}>INC</button>
       </div>
     </div>
-  )
+  );
 }
 ```
 
@@ -201,7 +201,7 @@ Building UI components with State machines sounds exciting but can sometimes sou
 To increase adoption, we're wrapping Zag.js component logic into a headless component library you can use to build your applications and design systems with speed.
 
 ```jsx
-import { NumberInput } from '@ark-ui/react'
+import { NumberInput } from '@ark-ui/react';
 
 export function Demo() {
   return (
@@ -217,7 +217,7 @@ export function Demo() {
         </NumberInput.IncrementTrigger>
       </NumberInput.Control>
     </NumberInput>
-  )
+  );
 }
 ```
 

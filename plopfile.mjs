@@ -1,4 +1,4 @@
-const uniq = (arr) => Array.from(new Set(arr))
+const uniq = (arr) => Array.from(new Set(arr));
 
 const tags = uniq([
   'ark',
@@ -17,7 +17,7 @@ const tags = uniq([
   'testing',
   'thoughts',
   'zag',
-])
+]);
 
 /**
  * @param {import("plop").NodePlopAPI} plop
@@ -57,9 +57,9 @@ function run(plop) {
             publishedAt: new Date().toISOString().split('T')[0],
           },
         },
-      ]
+      ];
     },
-  })
+  });
 }
 
-export default run
+export default run;

@@ -13,6 +13,6 @@ const tools = [
   'Zeplin',
   'Prisma',
   'GraphQL',
-]
+];
 
-export default tools
+export default tools;

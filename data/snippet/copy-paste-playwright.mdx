@@ -10,37 +10,37 @@ When writing tests, you might need to copy and paste some text. Playwright has a
 ```ts
 test('on paste should autofill', async ({ page, context }) => {
   // grant access to clipboard (you can also set this in the playwright.config.ts file)
-  await context.grantPermissions(['clipboard-read', 'clipboard-write'])
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
 
   // focus on the input
-  await page.locator('input').focus()
+  await page.locator('input').focus();
 
   // copy text to clipboard
-  await page.evaluate(() => navigator.clipboard.writeText('123'))
+  await page.evaluate(() => navigator.clipboard.writeText('123'));
 
   // Get clipboard content
-  const handle = await page.evaluateHandle(() => navigator.clipboard.readText())
-  const clipboardContent = await handle.jsonValue()
+  const handle = await page.evaluateHandle(() => navigator.clipboard.readText());
+  const clipboardContent = await handle.jsonValue();
 
   // paste text from clipboard
-  await page.locator(first).press('Meta+v')
+  await page.locator(first).press('Meta+v');
 
   // check if the input has the value
-  await expect(page.locator(input)).toHaveValue('123')
-})
+  await expect(page.locator(input)).toHaveValue('123');
+});
 ```
 
 To grant access globally, you can set it in the playwright.config.ts file:
 
 ```ts
-import type { PlaywrightTestConfig } from '@playwright/test'
+import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   use: {
     //...
     permissions: ['clipboard-read'],
   },
-}
+};
 
-export default config
+export default config;
 ```

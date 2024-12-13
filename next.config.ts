@@ -1,4 +1,4 @@
-import { withContentlayer } from 'next-contentlayer'
+import { withContentlayer } from 'next-contentlayer';
 
 export default withContentlayer({
   experimental: {
@@ -18,4 +18,4 @@ export default withContentlayer({
       'opengraph.githubassets.com',
     ].map((hostname) => ({ hostname })),
   },
-})
+});

@@ -32,14 +32,14 @@ You can try this today by adding the `lightningcss: true` flag to your `panda.co
 export default defineConfig({
   // ...
   lightningcss: true,
-})
+});
 ```
 
 ## Panda Studio (⧖ In Progress)
 
 Panda Studio is a live Astro server that provides automatic documentation for your design tokens. The goal is to make it easy for teams to visualize and test their tokens without spinning up a Storybook story.
 
-<Image src='/static/images/panda-studio.png' alt='Demo of Panda Studio' fill ratio={2} />
+<Image src="/static/images/panda-studio.png" alt="Demo of Panda Studio" fill ratio={2} />
 
 <br />
 
@@ -68,7 +68,7 @@ Color opacity modifiers was popularized by TailwindCSS and it a great way to qui
 const className = css({
   bg: 'red.300/50',
   color: 'white',
-})
+});
 ```
 
 This will generate the following css:
@@ -112,13 +112,13 @@ export default defineConfig({
       md: '80em',
     },
   },
-})
+});
 ```
 
 ```tsx
 // 2 - Automatically generate container query pattern
 
-import { cq } from 'styled-system/patterns'
+import { cq } from 'styled-system/patterns';
 
 function Demo() {
   return (
@@ -131,7 +131,7 @@ function Demo() {
         })}
       />
     </nav>
-  )
+  );
 }
 ```
 
@@ -155,7 +155,7 @@ export default defineConfig({
   formatTokenName: (path) => `$${path.join('')}`,
   // $red300 => red300 (ensure cleaner class names)
   formatClassName: (token) => token.replace(/\$/, ''),
-})
+});
 ```
 
 Makes it possible to write Stitches-like styles, while generating cleaner class names.
@@ -163,7 +163,7 @@ Makes it possible to write Stitches-like styles, while generating cleaner class 
 ```tsx
 const className = css({
   color: '$red300',
-})
+});
 ```
 
 This is especially useful for teams that want to use a different naming convention for their tokens, or are migrating from libraries like Stitches.

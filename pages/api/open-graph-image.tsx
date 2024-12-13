@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { Resvg } from '@resvg/resvg-js'
-import { getAbsoluteURL } from 'lib/router-utils'
-import { system } from 'lib/theme'
-import { NextApiRequest, NextApiResponse } from 'next'
-import satori from 'satori'
+import { Resvg } from '@resvg/resvg-js';
+import { getAbsoluteURL } from 'lib/router-utils';
+import { system } from 'lib/theme';
+import { NextApiRequest, NextApiResponse } from 'next';
+import satori from 'satori';
 
-const style = (style: React.CSSProperties) => style
+const style = (style: React.CSSProperties) => style;
 
 const stack = (style: React.CSSProperties = {}): React.CSSProperties => ({
   gap: '8px',
@@ -13,9 +13,9 @@ const stack = (style: React.CSSProperties = {}): React.CSSProperties => ({
   alignItems: 'flex-start',
   ...style,
   display: 'flex',
-})
+});
 
-const isString = (value: unknown): value is string => typeof value === 'string'
+const isString = (value: unknown): value is string => typeof value === 'string';
 
 const styles = {
   container: style({
@@ -25,17 +25,17 @@ const styles = {
     padding: '72px',
     color: system.token('colors.gray.200'),
   }),
-}
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { title, date, readingTime, tags } = req.query
-  const computedTags = isString(tags) ? tags.split(',') : []
-  const hasTags = computedTags.length > 0
-  const isLong = title?.length > 35
+  const { title, date, readingTime, tags } = req.query;
+  const computedTags = isString(tags) ? tags.split(',') : [];
+  const hasTags = computedTags.length > 0;
+  const isLong = title?.length > 35;
 
   const inter = await fetch('https://api.fontsource.org/v1/fonts/inter/latin-600-normal.ttf').then(
     (res) => res.arrayBuffer(),
-  )
+  );
 
   const svg = await satori(
     <div style={styles.container}>
@@ -91,7 +91,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }}
         >
           <img
-            alt='Segun Adebayo'
+            alt="Segun Adebayo"
             src={getAbsoluteURL('/static/images/segun-adebayo-headshot.jpg')}
             width={50}
             height={50}
@@ -129,7 +129,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       ],
     },
-  )
+  );
 
   const resvg = new Resvg(svg, {
     background: system.token('colors.gray.900'),
@@ -137,12 +137,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       mode: 'width',
       value: 2400,
     },
-  })
+  });
 
-  const pngData = resvg.render()
-  const pngBuffer = pngData.asPng()
+  const pngData = resvg.render();
+  const pngBuffer = pngData.asPng();
 
-  res.setHeader('Cache-Control', 's-maxage=31536000, stale-while-revalidate')
-  res.setHeader('Content-Type', 'image/png')
-  res.status(200).end(pngBuffer)
+  res.setHeader('Cache-Control', 's-maxage=31536000, stale-while-revalidate');
+  res.setHeader('Content-Type', 'image/png');
+  res.status(200).end(pngBuffer);
 }

@@ -15,8 +15,8 @@ Over the past months years, we've been working hard to execute on the ideas desc
 - **Headless UI components:** We're currently working on [Ark UI](https://ark-ui.com/)
 
 <Image
-  src='/static/images/chakra-ark-panda.png'
-  alt='Chakra, Ark and Panda'
+  src="/static/images/chakra-ark-panda.png"
+  alt="Chakra, Ark and Panda"
   fill
   ratio={{ base: 3, md: 4.2 }}
 />
@@ -106,7 +106,7 @@ More components have been one of the top requests from the community. We're goin
     variants: {},
     sizes: {},
     defaultProps: {},
-  }
+  };
 
   // new API
   const buttonTheme = {
@@ -117,7 +117,7 @@ More components have been one of the top requests from the community. We're goin
       defaultVariants: {},
       compoundVariants: [],
     },
-  }
+  };
   ```
 
   > This API will be supported by the `chakra` factory as well as the theme context.
@@ -130,16 +130,16 @@ More components have been one of the top requests from the community. We're goin
   // current API
   function Demo() {
     return (
-      <Box color='red.500' _dark={{ color: 'red.300' }}>
+      <Box color="red.500" _dark={{ color: 'red.300' }}>
         Hello
       </Box>
-    )
+    );
   }
 
   // Alternative API (with semantic tokens)
   function Demo() {
     // accent => { _light: 'red.500', _dark: 'red.300'}
-    return <Box color='red.accent'>Hello</Box>
+    return <Box color="red.accent">Hello</Box>;
   }
   ```
 
@@ -151,19 +151,19 @@ The `as` prop is a known complexity in the ecosystem when it comes to getting th
 // current API
 function Demo() {
   return (
-    <Button as='a' href='https://google.com'>
+    <Button as="a" href="https://google.com">
       Click me
     </Button>
-  )
+  );
 }
 
 // new API
 function Demo() {
   return (
     <Button asChild>
-      <a href='https://google.com'>Click me</a>
+      <a href="https://google.com">Click me</a>
     </Button>
-  )
+  );
 }
 ```
 

@@ -1,18 +1,18 @@
-import { NextSeo } from 'next-seo'
-import siteConfig from 'site.config'
+import { NextSeo } from 'next-seo';
+import siteConfig from 'site.config';
 
 type SEOProps = {
-  title?: string
-  description?: string
-  image?: string
+  title?: string;
+  description?: string;
+  image?: string;
   post?: {
-    date?: string
-    tags?: string[]
-  }
-}
+    date?: string;
+    tags?: string[];
+  };
+};
 
 export default function SEO(props: SEOProps) {
-  const { title, description, post, image } = props
+  const { title, description, post, image } = props;
   return (
     <NextSeo
       title={title}
@@ -25,5 +25,5 @@ export default function SEO(props: SEOProps) {
       }}
       titleTemplate={siteConfig.titleTemplate}
     />
-  )
+  );
 }

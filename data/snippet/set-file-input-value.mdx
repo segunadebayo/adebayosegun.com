@@ -7,18 +7,18 @@ categories: ['typescript', 'dom']
 
 ```ts
 // 1. Get the file input element
-const inputEl = document.querySelector('input[type=file]')
+const inputEl = document.querySelector('input[type=file]');
 
 // 2. Create a new File object
 const myFile = new File(['File content'], 'myFile.md', {
   type: 'text/plain',
   lastModified: new Date(),
-})
+});
 
 // 3. Create a new DataTransfer to store the files
-const dataTransfer = new DataTransfer()
-dataTransfer.items.add(myFile)
+const dataTransfer = new DataTransfer();
+dataTransfer.items.add(myFile);
 
 // 4. Set the files on the file input element
-inputEl.files = dataTransfer.files
+inputEl.files = dataTransfer.files;
 ```
