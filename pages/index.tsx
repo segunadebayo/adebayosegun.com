@@ -7,6 +7,7 @@ import {
   HStack,
   Icon,
   SimpleGrid,
+  Span,
   Stack,
   Text,
   VisuallyHidden,
@@ -134,9 +135,9 @@ export default function HomePage() {
             letterSpacing='tight'
           >
             I design{' '}
-            <Box as='span' color='brown.600'>
+            <Span color='brown.600'>
               component systems
-            </Box>
+            </Span>
           </Heading>
         </Box>
 

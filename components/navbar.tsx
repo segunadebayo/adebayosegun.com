@@ -1,3 +1,4 @@
+import { DrawerBackdrop, DrawerContent, DrawerRoot, DrawerTrigger } from '@/components/ui/drawer'
 import {
   Box,
   Center,
@@ -26,7 +27,6 @@ import {
   SnippetIcon,
   TalksIcon,
 } from './nav-icons'
-import { DrawerBackdrop, DrawerContent, DrawerRoot, DrawerTrigger } from './ui/drawer'
 
 type NavItemProps = {
   data: NavItemData

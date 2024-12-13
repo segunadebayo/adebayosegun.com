@@ -1,4 +1,4 @@
-import { Box, Flex, FlexProps, HStack, StackProps } from '@chakra-ui/react'
+import { Box, Flex, FlexProps, HStack, Span, StackProps } from '@chakra-ui/react'
 
 type HashTagsProps = {
   spacing?: StackProps['gap']
@@ -9,12 +9,12 @@ type HashTagsProps = {
 export default function HashTags(props: HashTagsProps) {
   const { data, spacing, tagProps } = props
   return (
-    <HStack gap={spacing}>
+    <HStack gap={spacing} wrap='wrap'>
       {data.map((item) => (
         <Flex key={item} opacity={0.8} userSelect='none' {...tagProps}>
-          <Box as='span' color='brown.600'>
+          <Span color='brown.600'>
             #
-          </Box>
+          </Span>
           <span>{item}</span>
         </Flex>
       ))}
