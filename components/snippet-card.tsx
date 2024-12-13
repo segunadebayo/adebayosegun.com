@@ -1,7 +1,7 @@
-import { Snippet } from 'contentlayer/generated';
 import { Box, Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
+import { Snippet } from 'contentlayer/generated';
 import Image from 'next/image';
-import NextLink from 'next/link';
+import Link from 'next/link';
 
 type SnippetCardProps = {
   data: Snippet;
@@ -16,8 +16,8 @@ export default function SnippetCard(props: SnippetCardProps) {
         <Image src={snippet.logo} alt="Snippet language" width="40" height="40" />
       </Box>
       <Heading size="md" as="h3" marginBottom="2" marginTop="3">
-        <LinkOverlay as={NextLink} href={`/snippets/${snippet.slug}`}>
-          {snippet.title}
+        <LinkOverlay asChild>
+          <Link href={`/snippets/${snippet.slug}`}>{snippet.title}</Link>
         </LinkOverlay>
       </Heading>
       <Text opacity={0.7}>{snippet.description}</Text>

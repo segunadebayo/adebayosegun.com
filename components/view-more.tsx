@@ -12,7 +12,7 @@ const ViewMore = React.forwardRef(function ViewBox(
   { children, as = 'a', href, ...rest }: ViewBoxProps,
   ref: Ref<any>,
 ) {
-  const sageBase = useToken('colors', 'brown.600');
+  const [sageBase] = useToken('colors', ['brown.600']);
   return (
     <HStack as={as} display="inline-flex" data-group ref={ref} {...rest}>
       <Text fontWeight="bold" color="brown.600">

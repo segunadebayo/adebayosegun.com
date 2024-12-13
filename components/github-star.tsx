@@ -1,4 +1,4 @@
-export default function GithubStarIcon(props) {
+export default function GithubStarIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="48" height="46" viewBox="0 0 48 46" fill="none" {...props}>
       <path

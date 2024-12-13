@@ -1,23 +1,21 @@
-import { Box, Wrap, WrapItem, WrapItemProps, WrapProps } from '@chakra-ui/react';
+import { Box, Flex, FlexProps, HStack, Span, StackProps } from '@chakra-ui/react';
 
 type HashTagsProps = {
-  spacing?: WrapProps['spacing'];
+  spacing?: StackProps['gap'];
   data: string[];
-  tagProps?: WrapItemProps;
+  tagProps?: FlexProps;
 };
 
 export default function HashTags(props: HashTagsProps) {
   const { data, spacing, tagProps } = props;
   return (
-    <Wrap spacing={spacing}>
+    <HStack gap={spacing} wrap="wrap">
       {data.map((item) => (
-        <WrapItem key={item} opacity={0.8} userSelect="none" {...tagProps}>
-          <Box as="span" color="brown.600">
-            #
-          </Box>
+        <Flex key={item} opacity={0.8} userSelect="none" {...tagProps}>
+          <Span color="brown.600">#</Span>
           <span>{item}</span>
-        </WrapItem>
+        </Flex>
       ))}
-    </Wrap>
+    </HStack>
   );
 }

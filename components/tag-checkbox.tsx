@@ -1,25 +1,27 @@
-import { Box, useCheckbox, UseCheckboxProps } from '@chakra-ui/react';
+import { Box, useCheckbox } from '@chakra-ui/react';
 
 type TagCheckboxProps = {
   value: string;
   children: React.ReactNode;
-  onChange?: UseCheckboxProps['onChange'];
+  onChange?: (checked: boolean) => void;
   checked?: boolean;
 };
 
 export default function TagCheckbox(props: TagCheckboxProps) {
   const { value, children, onChange, checked } = props;
 
-  const { getInputProps, getRootProps, getLabelProps, getCheckboxProps } = useCheckbox({
-    onChange,
+  const checkbox = useCheckbox({
+    onCheckedChange({ checked }) {
+      onChange?.(!!checked);
+    },
     value,
-    isChecked: checked,
+    checked,
   });
 
   return (
-    <label {...getRootProps()}>
+    <label {...checkbox.getRootProps()}>
       <Box
-        {...getCheckboxProps()}
+        {...checkbox.getControlProps()}
         userSelect="none"
         data-value={value}
         px="4"
@@ -34,9 +36,9 @@ export default function TagCheckbox(props: TagCheckboxProps) {
         _checked={{ bg: 'brown.600', color: 'black' }}
         _disabled={{ opacity: 0.4, pointerEvents: 'none', cursor: 'unset' }}
       >
-        <span {...getLabelProps()}>{children}</span>
+        <span {...checkbox.getLabelProps()}>{children}</span>
       </Box>
-      <input {...getInputProps()} />
+      <input {...checkbox.getHiddenInputProps()} />
     </label>
   );
 }

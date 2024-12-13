@@ -4,3 +4,7 @@ coverage
 .next
 build
 *.hbs
+.contentlayer
+.vercel
+pnpm-lock.yaml
+public

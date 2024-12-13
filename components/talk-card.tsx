@@ -2,11 +2,11 @@ import { Talk } from 'contentlayer/generated';
 import {
   Badge,
   Box,
-  DarkMode,
   Heading,
   HStack,
   LinkBox,
   LinkOverlay,
+  Span,
   Stack,
   Text,
 } from '@chakra-ui/react';
@@ -46,7 +46,7 @@ export default function TalkCard(props: TalkCardProps) {
     <LinkBox
       position="relative"
       display="flex"
-      data-group
+      className="group"
       gap="2rem"
       flexDirection={{ base: 'column', md: 'row' }}
       transition="background 0.1s ease-in-out"
@@ -56,27 +56,25 @@ export default function TalkCard(props: TalkCardProps) {
         <TalkCoverImage src={talk.image} alt={talk.title} />
       </Box>
 
-      <Stack spacing="4" marginTop="2" zIndex="1">
+      <Stack gap="4" marginTop="2" zIndex="1">
         <Heading as="h3" size="lg">
-          <LinkOverlay as={Link} href={talk.url} isExternal>
+          <LinkOverlay as={Link} href={talk.url} target="_blank">
             {talk.title}
           </LinkOverlay>
         </Heading>
 
         <Text maxWidth={{ md: '37.5rem' }}>{talk.description}</Text>
 
-        <HStack spacing="10">
-          <Text casing="uppercase" fontWeight="bold" fontSize="sm" letterSpacing="wider">
-            <Box as="span" color="brown.600" marginRight="2">
+        <HStack gap="10" className="dark">
+          <Text textTransform="uppercase" fontWeight="bold" fontSize="sm" letterSpacing="wider">
+            <Span color="brown.600" marginRight="2">
               Host:
-            </Box>
+            </Span>
             {talk.host}
           </Text>
-          <DarkMode>
-            <Badge color="brown.600" colorScheme="orange">
-              {talk.type}
-            </Badge>
-          </DarkMode>
+          <Badge color="brown.600" colorPalette="orange">
+            {talk.type}
+          </Badge>
         </HStack>
       </Stack>
     </LinkBox>

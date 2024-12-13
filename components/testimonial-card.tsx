@@ -14,7 +14,7 @@ export default function TestimonialCard(props: TestimonialCardProps) {
       <LinkedInBadge />
 
       <Box>
-        <HStack spacing="5">
+        <HStack gap="5">
           <Circle overflow="hidden">
             <Image alt={testimonial.name} width="40" height="40" src={testimonial.image} />
           </Circle>
@@ -33,8 +33,8 @@ export default function TestimonialCard(props: TestimonialCardProps) {
         lineHeight="tall"
         as="blockquote"
         dangerouslySetInnerHTML={{ __html: testimonial.body.html }}
-        sx={{
-          'p + p': {
+        css={{
+          '& p + p': {
             marginTop: '4',
           },
         }}
