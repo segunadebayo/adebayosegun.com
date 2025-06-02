@@ -26,6 +26,7 @@
     "@resvg/resvg-js": "^2.4.1",
     "@sendgrid/client": "^7.7.0",
     "@sendgrid/mail": "^7.7.0",
+    "@vercel/speed-insights": "^1.2.0",
     "contentlayer": "^0.3.1",
     "framer-motion": "10.10.0",
     "match-sorter": "^6.3.1",
@@ -56,5 +57,6 @@
     "rss": "^1.2.2",
     "typescript": "^5.0.3",
     "vercel": "^32.1.0"
-  }
+  },
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }
