@@ -1,11 +1,11 @@
 import { writeFileSync } from 'fs';
 import RSS from 'rss';
-import { allBlogs } from '.contentlayer/data';
+import allBlogs from '../.contentlayer/generated/Blog/_index.json' assert { type: 'json' };
 
-async function generate() {
+async function main() {  
   const feed = new RSS({
     title: 'Segun Adebayo',
-    site_url: 'https://adebayosegun.com',
+    site_url: 'https://adebayosegun.com', 
     feed_url: 'https://adebayosegun.com/feed.xml',
   });
 
@@ -21,4 +21,4 @@ async function generate() {
   writeFileSync('./public/feed.xml', feed.xml({ indent: true }));
 }
 
-generate();
+main();
