@@ -16,7 +16,7 @@ export default function Footer() {
           </Text>
         </Box>
 
-        <HStack marginTop="9" spacing={{ base: '8', md: '10' }}>
+        <HStack marginTop="9" gap={{ base: '8', md: '10' }}>
           <LinkItem href={siteConfig.profiles.linkedin} icon={LinkedInIcon}>
             LinkedIn
           </LinkItem>

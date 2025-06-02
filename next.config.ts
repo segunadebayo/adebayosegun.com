@@ -1,12 +1,11 @@
-const { withContentlayer } = require('next-contentlayer');
+import { withContentlayer } from 'next-contentlayer';
 
-/**
- * @type {import('next').NextConfig}
- */
-module.exports = withContentlayer({
-  swcMinify: true,
+export default withContentlayer({
+  experimental: {
+    optimizePackageImports: ['@chakra-ui/react'],
+  },
   images: {
-    domains: [
+    remotePatterns: [
       'pbs.twimg.com',
       'vercel.com',
       'i.ytimg.com',
@@ -17,6 +16,6 @@ module.exports = withContentlayer({
       'cdn.changelog.com',
       'speakeasyjs.com',
       'opengraph.githubassets.com',
-    ],
+    ].map((hostname) => ({ hostname })),
   },
 });

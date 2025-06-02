@@ -17,12 +17,12 @@ export default function ProjectCard(props: ProjectCardProps) {
   return (
     <Flex gap="20" direction={{ base: 'column', md: 'row' }}>
       <Box maxWidth={{ md: '27.5rem' }} flex="1">
-        <Stack spacing="6">
-          <Heading as="h3" color="brown.600" letterSpacing="tight">
+        <Stack gap="6">
+          <Heading as="h3" color="brown.600" letterSpacing="tight" size="4xl">
             {project.title}
           </Heading>
           {(project.github || project.website) && (
-            <HStack spacing="12">
+            <HStack gap="12">
               {project.github && (
                 <LinkItem icon={GithubIcon} href={project.github} iconColor="whiteAlpha.600">
                   Github
@@ -82,8 +82,8 @@ function ProjectImageCard(props: ProjectImageCardProps) {
         rounded="lg"
         overflow="hidden"
         boxShadow="xl"
-        sx={{
-          ' > span': {
+        css={{
+          '& > span': {
             transform: 'scale(1.01)',
           },
         }}

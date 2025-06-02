@@ -7,11 +7,10 @@ import {
   HStack,
   Icon,
   SimpleGrid,
+  Span,
   Stack,
   Text,
   VisuallyHidden,
-  Wrap,
-  WrapItem,
 } from '@chakra-ui/react';
 import ChakraLogo from 'components/chakra-logo';
 import Container from 'components/container';
@@ -36,10 +35,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import siteConfig from 'site.config';
 
-function AchievementItem({ icon, children }) {
+function AchievementItem({ icon: IconEl, children }) {
   return (
-    <HStack spacing="3">
-      <Icon as={icon} fontSize="4xl" />
+    <HStack gap="3">
+      <Icon fontSize="4xl">
+        <IconEl />
+      </Icon>
       <Text fontFamily="heading" fontSize="xl">
         {children}
       </Text>
@@ -133,10 +134,7 @@ export default function HomePage() {
             fontSize={{ base: '3rem', md: '5rem', lg: '6.25rem' }}
             letterSpacing="tight"
           >
-            I design{' '}
-            <Box as="span" color="brown.600">
-              component systems
-            </Box>
+            I design <Span color="brown.600">component systems</Span>
           </Heading>
         </Box>
 
@@ -147,7 +145,7 @@ export default function HomePage() {
           </Text>
 
           {/* Profile links */}
-          <SimpleGrid columns={2} marginTop="10" spacing="10" maxWidth="16rem">
+          <SimpleGrid columns={2} marginTop="10" gap="10" maxWidth="16rem">
             <LinkItem icon={LinkedInIcon} href={siteConfig.profiles.linkedin}>
               LinkedIn
             </LinkItem>
@@ -167,9 +165,9 @@ export default function HomePage() {
       {/* Testimonials */}
       <Box as="section" aria-labelledby="heading" py="vGutter">
         <VisuallyHidden>Recommendations</VisuallyHidden>
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6">
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap="6">
           {chunk(allFeaturedTestimonials, 2).map((testimonials, index) => (
-            <Stack key={index} spacing="6">
+            <Stack key={index} gap="6">
               {testimonials.map((data) => (
                 <TestimonialCard key={data.name} data={data} />
               ))}
@@ -184,7 +182,7 @@ export default function HomePage() {
           Featured Projects
         </Heading>
         <Box marginTop="vGutter">
-          <Stack spacing="20">
+          <Stack gap="20">
             {allFeaturedProjects.map((project) => (
               <ProjectCard key={project.title} data={project} />
             ))}
@@ -223,13 +221,13 @@ export default function HomePage() {
         </Box>
 
         {/* ToolList */}
-        <Wrap spacing="10">
+        <HStack wrap="wrap" gap="10">
           {tools.map((tool) => (
-            <WrapItem fontFamily="heading" fontSize="3xl" color="brown.600" key={tool}>
+            <Flex fontFamily="heading" fontSize="3xl" color="brown.600" key={tool}>
               {tool}
-            </WrapItem>
+            </Flex>
           ))}
-        </Wrap>
+        </HStack>
       </Box>
 
       {/* Subscribe callout */}

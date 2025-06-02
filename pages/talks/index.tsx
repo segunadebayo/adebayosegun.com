@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text, Wrap } from '@chakra-ui/react';
+import { Box, Flex, Heading, HStack, Text } from '@chakra-ui/react';
 import Container from 'components/container';
 import EmptyState from 'components/empty-state';
 import SearchInput from 'components/search-input';
@@ -6,14 +6,9 @@ import SEO from 'components/seo';
 import TagCheckbox from 'components/tag-checkbox';
 import TalkCard from 'components/talk-card';
 import useTalkSearch from 'lib/use-talk-search';
-import { useRouter } from 'next/router';
 
 export default function Page() {
   const search = useTalkSearch();
-
-  const { isReady } = useRouter();
-  if (!isReady) return null;
-
   return (
     <Container>
       <SEO title="Talks" />
@@ -38,15 +33,15 @@ export default function Page() {
           />
         </Box>
 
-        <Wrap mt="5" spacing="3">
+        <HStack wrap="wrap" mt="5" gap="3">
           {search.allTags.map((tag) => {
             return (
               <TagCheckbox
                 key={tag}
                 value={tag}
                 checked={search.filters.includes(tag)}
-                onChange={(e) => {
-                  if (e.target.checked) search.addTag(tag);
+                onChange={(checked) => {
+                  if (checked) search.addTag(tag);
                   else search.removeTag(tag);
                 }}
               >
@@ -54,7 +49,7 @@ export default function Page() {
               </TagCheckbox>
             );
           })}
-        </Wrap>
+        </HStack>
 
         <Box marginTop="6rem">
           {search.isEmptyResult ? (

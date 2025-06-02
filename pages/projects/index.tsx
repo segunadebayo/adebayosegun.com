@@ -15,7 +15,7 @@ export default function ProjectPage() {
           <Heading as="h1" size="3xl" marginBottom="6" color="white">
             Projects
           </Heading>
-          <Stack fontSize="lg" maxW="60ch" spacing="4">
+          <Stack fontSize="lg" maxW="60ch" gap="4">
             <Text>
               My primary focus these days is{' '}
               <MDXComponents.a href="https://chakra-ui.com/" target="_blank" rel="noopener">
@@ -33,7 +33,7 @@ export default function ProjectPage() {
         </Box>
 
         <Box marginTop="vGutter">
-          <Stack spacing="20">
+          <Stack gap="20">
             {allProjects.map((project) => (
               <ProjectCard key={project.title} data={project} />
             ))}
