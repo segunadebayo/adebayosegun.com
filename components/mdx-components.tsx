@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Stack, chakra } from '@chakra-ui/react';
+import { AspectRatio, Box, chakra, Stack } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';

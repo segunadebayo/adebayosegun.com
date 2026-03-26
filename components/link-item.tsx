@@ -1,5 +1,5 @@
-import { HStack, Icon, SystemProps, Text } from '@chakra-ui/react';
-import { ElementType } from 'react';
+import { HStack, Icon, type SystemProps, Text } from '@chakra-ui/react';
+import type { ElementType } from 'react';
 
 type LinkItemProps = {
   icon: ElementType;

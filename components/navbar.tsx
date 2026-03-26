@@ -10,7 +10,7 @@ import {
   Icon,
   Stack,
   StackDivider,
-  StackProps,
+  type StackProps,
   Text,
   useBreakpointValue,
   useDisclosure,
@@ -19,13 +19,13 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ElementType, ReactNode, useEffect } from 'react';
+import { type ElementType, type ReactNode, useEffect, useId } from 'react';
 import {
   BlogIcon,
   CloseIcon,
+  CoachingIcon,
   HamburgerMenuIcon,
   ProjectIcon,
-  SnippetIcon,
   TalksIcon,
 } from './nav-icons';
 
@@ -67,7 +67,7 @@ const items: NavItemData[] = [
   { label: 'Talks', href: '/talks', icon: TalksIcon },
   { label: 'Blog', href: '/blog', icon: BlogIcon },
   { label: 'Projects', href: '/projects', icon: ProjectIcon },
-  { label: 'Snippets', href: '/snippets', icon: SnippetIcon },
+  { label: 'Hire Me', href: '/hire', icon: CoachingIcon },
 ];
 
 function DesktopNavItemGroup(props: StackProps) {
@@ -121,6 +121,9 @@ function Headshot() {
 
 function MobileNavMenu() {
   const menu = useDisclosure();
+  const id = useId();
+  const menuId = `${id}-nav-menu`;
+  const triggerId = `${id}-nav-menu-trigger`;
 
   const breakpoint = useBreakpointValue({ base: true, md: false });
 
@@ -139,8 +142,8 @@ function MobileNavMenu() {
         as="button"
         aria-haspopup="true"
         aria-expanded={menu.isOpen}
-        aria-controls="nav-menu"
-        id="nav-menu--trigger"
+        aria-controls={menuId}
+        id={triggerId}
         type="button"
         onClick={menu.onOpen}
       >
@@ -148,7 +151,7 @@ function MobileNavMenu() {
       </Center>
       <Drawer isOpen={menu.isOpen} onClose={menu.onClose} placement="bottom">
         <DrawerOverlay />
-        <DrawerContent id="nav-menu" bg="gray.800" padding="6">
+        <DrawerContent id={menuId} bg="gray.800" padding="6">
           <MobileNavItemGroup />
         </DrawerContent>
       </Drawer>

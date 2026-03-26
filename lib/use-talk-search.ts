@@ -1,5 +1,5 @@
-import { allTalks } from 'contentlayer/generated';
 import { useMemo } from 'react';
+import { talks as allTalks } from '#velite';
 import { getTalkTags } from './contentlayer-utils';
 import search from './match-sorter';
 import useSearchParams from './use-search-params';

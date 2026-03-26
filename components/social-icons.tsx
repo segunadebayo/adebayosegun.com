@@ -1,10 +1,11 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 type IconProps = SVGProps<SVGSVGElement>;
 
 export function LinkedInIcon(props: IconProps) {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" {...props}>
+      <title>LinkedIn Icon</title>
       <path
         d="M20.25 3H3.75C3.3 3 3 3.3 3 3.75V20.25C3 20.7 3.3 21 3.75 21H20.25C20.7 21 21 20.7 21 20.25V3.75C21 3.3 20.7 3 20.25 3ZM8.325 18.375H5.7V9.75H8.4V18.375H8.325ZM6.975 8.55C6.15 8.55 5.4 7.875 5.4 6.975C5.4 6.15 6.075 5.4 6.975 5.4C7.8 5.4 8.55 6.075 8.55 6.975C8.55 7.875 7.875 8.55 6.975 8.55ZM18.375 18.375H15.675V14.175C15.675 13.2 15.675 11.925 14.325 11.925C12.9 11.925 12.75 12.975 12.75 14.1V18.375H10.05V9.75H12.6V10.95C12.975 10.275 13.8 9.6 15.15 9.6C17.85 9.6 18.375 11.4 18.375 13.725V18.375Z"
         fill="currentColor"
@@ -15,9 +16,10 @@ export function LinkedInIcon(props: IconProps) {
 
 export function TwitterIcon(props: IconProps) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+    <svg width="20" height="20" viewBox="0 0 300 300" {...props}>
+      <title>Twitter Icon</title>
       <path
-        d="M20 3.83329C19.25 4.16663 18.5 4.41663 17.6667 4.49996C18.5 3.99996 19.1667 3.16663 19.5 2.24996C18.6667 2.74996 17.8333 3.08329 16.9167 3.24996C16.1667 2.41663 15.0833 1.91663 13.9167 1.91663C11.6667 1.91663 9.83333 3.74996 9.83333 5.99996C9.83333 6.33329 9.83333 6.66663 9.91667 6.91663C6.41667 6.74996 3.41667 5.08329 1.41667 2.58329C1 3.24996 0.833333 3.91663 0.833333 4.66663C0.833333 6.08329 1.58333 7.33329 2.66667 8.08329C2 8.08329 1.33333 7.91663 0.833333 7.58329C0.833333 7.58329 0.833333 7.58329 0.833333 7.66663C0.833333 9.66663 2.25 11.3333 4.08333 11.6666C3.75 11.75 3.41667 11.8333 3 11.8333C2.75 11.8333 2.5 11.8333 2.25 11.75C2.75 13.4166 4.25 14.5833 6.08333 14.5833C4.66667 15.6666 2.91667 16.3333 1 16.3333C0.666667 16.3333 0.333333 16.3333 0 16.25C1.83333 17.4166 4 18.0833 6.25 18.0833C13.8333 18.0833 17.9167 11.8333 17.9167 6.41663C17.9167 6.24996 17.9167 6.08329 17.9167 5.91663C18.75 5.33329 19.4167 4.58329 20 3.83329Z"
+        d="M178.57 127.15 290.27 0h-26.46l-96.97 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59H300L178.57 127.15Zm-36.24 41.27-11.87-16.62L37.09 19.51h40.65l76.18 106.66 11.87 16.62 99.02 138.65h-40.65l-80.83-113.02Z"
         fill="currentColor"
       />
     </svg>
@@ -27,6 +29,7 @@ export function TwitterIcon(props: IconProps) {
 export function EmailIcon(props: IconProps) {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <title>Email Icon</title>
       <path
         d="M10.8289 12.2421C10.5274 12.4485 10.167 12.5515 9.802 12.5355C9.43696 12.5515 9.07659 12.4485 8.7751 12.2421L1 8.06116V15.4695C1 16.0531 1.23184 16.6128 1.64451 17.0255C2.05719 17.4382 2.61689 17.67 3.2005 17.67H16.4035C16.9871 17.67 17.5468 17.4382 17.9595 17.0255C18.3722 16.6128 18.604 16.0531 18.604 15.4695V8.06116L10.8289 12.2421Z"
         fill="currentColor"
@@ -42,6 +45,7 @@ export function EmailIcon(props: IconProps) {
 export function FileIcon(props: IconProps) {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <title>File Icon</title>
       <path
         d="M11 2H3.66667C3.48986 2 3.32029 2.07024 3.19526 2.19526C3.07024 2.32029 3 2.48986 3 2.66667V17.3333C3 17.5101 3.07024 17.6797 3.19526 17.8047C3.32029 17.9298 3.48986 18 3.66667 18H15.6667C15.8435 18 16.0131 17.9298 16.1381 17.8047C16.2631 17.6797 16.3333 17.5101 16.3333 17.3333V7.33333H11.6667C11.4899 7.33333 11.3203 7.2631 11.1953 7.13807C11.0702 7.01305 11 6.84348 11 6.66667V2Z"
         fill="currentColor"
@@ -54,6 +58,7 @@ export function FileIcon(props: IconProps) {
 export function FullLinkedInLogo(props: IconProps) {
   return (
     <svg width="77" height="15" viewBox="0 0 77 15" {...props}>
+      <title>Full LinkedIn Logo</title>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -67,6 +72,7 @@ export function FullLinkedInLogo(props: IconProps) {
 export function GithubIcon(props: IconProps) {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" {...props}>
+      <title>Github Icon</title>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -80,6 +86,7 @@ export function GithubIcon(props: IconProps) {
 export function WebsiteIcon(props: IconProps) {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" {...props}>
+      <title>Website Icon</title>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -93,6 +100,7 @@ export function WebsiteIcon(props: IconProps) {
 export function ArrowRightIcon(props: IconProps) {
   return (
     <svg width="23" height="19" viewBox="0 0 23 19" {...props}>
+      <title>Arrow Right Icon</title>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

@@ -1,7 +1,7 @@
-import { Snippet } from 'contentlayer/generated';
 import { Box, Heading, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import type { Snippet } from '#velite';
 
 type SnippetCardProps = {
   data: Snippet;

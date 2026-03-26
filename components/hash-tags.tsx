@@ -1,4 +1,4 @@
-import { Box, Wrap, WrapItem, WrapItemProps, WrapProps } from '@chakra-ui/react';
+import { Box, Wrap, WrapItem, type WrapItemProps, type WrapProps } from '@chakra-ui/react';
 
 type HashTagsProps = {
   spacing?: WrapProps['spacing'];

@@ -3,7 +3,7 @@ import {
   Circle,
   Flex,
   Heading,
-  HeadingProps,
+  type HeadingProps,
   HStack,
   Icon,
   SimpleGrid,
@@ -20,7 +20,6 @@ import GithubStarIcon from 'components/github-star';
 import LinkItem from 'components/link-item';
 import ProjectCard from 'components/project-card';
 import { EmailIcon, FileIcon, LinkedInIcon, TwitterIcon } from 'components/social-icons';
-import SubscribeForm from 'components/subscribe-form';
 import TalkCard from 'components/talk-card';
 import TestimonialCard from 'components/testimonial-card';
 import ViewMore from 'components/view-more';
@@ -231,11 +230,6 @@ export default function HomePage() {
           ))}
         </Wrap>
       </Box>
-
-      {/* Subscribe callout */}
-      <Box as="hr" borderColor="whiteAlpha.300" />
-      <SubscribeForm />
-      <Box as="hr" borderColor="whiteAlpha.300" />
     </Container>
   );
 }

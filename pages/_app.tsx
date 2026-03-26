@@ -3,8 +3,8 @@ import { Global } from '@emotion/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import fontFace from 'lib/fontface';
 import theme from 'lib/theme';
-import { DefaultSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
+import { DefaultSeo } from 'next-seo';
 import seo from 'site.config';
 import '../styles/prism.css';
 

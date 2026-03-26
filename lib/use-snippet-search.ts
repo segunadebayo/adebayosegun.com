@@ -1,5 +1,5 @@
-import { allSnippets } from 'contentlayer/generated';
 import { useMemo } from 'react';
+import { snippets as allSnippets } from '#velite';
 import { getSnippetCategories } from './contentlayer-utils';
 import search from './match-sorter';
 import useSearchParams from './use-search-params';

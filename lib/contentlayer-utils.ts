@@ -1,10 +1,10 @@
 import {
-  allBlogs,
-  allProjects,
-  allSnippets,
-  allTalks,
-  allTestimonials,
-} from 'contentlayer/generated';
+  blogs as allBlogs,
+  projects as allProjects,
+  snippets as allSnippets,
+  talks as allTalks,
+  testimonials as allTestimonials,
+} from '#velite';
 
 export function getBlogTags(data = allBlogs) {
   const values = data.flatMap((blog) => blog.tags);

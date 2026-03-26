@@ -7,6 +7,6 @@ public/feed.xml
 .vercel
 .env
 
-# Contentlayer
-.contentlayer
+# Velite
+.velite
 .env*.local

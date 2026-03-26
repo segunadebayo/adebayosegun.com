@@ -1,4 +1,3 @@
-import { Talk } from 'contentlayer/generated';
 import {
   Badge,
   Box,
@@ -12,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Talk } from '#velite';
 
 type TalkCardProps = {
   data: Talk;
@@ -74,7 +74,7 @@ export default function TalkCard(props: TalkCardProps) {
           </Text>
           <DarkMode>
             <Badge color="brown.600" colorScheme="orange">
-              {talk.type}
+              {talk.format}
             </Badge>
           </DarkMode>
         </HStack>

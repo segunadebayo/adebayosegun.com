@@ -2,7 +2,7 @@
 import { Resvg } from '@resvg/resvg-js';
 import { getAbsoluteURL } from 'lib/router-utils';
 import theme from 'lib/theme';
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import satori from 'satori';
 
 const style = (style: React.CSSProperties) => style;

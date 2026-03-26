@@ -1,0 +1,352 @@
+---
+title: Changesets and Trusted Publishing on GitHub Actions
+description: Automate npm releases with Changesets and npm's trusted publishing feature on GitHub Actions
+publishedAt: 2026-03-26
+image: https://images.unsplash.com/photo-1618401479427-c8ef9465fbe1?q=80&w=2643&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+tags: ['open-source', 'github-actions', 'npm']
+---
+
+If you maintain open-source packages, you know the pain of managing npm tokens. You
+generate a token, store it as a GitHub secret, pray nobody leaks it, and rotate it every
+few months. It's tedious and error-prone.
+
+npm's **trusted publishing** feature changes this entirely. Instead of storing secrets,
+you tell npm: _"trust publishes that come from this specific GitHub Actions workflow in
+this specific repo."_ No tokens. No secrets to rotate. Just OIDC-based identity
+verification.
+
+Pair that with [Changesets](https://github.com/changesets/changesets) for versioning, and
+you get a fully automated, secure release pipeline. Let me walk you through setting it
+up.
+
+## What is Changesets?
+
+If you're new to Changesets, here's the quick version: it's a tool that helps you manage
+versioning and changelogs, especially in monorepos. Projects like
+[Clerk](https://github.com/clerk/javascript),
+[SvelteKit](https://github.com/sveltejs/kit),
+[Remix](https://github.com/remix-run/remix), and
+[Apollo Client](https://github.com/apollographql/apollo-client) all use it.
+
+The workflow looks like this:
+
+1. A contributor makes a change and runs `npx changeset` to describe what changed and the
+   semver bump type (patch, minor, major).
+2. This creates a small Markdown file in `.changeset/` — basically an "intent to release."
+3. When you're ready to release, `changeset version` consumes those files, bumps
+   `package.json` versions, and updates `CHANGELOG.md`.
+4. Then `changeset publish` publishes to npm.
+
+The beauty is that **versioning decisions happen at PR time**, not at release time. Your
+contributors decide the bump type when the context is fresh.
+
+## What is Trusted Publishing?
+
+Traditionally, publishing to npm from CI requires an access token stored as a secret
+(`NPM_TOKEN`). Trusted publishing eliminates this by using
+[OpenID Connect (OIDC)](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/about-security-hardening-with-openid-connect).
+
+Instead of a long-lived token, npm verifies the identity of your GitHub Actions workflow
+directly. When your workflow runs, GitHub generates a short-lived OIDC token that proves:
+
+- Which repo triggered the workflow
+- Which workflow file is running
+- Which branch it's on
+
+npm checks this against your trusted publisher configuration and allows the publish — no
+stored secrets needed.
+
+**Bonus:** provenance attestations are generated automatically when you use trusted
+publishing. This means anyone can verify that your published package was built from a
+specific commit in your repo. You'll see a nice green checkmark on npmjs.com.
+
+## Prerequisites
+
+Before we start, make sure you have:
+
+- **Node.js >= 22.14.0** — trusted publishing requires a recent Node version
+- **npm >= 11.5.1** — older npm versions don't support trusted publishing
+- A GitHub repository with a package you want to publish
+- Access to your package settings on [npmjs.com](https://npmjs.com)
+
+> If you're not ready for Node 22 yet, you can still use provenance without trusted
+> publishing. I'll cover that as an alternative at the end.
+
+## Step 1: Initialize Changesets
+
+If you haven't already, install and initialize Changesets in your project:
+
+```bash
+npm install -D @changesets/cli
+npx changeset init
+```
+
+This creates a `.changeset/` directory with a `config.json`. Open it and configure it for
+your project:
+
+```json
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "access": "public",
+  "baseBranch": "main"
+}
+```
+
+The key setting here is `"access": "public"`. The default is `"restricted"`, which will
+cause publishing to fail for scoped packages (like `@my/package`). If you're publishing
+public packages, set this to `"public"`.
+
+## Step 2: Add a Release Script
+
+Add a `release` script to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "release": "changeset publish"
+  }
+}
+```
+
+For monorepos, you'll typically want to build all packages before publishing:
+
+```json
+{
+  "scripts": {
+    "release": "npm run build && changeset publish"
+  }
+}
+```
+
+## Step 3: Configure Trusted Publishing on npm
+
+Head to [npmjs.com](https://npmjs.com) and navigate to your package's settings page.
+Look for the **"Trusted Publisher"** section and add a new configuration:
+
+- **Organization or user**: Your GitHub username or org (e.g., `segunadebayo`)
+- **Repository**: The repo name (e.g., `my-package`)
+- **Workflow filename**: The exact filename of your release workflow (e.g., `release.yml`)
+- **Environment** _(optional)_: If you want to use GitHub's deployment protection rules
+
+> **Important:** Each package can only have one trusted publisher at a time. For
+> monorepos, you'll need to configure this for each package you want to publish.
+
+After setting up trusted publishing, I'd also recommend going to your package's
+**Publishing access** settings and selecting **"Require two-factor authentication and
+disallow tokens"**. This ensures that even if someone gets hold of an npm token, they
+can't publish your package. Only the trusted workflow can.
+
+## Step 4: Set Up the GitHub Actions Workflow
+
+Here's the workflow that ties everything together. Create `.github/workflows/release.yml`:
+
+```yaml
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  id-token: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm install -g npm@latest
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - uses: changesets/action@v1
+        with:
+          publish: npm run release
+          commit: 'ci: version packages'
+          title: 'ci: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Let's break down what's happening:
+
+### Permissions
+
+```yaml
+permissions:
+  contents: write # Push version commits + create GitHub releases
+  id-token: write # Request OIDC token for trusted publishing
+  pull-requests: write # Create the "Version Packages" PR
+```
+
+The `id-token: write` permission is the key one. It allows the workflow to request an OIDC
+token from GitHub, which npm uses to verify the workflow's identity. It does _not_ grant
+write access to any resource — it only enables identity verification.
+
+### Concurrency
+
+```yaml
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+```
+
+This prevents parallel release attempts. If two commits land on `main` in quick
+succession, the second workflow run waits for the first to finish.
+
+### The `changesets/action` Step
+
+This action is smart — it behaves differently depending on the state of your repo:
+
+- **If changesets exist:** It runs `changeset version`, creates (or updates) a PR titled
+  "ci: version packages" with the version bumps and changelog updates.
+- **If no changesets exist** (i.e., you just merged the version PR): It runs your
+  `publish` command and publishes to npm.
+
+Notice there's **no `NPM_TOKEN`** in the env. That's the whole point of trusted
+publishing — npm verifies the workflow via OIDC instead.
+
+### Registry URL
+
+```yaml
+- uses: actions/setup-node@v4
+  with:
+    node-version: '22'
+    registry-url: 'https://registry.npmjs.org'
+```
+
+Setting `registry-url` is required. Without it, the OIDC-based authentication won't work.
+
+## Step 5: Make Sure `package.json` Has a `repository` Field
+
+This is easy to forget: npm provenance requires the `repository` field in your
+`package.json` to **case-sensitively match** your GitHub repo:
+
+```json
+{
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/segunadebayo/my-package.git"
+  }
+}
+```
+
+If this is missing or doesn't match, provenance generation will fail silently.
+
+## The Release Flow in Practice
+
+Once everything is set up, here's what a typical release cycle looks like:
+
+**1. Contributors add changesets during development:**
+
+```bash
+npx changeset
+```
+
+They select the packages that changed, the bump type, and write a summary. This creates a
+file like `.changeset/friendly-dogs-dance.md`:
+
+```md
+---
+'my-package': minor
+---
+
+Added support for custom themes
+```
+
+**2. Merge PRs to `main`:**
+
+When a PR with changesets is merged, the release workflow runs. Since changesets exist, the
+action creates a "Version Packages" PR that:
+
+- Bumps versions in `package.json`
+- Updates `CHANGELOG.md` with the changeset summaries
+- Deletes the consumed changeset files
+
+**3. Merge the "Version Packages" PR:**
+
+When you merge this PR, the release workflow runs again. This time there are no changesets,
+so the action runs `changeset publish`, which publishes the new versions to npm — verified
+via trusted publishing, with provenance attestations automatically attached.
+
+**4. Verify on npm:**
+
+Your package page on npmjs.com will show a provenance badge linking back to the exact
+commit and workflow that built it.
+
+## Alternative: Provenance Without Trusted Publishing
+
+If you can't use Node 22 yet, you can still get provenance attestations using the
+traditional token-based approach. The key difference: you use an `NPM_TOKEN` secret and
+set `NPM_CONFIG_PROVENANCE=true`:
+
+```yaml
+- uses: changesets/action@v1
+  with:
+    publish: npm run release
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    NPM_CONFIG_PROVENANCE: true
+```
+
+This works with npm >= 9.5.0 and any Node version. You still get the provenance
+attestations, but you'll need to manage the npm token as a GitHub secret.
+
+## Common Gotchas
+
+A few things that tripped me up (so you don't have to):
+
+**`.changeset/config.json` access field.** Defaults to `"restricted"`. Your scoped
+packages will fail to publish unless you set it to `"public"` or add
+`"publishConfig": { "access": "public" }` to each `package.json`.
+
+**Self-hosted runners don't work.** Both provenance and trusted publishing require
+GitHub-hosted runners. If you're using self-hosted runners, this won't work.
+
+**Private repos can't generate provenance.** Even if you're publishing a public package
+from a private repo, provenance attestations won't be generated.
+
+**One trusted publisher per package.** You can't configure multiple trusted publishers for
+the same package. If you need to publish from multiple workflows, you'll need to stick
+with the token-based approach.
+
+**The version PR won't trigger CI by default.** PRs created with `GITHUB_TOKEN` don't
+trigger other workflows (a GitHub security measure). If you need CI to run on the version
+PR, use a Personal Access Token (PAT) instead:
+
+```yaml
+env:
+  GITHUB_TOKEN: ${{ secrets.MY_PAT }}
+```
+
+## Wrapping Up
+
+Setting up Changesets with trusted publishing might seem like a lot of steps, but once it's
+done, you get a release process that's:
+
+- **Secure** — no long-lived tokens to leak or rotate
+- **Automated** — just merge PRs, the rest happens on its own
+- **Verifiable** — every published version links back to its source commit
+- **Collaborative** — contributors decide the version bump at PR time
+
+The npm ecosystem is moving toward trusted publishing as the default, and the sooner you
+set it up, the fewer headaches you'll have down the road.
+
+If you found this helpful, feel free to share out on your socials or reach out to me on [Twitter/X](https://twitter.com/thesegunadebayo).

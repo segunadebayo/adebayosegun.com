@@ -1,4 +1,4 @@
-import { Box, Circle, Flex, HStack, Heading, Text, chakra } from '@chakra-ui/react';
+import { Box, Circle, chakra, Flex, Heading, HStack, Text } from '@chakra-ui/react';
 import AuthorProfile from 'components/author-profile';
 import Container from 'components/container';
 import HashTags from 'components/hash-tags';
@@ -7,16 +7,15 @@ import MDXComponents from 'components/mdx-components';
 import { BlogIcon } from 'components/nav-icons';
 import SEO from 'components/seo';
 import { TwitterIcon } from 'components/social-icons';
-import SubscribeForm from 'components/subscribe-form';
-import { Blog, allBlogs } from 'contentlayer/generated';
 import formatDate from 'lib/format-date';
+import { useMDXComponent } from 'lib/mdx';
 import { getAbsoluteURL } from 'lib/router-utils';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { useMDXComponent } from 'next-contentlayer/hooks';
 import Image from 'next/image';
+import { blogs as allBlogs, type Blog } from '#velite';
 
 export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl: string }) {
-  const Component = useMDXComponent(blog.body.code);
+  const Component = useMDXComponent(blog.body);
   const date = formatDate(blog.publishedAt);
 
   return (
@@ -94,10 +93,6 @@ export default function BlogPage({ blog, ogImageUrl }: { blog: Blog; ogImageUrl:
             Edit on github
           </LinkItem>
         </Flex>
-
-        <Box as="hr" borderColor="whiteAlpha.200" mt="3rem" />
-
-        <SubscribeForm />
 
         <Box as="hr" borderColor="whiteAlpha.200" mt="3rem" mb="9rem" />
 

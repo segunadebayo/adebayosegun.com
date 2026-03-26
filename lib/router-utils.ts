@@ -1,4 +1,4 @@
-import { NextRouter } from 'next/router';
+import type { NextRouter } from 'next/router';
 
 export function addQuery(router: NextRouter, key: string, value: string | string[]) {
   const { pathname, query } = router;

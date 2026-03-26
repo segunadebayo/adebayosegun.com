@@ -1,4 +1,4 @@
-import { Box, useCheckbox, UseCheckboxProps } from '@chakra-ui/react';
+import { Box, type UseCheckboxProps, useCheckbox } from '@chakra-ui/react';
 
 type TagCheckboxProps = {
   value: string;

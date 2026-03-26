@@ -1,5 +1,5 @@
 import { Box, HStack, Text, useToken } from '@chakra-ui/react';
-import React, { Ref } from 'react';
+import React, { type Ref } from 'react';
 import { ArrowRightIcon } from './social-icons';
 
 type ViewBoxProps = {

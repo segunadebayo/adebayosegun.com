@@ -1,8 +1,8 @@
-import { Blog } from 'contentlayer/generated';
 import { Box, Flex, Heading, HStack, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
 import formatDate from 'lib/format-date';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Blog } from '#velite';
 import ViewMore from './view-more';
 
 type Field = 'publishedAt' | 'readingTime' | 'description' | 'title' | 'image' | 'slug';

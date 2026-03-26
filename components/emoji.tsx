@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 export default function Emoji(props: PropsWithChildren<{ label: string }>) {
   const { label, ...rest } = props;

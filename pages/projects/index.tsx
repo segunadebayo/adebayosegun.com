@@ -1,10 +1,10 @@
-import { allProjects } from 'contentlayer/generated';
 import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 import Container from 'components/container';
 import Emoji from 'components/emoji';
 import MDXComponents from 'components/mdx-components';
 import ProjectCard from 'components/project-card';
 import SEO from 'components/seo';
+import { projects as allProjects } from '#velite';
 
 export default function ProjectPage() {
   return (
@@ -15,7 +15,7 @@ export default function ProjectPage() {
           <Heading as="h1" size="3xl" marginBottom="6" color="white">
             Projects
           </Heading>
-          <Stack fontSize="lg" maxW="60ch" spacing="4">
+          <Stack fontSize="lg" spacing="4">
             <Text>
               My primary focus these days is{' '}
               <MDXComponents.a href="https://chakra-ui.com/" target="_blank" rel="noopener">

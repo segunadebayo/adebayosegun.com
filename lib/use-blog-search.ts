@@ -1,5 +1,5 @@
-import { Blog, allBlogs } from 'contentlayer/generated';
 import { useMemo } from 'react';
+import { blogs as allBlogs, type Blog } from '#velite';
 import { getBlogTags } from './contentlayer-utils';
 import search from './match-sorter';
 import useSearchParams from './use-search-params';

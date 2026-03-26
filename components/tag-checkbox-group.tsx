@@ -1,4 +1,4 @@
-import { Flex, FlexProps } from '@chakra-ui/react';
+import { Flex, type FlexProps } from '@chakra-ui/react';
 import TagCheckbox from './tag-checkbox';
 
 type TagCheckboxGroupProps<T> = Omit<FlexProps, 'onChange'> & {
