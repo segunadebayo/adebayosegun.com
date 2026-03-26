@@ -24,7 +24,7 @@ export default function HirePage() {
         description="Work with Segun Adebayo on design systems, component libraries, and frontend architecture."
       />
       <Box py="vGutter">
-        <Stack spacing="16">
+        <Stack gap="16">
           {/* Intro */}
           <Box>
             <Heading as="h1" size="3xl" letterSpacing="tight" marginBottom="6">
@@ -38,7 +38,7 @@ export default function HirePage() {
           </Box>
 
           {/* Get in touch */}
-          <Stack spacing="4">
+          <Stack gap="4">
             <LinkItem icon={EmailIcon} href={siteConfig.profiles.email}>
               sage@adebayosegun.com
             </LinkItem>
@@ -51,7 +51,7 @@ export default function HirePage() {
           </Stack>
 
           {/* Services */}
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6">
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap="6">
             <ServiceCard title="Consulting">
               Design system strategy, architecture reviews, and technical guidance.
             </ServiceCard>

@@ -22,10 +22,10 @@ export function BlogCard(props: BlogCardProps) {
       </Box>
 
       <Box flex="1" mt="5">
-        <HStack spacing="5" fontSize="sm">
-          <HStack spacing="2" color="brown.600">
-            <Box as="time" dateTime={date.iso}>
-              {date.pretty}
+        <HStack gap="5" fontSize="sm">
+          <HStack gap="2" color="brown.600">
+            <Box asChild>
+              <time dateTime={date.iso}>{date.pretty}</time>
             </Box>
             <span aria-hidden>•</span>
             <Box>{readingTime.text}</Box>

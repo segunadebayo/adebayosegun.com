@@ -3,23 +3,20 @@ import {
   Center,
   Circle,
   Drawer,
-  DrawerContent,
-  DrawerOverlay,
   Flex,
   HStack,
   Icon,
+  Portal,
   Stack,
-  StackDivider,
   type StackProps,
+  StackSeparator,
   Text,
-  useBreakpointValue,
-  useDisclosure,
   VisuallyHidden,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { type ElementType, type ReactNode, useEffect, useId } from 'react';
+import { type ElementType, type ReactNode, useState } from 'react';
 import {
   BlogIcon,
   CloseIcon,
@@ -38,20 +35,24 @@ type NavItemProps = {
 
 function NavItem(props: NavItemProps) {
   const { children, data, active, large } = props;
+  const IconEl = data.icon;
   return (
     <HStack
-      as={Link}
-      href={data.href}
-      spacing="2"
+      asChild
+      gap="2"
       paddingX="3"
       paddingY={large ? '5' : '2.5'}
       rounded="lg"
       aria-current={active ? 'page' : undefined}
       _hover={{ color: 'brown.600' }}
-      _activeLink={{ bg: 'gray.800', shadow: 'highlight' }}
+      _currentPage={{ bg: 'gray.800', shadow: 'highlight' }}
     >
-      <Icon as={data.icon} color="brown.600" fontSize="lg" />
-      <Text fontFamily="heading">{children}</Text>
+      <Link href={data.href}>
+        <Icon color="brown.600" fontSize="lg">
+          <IconEl />
+        </Icon>
+        <Text fontFamily="heading">{children}</Text>
+      </Link>
     </HStack>
   );
 }
@@ -73,7 +74,7 @@ const items: NavItemData[] = [
 function DesktopNavItemGroup(props: StackProps) {
   const { asPath } = useRouter();
   return (
-    <HStack as="nav" aria-label="Main navigation" spacing="8" {...props}>
+    <HStack as="nav" aria-label="Main navigation" gap="8" {...props}>
       {items.map((item) => (
         <NavItem key={item.label} data={item} active={asPath.startsWith(item.href)}>
           {item.label}
@@ -86,10 +87,10 @@ function DesktopNavItemGroup(props: StackProps) {
 function MobileNavItemGroup(props: StackProps) {
   return (
     <Stack
-      divider={<StackDivider borderColor="whiteAlpha.300" />}
+      separator={<StackSeparator borderColor="whiteAlpha.300" />}
       as="nav"
       aria-label="Main navigation"
-      spacing="0"
+      gap="0"
       {...props}
     >
       {items.map((item) => (
@@ -120,42 +121,23 @@ function Headshot() {
 }
 
 function MobileNavMenu() {
-  const menu = useDisclosure();
-  const id = useId();
-  const menuId = `${id}-nav-menu`;
-  const triggerId = `${id}-nav-menu-trigger`;
-
-  const breakpoint = useBreakpointValue({ base: true, md: false });
-
-  useEffect(() => {
-    if (menu.isOpen && !breakpoint) {
-      menu.onClose();
-    }
-  }, [breakpoint, menu]);
-
+  const [open, setOpen] = useState(false);
   return (
-    <>
-      <Center
-        width="10"
-        height="10"
-        display={{ base: 'flex', md: 'none' }}
-        as="button"
-        aria-haspopup="true"
-        aria-expanded={menu.isOpen}
-        aria-controls={menuId}
-        id={triggerId}
-        type="button"
-        onClick={menu.onOpen}
-      >
-        {menu.isOpen ? <CloseIcon /> : <HamburgerMenuIcon />}
-      </Center>
-      <Drawer isOpen={menu.isOpen} onClose={menu.onClose} placement="bottom">
-        <DrawerOverlay />
-        <DrawerContent id={menuId} bg="gray.800" padding="6">
-          <MobileNavItemGroup />
-        </DrawerContent>
-      </Drawer>
-    </>
+    <Drawer.Root placement="bottom" open={open} onOpenChange={(e) => setOpen(e.open)}>
+      <Drawer.Trigger asChild>
+        <Center width="10" height="10" display={{ base: 'flex', md: 'none' }} as="button">
+          {open ? <CloseIcon /> : <HamburgerMenuIcon />}
+        </Center>
+      </Drawer.Trigger>
+      <Portal>
+        <Drawer.Backdrop />
+        <Drawer.Positioner>
+          <Drawer.Content bg="gray.800" padding="6">
+            <MobileNavItemGroup />
+          </Drawer.Content>
+        </Drawer.Positioner>
+      </Portal>
+    </Drawer.Root>
   );
 }
 

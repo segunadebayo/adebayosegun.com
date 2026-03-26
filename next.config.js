@@ -16,6 +16,9 @@ class VeliteWebpackPlugin {
  * @type {import('next').NextConfig}
  */
 module.exports = {
+  experimental: {
+    optimizePackageImports: ['@chakra-ui/react'],
+  },
   webpack: (config) => {
     config.plugins.push(new VeliteWebpackPlugin());
     return config;

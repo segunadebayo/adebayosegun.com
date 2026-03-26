@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text, Wrap } from '@chakra-ui/react';
+import { Box, Flex, Heading, HStack, Text } from '@chakra-ui/react';
 import Container from 'components/container';
 import EmptyState from 'components/empty-state';
 import SearchInput from 'components/search-input';
@@ -38,15 +38,15 @@ export default function Page() {
           />
         </Box>
 
-        <Wrap mt="5" spacing="3">
+        <HStack mt="5" gap="3" wrap="wrap">
           {search.allTags.map((tag) => {
             return (
               <TagCheckbox
                 key={tag}
                 value={tag}
                 checked={search.filters.includes(tag)}
-                onChange={(e) => {
-                  if (e.target.checked) search.addTag(tag);
+                onChange={(checked) => {
+                  if (checked) search.addTag(tag);
                   else search.removeTag(tag);
                 }}
               >
@@ -54,7 +54,7 @@ export default function Page() {
               </TagCheckbox>
             );
           })}
-        </Wrap>
+        </HStack>
 
         <Box marginTop="6rem">
           {search.isEmptyResult ? (

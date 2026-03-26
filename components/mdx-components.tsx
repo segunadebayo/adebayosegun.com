@@ -36,7 +36,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
     return <chakra.ul paddingStart="4" marginY="5" {...props} />;
   },
   li(props) {
-    return <chakra.li marginY="2" sx={{ '&::marker': { color: 'brown.600' } }} {...props} />;
+    return <chakra.li marginY="2" css={{ '&::marker': { color: 'brown.600' } }} {...props} />;
   },
   h2(props) {
     return (
@@ -73,7 +73,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
         paddingY="4"
         marginX="-6"
         bg="gray.800"
-        sx={{ borderLeft: '4px solid', borderColor: 'brown.600' }}
+        css={{ borderLeft: '4px solid', borderColor: 'brown.600' }}
         {...props}
       />
     );
@@ -81,7 +81,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
   Image({ ratio, alt, marginY = '4rem', fit, caption, maxWidth, ...rest }) {
     if (ratio) {
       return (
-        <Stack as="figure" marginY={marginY} spacing="5">
+        <Stack as="figure" marginY={marginY} gap="5">
           <AspectRatio ratio={ratio} position="relative" maxWidth={maxWidth}>
             <Image
               alt={alt}
@@ -91,9 +91,9 @@ const MDXComponents: Record<string, React.FC<any>> = {
             />
           </AspectRatio>
           {caption && (
-            <chakra.figcaption fontSize="small" textAlign="center" color="gray.400">
+            <Box as="figcaption" fontSize="small" textAlign="center" color="gray.400">
               {alt}
-            </chakra.figcaption>
+            </Box>
           )}
         </Stack>
       );
@@ -102,9 +102,9 @@ const MDXComponents: Record<string, React.FC<any>> = {
       <Stack as="figure" marginY={marginY} maxWidth={maxWidth}>
         <Image alt={alt} className="img" style={{ objectFit: fit }} {...rest} />
         {caption && (
-          <chakra.figcaption fontSize="small" textAlign="center" color="gray.400">
+          <Box as="figcaption" fontSize="small" textAlign="center" color="gray.400">
             {alt}
-          </chakra.figcaption>
+          </Box>
         )}
       </Stack>
     );
@@ -114,7 +114,7 @@ const MDXComponents: Record<string, React.FC<any>> = {
   },
   code(props) {
     if (typeof props.children === 'string') {
-      return <chakra.code color="brown.600" rounded="sm">{`\`${props.children}\``}</chakra.code>;
+      return <Box as="code" color="brown.600" rounded="sm">{`\`${props.children}\``}</Box>;
     }
     return <code {...props} />;
   },
@@ -126,24 +126,24 @@ const MDXComponents: Record<string, React.FC<any>> = {
       <chakra.table
         marginY="10"
         width="full"
-        sx={{
+        css={{
           borderCollapse: 'collapse',
-          thead: {
+          '& thead': {
             borderBottomWidth: '1px',
             borderBottomColor: 'gray.700',
-            th: {
+            '& th': {
               textAlign: 'start',
               padding: '2',
               verticalAlign: 'bottom',
               color: 'gray.200',
             },
           },
-          tbody: {
-            tr: {
+          '& tbody': {
+            '& tr': {
               borderBottomWidth: '1px',
               borderBottomColor: 'gray.800',
             },
-            td: {
+            '& td': {
               padding: '2',
             },
           },

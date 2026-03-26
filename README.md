@@ -31,12 +31,12 @@ velite.config.ts # Content schema and processing
 
 ## Scripts
 
-| Command          | Description                    |
-| ---------------- | ------------------------------ |
-| `pnpm dev`       | Start development server       |
-| `pnpm build`     | Production build               |
-| `pnpm lint`      | Lint with ESLint               |
-| `pnpm format`    | Format with Prettier           |
+| Command       | Description              |
+| ------------- | ------------------------ |
+| `pnpm dev`    | Start development server |
+| `pnpm build`  | Production build         |
+| `pnpm lint`   | Lint with ESLint         |
+| `pnpm format` | Format with Prettier     |
 
 ## License
 
