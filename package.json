@@ -9,7 +9,7 @@
   "scripts": {
     "env:pull": "vercel env pull",
     "gen": "plop blog:create",
-    "build": "next build",
+    "build": "velite build && next build",
     "postbuild": "pnpm tsx scripts/rss.ts && pnpm tsx scripts/sitemap.ts",
     "dev": "next dev",
     "dev:local": "npx playwright install && vercel dev",

@@ -1,20 +1,43 @@
-# My Portfolio
+# adebayosegun.com
 
-⚡️ My personal website built with Next.js, Chakra UI, ContentLayer + MDX, and Vercel.
+Personal website and blog of Segun Adebayo (Sage) — Design Engineer, creator of
+[Chakra UI](https://chakra-ui.com), [Zag.js](https://zagjs.com),
+[Ark UI](https://ark-ui.com), and [Panda CSS](https://panda-css.com).
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Deployment**: [Vercel](https://vercel.com)
+## Stack
+
+- **Framework**: [Next.js](https://nextjs.org)
+- **Content**: [Velite](https://velite.js.org)
 - **Styling**: [Chakra UI](https://chakra-ui.com)
+- **Deployment**: [Vercel](https://vercel.com)
 
-## Local Development
+## Getting Started
 
 ```bash
-git clone https://github.com/segunadebayo/adebayosegun.com
-cd adebayosegun.com
-pnpm i
+pnpm install
 pnpm dev
 ```
 
+## Project Structure
+
+```
+data/           # MDX/Markdown content (blog, talks, projects, testimonials)
+pages/          # Next.js pages
+components/     # React components
+lib/            # Utilities and hooks
+public/         # Static assets
+velite.config.ts # Content schema and processing
+```
+
+## Scripts
+
+| Command          | Description                    |
+| ---------------- | ------------------------------ |
+| `pnpm dev`       | Start development server       |
+| `pnpm build`     | Production build               |
+| `pnpm lint`      | Lint with ESLint               |
+| `pnpm format`    | Format with Prettier           |
+
 ## License
 
-Feel free to use the code in this repository as inspiration for your own projects. Please do not copy the code directly.
+MIT
